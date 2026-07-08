@@ -7,7 +7,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: "InfiCore Technologies",
+      title: "InfiCoreWare Technologies",
       meta: [
         {
           name: "description",
