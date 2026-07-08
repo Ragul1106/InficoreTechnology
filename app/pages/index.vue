@@ -37,10 +37,13 @@ const featuredCards = [
   <div class="bg-white">
 
     <!-- HERO SECTION -->
-    <section
-      class="min-h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-12 bg-gradient-to-br from-white via-sky-50 to-blue-100"
-      >
-      <!-- class="min-h-[75vh] flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-8 bg-gradient-to-br from-white via-sky-50 to-blue-100" -->
+   <!-- <section
+  class="min-h-[65vh] flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-8 bg-gradient-to-br from-white via-sky-50 to-blue-100"
+  
+> -->
+<section
+  class="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-8 md:py-10 bg-gradient-to-br from-white via-sky-50 to-blue-100"
+>
       <!-- Left -->
       <div class="md:w-1/2">
         <h1 class="text-4xl md:text-6xl font-bold text-sky-700 leading-tight">
@@ -67,7 +70,7 @@ const featuredCards = [
           </div>
         </div>
 
-        <div class="mt-8 flex gap-4">
+        <!-- <div class="mt-8 flex gap-4">
           <NuxtLink
             to="/courses"
             class="bg-sky-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-sky-700 transition"
@@ -81,7 +84,7 @@ const featuredCards = [
           >
             Contact Us
           </NuxtLink>
-        </div>
+        </div> -->
       </div>
 
       <!-- Right -->
