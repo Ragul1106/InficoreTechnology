@@ -80,14 +80,10 @@ const comingSoon = (title: string) => {
 
       <!-- Header -->
       <div class="text-center max-w-3xl mx-auto mb-14">
-        <span
-          class="inline-flex items-center rounded-full bg-sky-100 text-sky-700 px-4 py-1 text-sm font-semibold mb-4"
-        >
-          InfiCoreWare Learning Programs
-        </span>
+       
 
         <h1
-          class="text-4xl md:text-5xl font-extrabold text-slate-900 leading-tight"
+          class="text-4xl md:text-4xl font-extrabold text-slate-900 leading-tight"
         >
           Explore Our
           <span class="text-sky-600">Professional Courses</span>
