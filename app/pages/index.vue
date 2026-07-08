@@ -63,10 +63,10 @@ const featuredCards = [
             IoT Automation
           </div>
           <div class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full">
-            EV Technologies
+            Robotics
           </div>
           <div class="px-4 py-2 bg-purple-100 text-purple-700 rounded-full">
-            AI Edge
+            Edge AI
           </div>
         </div>
 
