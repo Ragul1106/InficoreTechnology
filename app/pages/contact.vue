@@ -19,7 +19,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next"
       <h1
         class="text-4xl md:text-6xl pb-4 font-bold bg-gradient-to-r from-sky-500 via-blue-500 to-blue-700 bg-clip-text text-transparent"
       >
-        Contact InfiCore Technologies
+        Contact InfiCoreWare Technologies
       </h1>
 
       <p class="mt-4 text-gray-600 text-lg max-w-3xl mx-auto leading-8">
@@ -88,10 +88,10 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next"
             </div>
 
             <a
-              href="mailto:contact.inficoretechnologies@gmail.com"
+              href="mailto:contact.inficorewaretechnologies@gmail.com"
               class="text-blue-600 break-all hover:text-blue-700 transition"
             >
-              contact.inficoretechnologies@gmail.com
+              contact.inficorewaretechnologies@gmail.com
             </a>
           </div>
 

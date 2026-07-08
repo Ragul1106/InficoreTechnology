@@ -25,8 +25,9 @@ import {
             />
 
             <h2 class="text-2xl font-bold tracking-wider">
-              <span class="text-sky-500">Infi</span>
-              <span class="text-blue-900">Core</span>
+              <span class="text-black">Infi</span>
+              <span class="text-sky-600">Core</span>
+              <span class="text-black">Ware</span>
             </h2>
           </div>
 
@@ -102,10 +103,10 @@ import {
             <div class="flex gap-3 items-start">
               <Mail class="w-5 h-5 text-sky-500 mt-1" />
               <a
-                href="mailto:contact.inficoretechnologies@gmail.com"
+                href="mailto:contact.inficorewaretechnologies@gmail.com"
                 class="hover:text-sky-500 transition break-all"
               >
-                contact.inficoretechnologies@gmail.com
+                contact.inficorewaretechnologies@gmail.com
               </a>
             </div>
 
@@ -154,7 +155,7 @@ import {
       <div
         class="border-t border-sky-100 mt-10 pt-6 text-center text-gray-500 text-sm"
       >
-        © 2026 InfiCore Technologies. All Rights Reserved.
+        © 2026 InfiCoreWare Technologies. All Rights Reserved.
       </div>
     </div>
   </footer>

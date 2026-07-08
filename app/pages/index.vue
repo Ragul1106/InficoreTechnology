@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import founder from "../assets/images/founder.jpeg"
+import founder from "../assets/images/founder.png"
 import banner from "../assets/images/banner.jpg"
 import rndImg from "../assets/images/rd.jpg"
 import products from "../assets/images/product.webp"

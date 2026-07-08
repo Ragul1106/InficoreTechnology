@@ -29,20 +29,21 @@ const navLinks = [
           class="flex items-center gap-2 md:gap-3 group flex-shrink-0"
         >
           <div
-            class="w-10 h-10 md:w-14 md:h-14 rounded-full overflow-hidden border border-sky-200"
+            class="w-10 h-10 md:w-24 md:h-24 rounded-full overflow-hidden border border-sky-200"
           >
             <img
-              :src="logo"
-              alt="InfiCore Logo"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            />
+  :src="logo"
+  alt="Logo"
+  class="w-full h-full object-cover"
+/>
           </div>
 
           <h1
             class="text-xl md:text-4xl font-extrabold tracking-[2px] md:tracking-[4px] whitespace-nowrap"
           >
-            <span class="text-sky-600">Infi</span>
-            <span class="text-gray-900">Core</span>
+            <span class="text-gray-900">INFI</span>
+            <span class="text-sky-600">CORE</span>
+            <span class="text-gray-900">WARE</span>
           </h1>
         </NuxtLink>
 
@@ -52,7 +53,7 @@ const navLinks = [
             v-for="link in navLinks"
             :key="link.name"
             :to="link.path"
-            class="relative text-gray-700 font-medium hover:text-sky-600 transition group"
+            class="relative text-black-700 font-bold  hover:text-sky-600 transition group"
           >
             {{ link.name }}
 
