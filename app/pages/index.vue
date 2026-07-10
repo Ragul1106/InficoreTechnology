@@ -19,15 +19,15 @@ const featuredCards = [
     path: "/courses"
   },
   {
-   
-    title: "Products & components",
-    image: products,
-    path: "/products"
-  },
-  {
-    title: "R&D Innovation",
+   title: "R&D Innovation",
     image: rndImg,
     path: "/rnd"
+   
+  },
+  {
+     title: "Products & components",
+    image: products,
+    path: "/products"
   },
   
 ]

@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import { MapPin, Phone, Mail, Clock } from "lucide-vue-next"
+</script>
+
 <template>
   <div class="min-h-screen bg-white px-6 md:px-16 py-16 relative overflow-hidden">
     
@@ -56,37 +60,19 @@
           Core Expertise
         </h3>
 
-        <ul class="space-y-4 text-gray-700">
-          <li class="flex items-center gap-3">
-            <span class="text-sky-500 text-xl">✔</span>
-            Embedded Systems Development
-          </li>
+       <ul class="list-disc list-inside space-y-4 text-gray-700 marker:text-sky-500 marker:text-lg">
+  <li>Embedded Systems Development</li>
 
-          <li class="flex items-center gap-3">
-            <span class="text-sky-500 text-xl">✔</span>
-            IoT Product Engineering
-          </li>
+  <li>IoT Product Engineering</li>
 
-          <li class="flex items-center gap-3">
-            <span class="text-sky-500 text-xl">✔</span>
-            PCB Design & Manufacturing
-          </li>
+  <li>PCB Design & Manufacturing</li>
 
-          <li class="flex items-center gap-3">
-            <span class="text-sky-500 text-xl">✔</span>
-            AI Edge Computing
-          </li>
+  <li>AI Edge Computing</li>
 
-          <li class="flex items-center gap-3">
-            <span class="text-sky-500 text-xl">✔</span>
-            EV System Innovation
-          </li>
+  <li>EV System Innovation</li>
 
-          <li class="flex items-center gap-3">
-            <span class="text-sky-500 text-xl">✔</span>
-            Industrial Automation
-          </li>
-        </ul>
+  <li>Industrial Automation</li>
+</ul>
       </div>
     </div>
 
@@ -121,5 +107,105 @@
         </p>
       </div>
     </div>
+    <!-- Contact Section -->
+<div class="mt-24 relative z-10">
+
+  <div class="text-center mb-12">
+    <h2
+      class="text-4xl font-bold bg-gradient-to-r from-sky-500 via-blue-500 to-blue-700 bg-clip-text text-transparent"
+    >
+      Contact Us
+    </h2>
+
+    <p class="mt-4 text-gray-600 max-w-3xl mx-auto leading-8">
+      We'd love to hear from you. Reach out for engineering training,
+      product development, industrial automation, embedded systems,
+      IoT solutions, and project collaborations.
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-8">
+
+    <!-- Office Address -->
+    <div
+      class="bg-white border border-sky-100 rounded-3xl p-8 shadow-lg hover:shadow-xl transition duration-300"
+    >
+      <div class="flex items-center gap-3 mb-4">
+        <MapPin class="w-7 h-7 text-sky-500" />
+        <h3 class="text-2xl font-bold text-sky-600">
+          Office Address
+        </h3>
+      </div>
+
+      <p class="text-gray-700 leading-8">
+        Coimbatore,<br />
+        Tamil Nadu - 641001,<br />
+        India
+      </p>
+    </div>
+
+    <!-- Contact Information -->
+    <div
+      class="bg-white border border-sky-100 rounded-3xl p-8 shadow-lg hover:shadow-xl transition duration-300"
+    >
+
+      <div class="space-y-8">
+
+        <div class="flex items-start gap-4">
+          <Phone class="w-6 h-6 text-green-500 mt-1" />
+
+          <div>
+            <h4 class="font-semibold text-lg text-gray-800">
+              Phone
+            </h4>
+
+            <a
+              href="tel:+919789738080"
+              class="text-green-600 hover:text-green-700"
+            >
+              +91 97897 38080
+            </a>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <Mail class="w-6 h-6 text-blue-500 mt-1" />
+
+          <div>
+            <h4 class="font-semibold text-lg text-gray-800">
+              Email
+            </h4>
+
+            <a
+              href="mailto:contact.inficorewaretechnologies@gmail.com"
+              class="text-blue-600 break-all hover:text-blue-700"
+            >
+              contact.inficorewaretechnologies@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-4">
+          <Clock class="w-6 h-6 text-purple-500 mt-1" />
+
+          <div>
+            <h4 class="font-semibold text-lg text-gray-800">
+              Working Hours
+            </h4>
+
+            <p class="text-purple-600">
+              Monday - Saturday<br />
+              9:00 AM - 6:00 PM
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
   </div>
 </template>

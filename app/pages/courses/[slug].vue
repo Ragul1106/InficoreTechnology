@@ -473,39 +473,14 @@ const studentReviews = [...testimonials]
           Why Choose InfiCoreWare?
         </h3>
 
-        <div class="space-y-5">
-
-          <div class="flex gap-3">
-            <span>✅</span>
-            <p>Industry Expert Trainers</p>
-          </div>
-
-          <div class="flex gap-3">
-            <span>✅</span>
-            <p>Hands-on Practical Sessions</p>
-          </div>
-
-          <div class="flex gap-3">
-            <span>✅</span>
-            <p>Real Industry Projects</p>
-          </div>
-
-          <div class="flex gap-3">
-            <span>✅</span>
-            <p>Interview Preparation</p>
-          </div>
-
-          <div class="flex gap-3">
-            <span>✅</span>
-            <p>Placement Assistance</p>
-          </div>
-
-          <div class="flex gap-3">
-            <span>✅</span>
-            <p>Course Completion Certificate</p>
-          </div>
-
-        </div>
+       <ul class="list-disc list-inside space-y-5 text-gray-700 marker:text-sky-500 marker:text-lg">
+  <li>Industry Expert Trainers</li>
+  <li>Hands-on Practical Sessions</li>
+  <li>Real Industry Projects</li>
+  <li>Interview Preparation</li>
+  <li>Placement Assistance</li>
+  <li>Course Completion Certificate</li>
+</ul>
 
       </div>
 
@@ -549,7 +524,7 @@ const studentReviews = [...testimonials]
 
     <div class="bg-white rounded-3xl shadow-lg p-8 text-center">
 
-      <h2 class="text-5xl font-extrabold text-sky-600">
+      <h2 class="text-4xl font-extrabold text-sky-600">
         40+
       </h2>
 
@@ -561,7 +536,7 @@ const studentReviews = [...testimonials]
 
     <div class="bg-white rounded-3xl shadow-lg p-8 text-center">
 
-      <h2 class="text-5xl font-extrabold text-sky-600">
+      <h2 class="text-4xl font-extrabold text-sky-600">
         10+
       </h2>
 
@@ -573,7 +548,7 @@ const studentReviews = [...testimonials]
 
     <div class="bg-white rounded-3xl shadow-lg p-8 text-center">
 
-      <h2 class="text-5xl font-extrabold text-sky-600">
+      <h2 class="text-4xl font-extrabold text-sky-600">
         5+
       </h2>
 
@@ -585,7 +560,7 @@ const studentReviews = [...testimonials]
 
     <div class="bg-white rounded-3xl shadow-lg p-8 text-center">
 
-      <h2 class="text-5xl font-extrabold text-sky-600">
+      <h2 class="text-4xl font-extrabold text-sky-600">
         100%
       </h2>
 

@@ -86,7 +86,7 @@ const comingSoon = (title: string) => {
           class="text-4xl md:text-4xl font-extrabold text-slate-900 leading-tight"
         >
           Explore Our
-          <span class="text-sky-600">Professional Courses</span>
+          <span class="text-sky-600">Flagship Courses</span>
         </h1>
 
         <p class="mt-5 text-lg text-gray-600 leading-relaxed">
@@ -332,38 +332,7 @@ const comingSoon = (title: string) => {
 
       <!-- Bottom CTA -->
 
-      <div
-        class="mt-20 rounded-3xl overflow-hidden bg-gradient-to-r from-sky-700 via-sky-600 to-blue-700 text-white px-8 py-12 md:px-16"
-      >
-
-        <div
-          class="flex flex-col lg:flex-row items-center justify-between gap-8"
-        >
-
-          <div>
-
-            <h2 class="text-3xl md:text-4xl font-bold">
-              Early Bird Registration
-            </h2>
-
-            <p class="mt-3 text-sky-100 max-w-2xl leading-relaxed">
-              Secure your seat today and get access to our industry-ready
-              training programs with practical projects, expert mentorship,
-              certification, and placement guidance.
-            </p>
-
-          </div>
-
-          <NuxtLink
-            to="/contact"
-            class="rounded-xl bg-white text-sky-700 px-8 py-4 font-bold hover:bg-slate-100 transition"
-          >
-            Enroll Now
-          </NuxtLink>
-
-        </div>
-
-      </div>
+    
 
     </div>
   </section>
