@@ -346,69 +346,30 @@ const studentReviews = [...testimonials]
             </div>
 
             <!-- Split into Left & Right -->
-            <div class="grid lg:grid-cols-2 gap-6">
-              <!-- Left Column -->
-              <div class="space-y-5">
-                <template
-                  v-for="(topic, index) in course.topics.filter(
-                    (_, i) => i % 2 === 0,
-                  )"
-                  :key="topic"
-                >
-                  <div
-                    class="flex gap-5 p-5 bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition"
-                  >
-                    <div
-                      class="w-14 h-14 flex-shrink-0 rounded-2xl bg-gradient-to-r from-sky-600 to-blue-700 text-white flex items-center justify-center font-bold text-lg"
-                    >
-                      {{ String(index * 2 + 1).padStart(2, "0") }}
-                    </div>
+           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+  <div
+    v-for="(topic, index) in course.topics"
+    :key="topic"
+    class="flex gap-5 p-5 bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition"
+  >
+    <div
+      class="w-14 h-14 flex-shrink-0 rounded-2xl bg-gradient-to-r from-sky-600 to-blue-700 text-white flex items-center justify-center font-bold text-lg"
+    >
+      {{ String(index + 1).padStart(2, "0") }}
+    </div>
 
-                    <div>
-                      <h3 class="text-lg font-bold text-slate-800">
-                        {{ topic }}
-                      </h3>
+    <div>
+      <h3 class="text-lg font-bold text-slate-800">
+        {{ topic }}
+      </h3>
 
-                      <p class="mt-2 text-gray-500">
-                        Practical demonstrations, debugging, implementation and
-                        industry-oriented hands-on sessions.
-                      </p>
-                    </div>
-                  </div>
-                </template>
-              </div>
-
-              <!-- Right Column -->
-              <div class="space-y-5">
-                <template
-                  v-for="(topic, index) in course.topics.filter(
-                    (_, i) => i % 2 === 1,
-                  )"
-                  :key="topic"
-                >
-                  <div
-                    class="flex gap-5 p-5 bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition"
-                  >
-                    <div
-                      class="w-14 h-14 flex-shrink-0 rounded-2xl bg-gradient-to-r from-sky-600 to-blue-700 text-white flex items-center justify-center font-bold text-lg"
-                    >
-                      {{ String(index * 2 + 2).padStart(2, "0") }}
-                    </div>
-
-                    <div>
-                      <h3 class="text-lg font-bold text-slate-800">
-                        {{ topic }}
-                      </h3>
-
-                      <p class="mt-2 text-gray-500">
-                        Practical demonstrations, debugging, implementation and
-                        industry-oriented hands-on sessions.
-                      </p>
-                    </div>
-                  </div>
-                </template>
-              </div>
-            </div>
+      <p class="mt-2 text-gray-500">
+        Practical demonstrations, debugging, implementation and
+        industry-oriented hands-on sessions.
+      </p>
+    </div>
+  </div>
+</div>
           </section>
         </div>
         <!-- RIGHT SIDEBAR -->

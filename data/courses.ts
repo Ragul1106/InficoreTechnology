@@ -455,6 +455,7 @@ export const courses = [
       "CSS3",
       "JavaScript (ES6+)",
       "TypeScript",
+      "Python",
       "Vue.js",
       "Nuxt.js",
       "Node.js",
