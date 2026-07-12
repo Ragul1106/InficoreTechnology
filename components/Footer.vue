@@ -13,28 +13,47 @@ import {
 <template>
   <footer class="bg-white border-t border-sky-100">
     <div class="px-6 md:px-16 py-14">
-      <div class="grid md:grid-cols-4 gap-10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-10">
+        <!-- Logo + About -->
         <!-- Logo + About -->
         <div>
-          <div class="flex items-center gap-3 mb-5">
+          <div
+            class="flex flex-col sm:flex-row items-center sm:items-center gap-3 text-center sm:text-left"
+          >
             <img
               :src="logo"
               alt="InfiCore Logo"
-              class="w-14 h-14 rounded-full object-cover border border-sky-200 shadow-md"
+              class="w-14 h-14 rounded-full object-cover border border-sky-200 shadow-md shrink-0"
             />
 
-            <h2 class="text-2xl font-bold tracking-wider">
+            <h2
+              class="font-bold leading-tight tracking-wide text-xl sm:text-2xl break-words"
+            >
               <span class="text-black">Infi</span>
               <span class="text-sky-600">Core</span>
               <span class="text-black">Ware</span>
             </h2>
           </div>
 
-          <p class="text-gray-600 leading-7">
-            Engineering Infinite Possibilities through Embedded Systems, IoT
-            Solutions, AI Edge Computing, EV Innovation, and Industry-Focused
-            Training Programs.
-          </p>
+          <!-- Thirukkural -->
+          <div
+            class="mt-5 border-l-4 border-sky-500 pl-4 italic text-gray-700 leading-7"
+          >
+            <p class="font-semibold text-base text-gray-800">
+              கற்க கசடறக் கற்பவை கற்றபின்
+              <br />
+              நிற்க அதற்குத் தக.
+            </p>
+
+            <p class="mt-2 text-sm text-gray-500">
+              Learn thoroughly what is worth learning; having learned it, live
+              by it.
+            </p>
+
+            <p class="mt-2 text-xs font-semibold text-sky-600">
+              — திருக்குறள் 391
+            </p>
+          </div>
         </div>
 
         <!-- Quick Links -->
