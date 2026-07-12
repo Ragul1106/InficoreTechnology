@@ -1,49 +1,42 @@
 <script setup lang="ts">
-import founder from "../assets/images/founder.png"
-import banner from "../assets/images/banner.jpg"
-import rndImg from "../assets/images/rd.jpg"
-import products from "../assets/images/product.webp"
-import courseImg from "../assets/images/courses.jpg"
-import servicebg from "../assets/images/servicebg.jpg"
+import founder from "../assets/images/founder.png";
+import banner from "../assets/images/banner.jpg";
+import rndImg from "../assets/images/rd.jpg";
+import products from "../assets/images/product.webp";
+import courseImg from "../assets/images/courses.jpg";
+import servicebg from "../assets/images/servicebg.jpg";
 
-import {
-  Award,
-  Briefcase,
-  Rocket
-} from "lucide-vue-next"
+import { Award, Briefcase, Rocket } from "lucide-vue-next";
 
 const featuredCards = [
   {
     title: "Courses",
     image: courseImg,
-    path: "/courses"
+    path: "/courses",
   },
   {
-   title: "R&D Innovation",
+    title: "R&D Innovation",
     image: rndImg,
-    path: "/rnd"
-   
+    path: "/rnd",
   },
   {
-     title: "Products & components",
+    title: "Products & components",
     image: products,
-    path: "/products"
+    path: "/products",
   },
-  
-]
+];
 </script>
 
 <template>
   <div class="bg-white">
-
     <!-- HERO SECTION -->
-   <!-- <section
+    <!-- <section
   class="min-h-[65vh] flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-8 bg-gradient-to-br from-white via-sky-50 to-blue-100"
   
 > -->
-<section
-  class="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-8 md:py-10 bg-gradient-to-br from-white via-sky-50 to-blue-100"
->
+    <section
+      class="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-8 md:py-10 bg-gradient-to-br from-white via-sky-50 to-blue-100"
+    >
       <!-- Left -->
       <div class="md:w-1/2">
         <h1 class="text-4xl md:text-6xl font-bold text-sky-700 leading-tight">
@@ -51,8 +44,9 @@ const featuredCards = [
         </h1>
 
         <p class="mt-6 text-lg md:text-xl text-gray-600 leading-8">
-          Delivering advanced engineering solutions in Embedded Systems, IoT,
-          EV Technologies, AI Edge Computing, Industrial Automation, and Product Development.
+          Delivering advanced engineering solutions in Embedded Systems, IoT, EV
+          Technologies, AI Edge Computing, Industrial Automation, and Product
+          Development.
         </p>
 
         <div class="mt-6 flex flex-wrap gap-3">
@@ -97,7 +91,7 @@ const featuredCards = [
       </div>
     </section>
 
-     <!-- CORE DOMAINS -->
+    <!-- CORE DOMAINS -->
     <section
       class="relative px-6 md:px-16 py-24 bg-cover bg-center"
       :style="{ backgroundImage: `url(${servicebg})` }"
@@ -115,48 +109,49 @@ const featuredCards = [
           </p>
         </div>
 
-       <div class="grid md:grid-cols-3 gap-8">
-  <div
-    v-for="card in featuredCards"
-    :key="card.title"
-    class="bg-white rounded-3xl overflow-hidden shadow-xl hover:scale-105 transition duration-300"
-  >
-    <!-- Image Container -->
-    <div class="w-full h-[260px] md:h-[310px] bg-gray-100 flex items-center justify-center">
-      <img
-        :src="card.image"
-        :alt="card.title"
-        class="w-full h-full object-contain md:object-cover"
-      />
-    </div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div
+            v-for="card in featuredCards"
+            :key="card.title"
+            class="bg-white rounded-3xl overflow-hidden shadow-xl hover:scale-105 transition duration-300"
+          >
+            <!-- Image Container -->
+            <div
+              class="w-full h-[260px] md:h-[310px] bg-gray-100 flex items-center justify-center"
+            >
+              <img
+                :src="card.image"
+                :alt="card.title"
+                class="w-full h-full object-contain md:object-cover"
+              />
+            </div>
 
-    <!-- Content -->
-    <div class="p-6">
-      <h3 class="text-2xl font-bold text-sky-700 mb-3">
-        {{ card.title }}
-      </h3>
+            <!-- Content -->
+            <div class="p-6">
+              <h3 class="text-2xl font-bold text-sky-700 mb-3">
+                {{ card.title }}
+              </h3>
 
-      <p class="text-gray-600 mb-5 leading-7">
-        Explore advanced innovations, industrial applications, and practical
-        learning in this domain.
-      </p>
+              <p class="text-gray-600 mb-5 leading-7">
+                Explore advanced innovations, industrial applications, and
+                practical learning in this domain.
+              </p>
 
-      <NuxtLink
-        :to="card.path"
-        class="inline-block px-6 py-3 rounded-xl bg-sky-600 text-white font-semibold hover:bg-sky-700 transition"
-      >
-        Explore Now →
-      </NuxtLink>
-    </div>
-  </div>
-</div>
+              <NuxtLink
+                :to="card.path"
+                class="inline-block px-6 py-3 rounded-xl bg-sky-600 text-white font-semibold hover:bg-sky-700 transition"
+              >
+                Explore Now →
+              </NuxtLink>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- FOUNDER SECTION -->
     <section class="px-6 md:px-16 py-20 bg-white">
       <div class="grid md:grid-cols-2 gap-14 items-center">
-
         <div class="flex justify-center">
           <img
             :src="founder"
@@ -170,25 +165,18 @@ const featuredCards = [
             Meet Our Founder
           </h2>
 
-          <h3 class="text-3xl font-bold text-gray-800 mb-2">
-            Askar Ali N
-          </h3>
+          <h3 class="text-3xl font-bold text-gray-800 mb-2">Askar Ali N</h3>
 
-          <p class="text-sky-600 text-lg mb-6">
-            Founder & CEO
-          </p>
+          <p class="text-sky-600 text-lg mb-6">Founder & CEO</p>
 
           <p class="text-gray-700 leading-8 text-lg">
-            Driven by innovation and practical engineering excellence,
-            InfiCore Technologies was founded to bridge the gap between academic
-            learning and industrial implementation.
+            Driven by innovation and practical engineering excellence, InfiCore
+            Technologies was founded to bridge the gap between academic learning
+            and industrial implementation.
           </p>
         </div>
-
       </div>
     </section>
-
-   
 
     <!-- WHAT WE BUILD -->
     <section class="px-6 md:px-16 py-20 bg-sky-50">
@@ -199,60 +187,54 @@ const featuredCards = [
       </div>
 
       <div class="grid md:grid-cols-4 gap-8 mb-20">
+        <!-- Embedded Products -->
+        <div
+          class="bg-white p-6 rounded-2xl shadow-lg border border-sky-100 hover:shadow-xl hover:-translate-y-2 transition duration-300"
+        >
+          <h3 class="text-sky-700 text-xl font-bold mb-4">Embedded Products</h3>
+          <p class="text-gray-600 leading-7">
+            Custom hardware and firmware solutions designed for industrial
+            automation, smart devices, and advanced electronics.
+          </p>
+        </div>
 
-  <!-- Embedded Products -->
-  <div
-    class="bg-white p-6 rounded-2xl shadow-lg border border-sky-100 hover:shadow-xl hover:-translate-y-2 transition duration-300"
-  >
-    <h3 class="text-sky-700 text-xl font-bold mb-4">
-      Embedded Products
-    </h3>
-    <p class="text-gray-600 leading-7">
-      Custom hardware and firmware solutions designed for industrial automation,
-      smart devices, and advanced electronics.
-    </p>
-  </div>
+        <!-- IoT Solutions -->
+        <div
+          class="bg-white p-6 rounded-2xl shadow-lg border border-green-100 hover:shadow-xl hover:-translate-y-2 transition duration-300"
+        >
+          <h3 class="text-green-700 text-xl font-bold mb-4">IoT Solutions</h3>
+          <p class="text-gray-600 leading-7">
+            Cloud-connected systems, smart monitoring platforms, and secure IoT
+            ecosystems for next-generation connectivity.
+          </p>
+        </div>
 
-  <!-- IoT Solutions -->
-  <div
-    class="bg-white p-6 rounded-2xl shadow-lg border border-green-100 hover:shadow-xl hover:-translate-y-2 transition duration-300"
-  >
-    <h3 class="text-green-700 text-xl font-bold mb-4">
-      IoT Solutions
-    </h3>
-    <p class="text-gray-600 leading-7">
-      Cloud-connected systems, smart monitoring platforms, and secure IoT
-      ecosystems for next-generation connectivity.
-    </p>
-  </div>
+        <!-- Products & Components -->
+        <div
+          class="bg-white p-6 rounded-2xl shadow-lg border border-blue-100 hover:shadow-xl hover:-translate-y-2 transition duration-300"
+        >
+          <h3 class="text-blue-700 text-xl font-bold mb-4">
+            Products & Components
+          </h3>
+          <p class="text-gray-600 leading-7">
+            High-quality electronic components, PCB modules, sensors, and
+            innovative engineering products for industrial applications.
+          </p>
+        </div>
 
-  <!-- Products & Components -->
-  <div
-    class="bg-white p-6 rounded-2xl shadow-lg border border-blue-100 hover:shadow-xl hover:-translate-y-2 transition duration-300"
-  >
-    <h3 class="text-blue-700 text-xl font-bold mb-4">
-      Products & Components
-    </h3>
-    <p class="text-gray-600 leading-7">
-      High-quality electronic components, PCB modules, sensors, and innovative
-      engineering products for industrial applications.
-    </p>
-  </div>
-
-  <!-- Training Programs -->
-  <div
-    class="bg-white p-6 rounded-2xl shadow-lg border border-purple-100 hover:shadow-xl hover:-translate-y-2 transition duration-300"
-  >
-    <h3 class="text-purple-700 text-xl font-bold mb-4">
-      Training Programs
-    </h3>
-    <p class="text-gray-600 leading-7">
-      Industry-oriented practical training in Embedded Systems, IoT, PCB Design,
-      AI, and Product Development for future engineers.
-    </p>
-  </div>
-
-</div>
+        <!-- Training Programs -->
+        <div
+          class="bg-white p-6 rounded-2xl shadow-lg border border-purple-100 hover:shadow-xl hover:-translate-y-2 transition duration-300"
+        >
+          <h3 class="text-purple-700 text-xl font-bold mb-4">
+            Training Programs
+          </h3>
+          <p class="text-gray-600 leading-7">
+            Industry-oriented practical training in Embedded Systems, IoT, PCB
+            Design, AI, and Product Development for future engineers.
+          </p>
+        </div>
+      </div>
 
       <!-- Stats -->
       <div class="grid md:grid-cols-4 gap-8">
@@ -280,71 +262,67 @@ const featuredCards = [
 
     <!-- WHY INFICORE -->
     <section class="px-6 md:px-16 py-20 bg-white">
-  <!-- Heading -->
-  <div class="text-center mb-16">
-    <h2 class="text-3xl md:text-5xl font-bold text-sky-700">
-      Why Choose InfiCore?
-    </h2>
+      <!-- Heading -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold text-sky-700">
+          Why Choose InfiCore?
+        </h2>
 
-    <p class="mt-4 text-gray-600 text-lg max-w-3xl mx-auto leading-8">
-      Building future-ready engineers with practical industrial knowledge,
-      real-time product development, and innovation-focused learning.
-    </p>
-  </div>
+        <p class="mt-4 text-gray-600 text-lg max-w-3xl mx-auto leading-8">
+          Building future-ready engineers with practical industrial knowledge,
+          real-time product development, and innovation-focused learning.
+        </p>
+      </div>
 
-  <!-- Cards -->
-  <div class="grid md:grid-cols-3 gap-8 text-center">
+      <!-- Cards -->
+      <div class="grid md:grid-cols-3 gap-8 text-center">
+        <!-- Card 1 -->
+        <div
+          class="p-8 bg-gray-50 rounded-3xl border border-gray-200 shadow-[0_8px_30px_rgba(14,165,233,0.10)] hover:shadow-[0_12px_40px_rgba(14,165,233,0.18)] hover:-translate-y-2 transition duration-300"
+        >
+          <Award class="mx-auto w-14 h-14 text-sky-600 mb-5" />
 
-    <!-- Card 1 -->
-    <div
-      class="p-8 bg-gray-50 rounded-3xl border border-gray-200 shadow-[0_8px_30px_rgba(14,165,233,0.10)] hover:shadow-[0_12px_40px_rgba(14,165,233,0.18)] hover:-translate-y-2 transition duration-300"
-    >
-      <Award class="mx-auto w-14 h-14 text-sky-600 mb-5" />
+          <h3 class="font-bold text-2xl text-gray-800 mb-4">
+            Industry-Oriented Training
+          </h3>
 
-      <h3 class="font-bold text-2xl text-gray-800 mb-4">
-        Industry-Oriented Training
-      </h3>
+          <p class="text-gray-600 leading-7">
+            Structured learning programs aligned with real industrial
+            requirements in Embedded Systems, IoT, and Product Engineering.
+          </p>
+        </div>
 
-      <p class="text-gray-600 leading-7">
-        Structured learning programs aligned with real industrial requirements
-        in Embedded Systems, IoT, and Product Engineering.
-      </p>
-    </div>
+        <!-- Card 2 -->
+        <div
+          class="p-8 bg-gray-50 rounded-3xl border border-gray-200 shadow-[0_8px_30px_rgba(14,165,233,0.10)] hover:shadow-[0_12px_40px_rgba(14,165,233,0.18)] hover:-translate-y-2 transition duration-300"
+        >
+          <Briefcase class="mx-auto w-14 h-14 text-sky-600 mb-5" />
 
-    <!-- Card 2 -->
-    <div
-      class="p-8 bg-gray-50 rounded-3xl border border-gray-200 shadow-[0_8px_30px_rgba(14,165,233,0.10)] hover:shadow-[0_12px_40px_rgba(14,165,233,0.18)] hover:-translate-y-2 transition duration-300"
-    >
-      <Briefcase class="mx-auto w-14 h-14 text-sky-600 mb-5" />
+          <h3 class="font-bold text-2xl text-gray-800 mb-4">
+            Product-Based Learning
+          </h3>
 
-      <h3 class="font-bold text-2xl text-gray-800 mb-4">
-        Product-Based Learning
-      </h3>
+          <p class="text-gray-600 leading-7">
+            Learn by building real-world prototypes, products, and industrial
+            applications for hands-on engineering excellence.
+          </p>
+        </div>
 
-      <p class="text-gray-600 leading-7">
-        Learn by building real-world prototypes, products, and industrial
-        applications for hands-on engineering excellence.
-      </p>
-    </div>
+        <!-- Card 3 -->
+        <div
+          class="p-8 bg-gray-50 rounded-3xl border border-gray-200 shadow-[0_8px_30px_rgba(14,165,233,0.10)] hover:shadow-[0_12px_40px_rgba(14,165,233,0.18)] hover:-translate-y-2 transition duration-300"
+        >
+          <Rocket class="mx-auto w-14 h-14 text-sky-600 mb-5" />
 
-    <!-- Card 3 -->
-    <div
-      class="p-8 bg-gray-50 rounded-3xl border border-gray-200 shadow-[0_8px_30px_rgba(14,165,233,0.10)] hover:shadow-[0_12px_40px_rgba(14,165,233,0.18)] hover:-translate-y-2 transition duration-300"
-    >
-      <Rocket class="mx-auto w-14 h-14 text-sky-600 mb-5" />
+          <h3 class="font-bold text-2xl text-gray-800 mb-4">Startup Mindset</h3>
 
-      <h3 class="font-bold text-2xl text-gray-800 mb-4">
-        Startup Mindset
-      </h3>
-
-      <p class="text-gray-600 leading-7">
-        Transform ideas into scalable solutions through innovation,
-        research-driven development, and entrepreneurial thinking.
-      </p>
-    </div>
-
-  </div>
-</section>
+          <p class="text-gray-600 leading-7">
+            Transform ideas into scalable solutions through innovation,
+            research-driven development, and entrepreneurial thinking.
+          </p>
+        </div>
+      </div>
+    </section>
 
     <!-- FINAL CTA -->
     <section class="px-6 md:px-16 py-20 bg-sky-700 text-center text-white">
@@ -353,8 +331,8 @@ const featuredCards = [
       </h2>
 
       <p class="text-lg max-w-3xl mx-auto mb-10">
-        Collaborate with InfiCore Technologies for next-generation embedded systems,
-        IoT ecosystems, and engineering education.
+        Collaborate with InfiCore Technologies for next-generation embedded
+        systems, IoT ecosystems, and engineering education.
       </p>
 
       <div class="flex flex-wrap justify-center gap-5">
@@ -373,6 +351,5 @@ const featuredCards = [
         </NuxtLink>
       </div>
     </section>
-
   </div>
 </template>

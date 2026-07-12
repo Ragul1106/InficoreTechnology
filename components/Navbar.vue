@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { ref } from "vue"
-import { useRoute } from "vue-router"
-import logo from "../assets/images/logo.png"
-import { User } from "lucide-vue-next"
+import { ref } from "vue";
+import { useRoute } from "vue-router";
+import logo from "../assets/images/logo.png";
+import { User } from "lucide-vue-next";
 
-const menuOpen = ref(false)
-const route = useRoute()
+const menuOpen = ref(false);
+const route = useRoute();
 
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "Courses", path: "/courses" },
-  { name: "About", path: "/about" }
+  { name: "About", path: "/about" },
   // { name: "Contact", path: "/contact" }
-]
+];
 </script>
 
 <template>
@@ -22,7 +22,6 @@ const navLinks = [
     <!-- NAVBAR -->
     <nav class="w-full px-4 md:px-10 py-4">
       <div class="flex items-center justify-between w-full">
-
         <!-- LOGO -->
         <NuxtLink
           to="/"
@@ -31,11 +30,7 @@ const navLinks = [
           <div
             class="w-10 h-10 md:w-24 md:h-24 rounded-full overflow-hidden border border-sky-200"
           >
-            <img
-  :src="logo"
-  alt="Logo"
-  class="w-full h-full object-cover"
-/>
+            <img :src="logo" alt="Logo" class="w-full h-full object-cover" />
           </div>
 
           <h1
@@ -53,16 +48,14 @@ const navLinks = [
             v-for="link in navLinks"
             :key="link.name"
             :to="link.path"
-            class="relative text-black-700 font-bold  hover:text-sky-600 transition group"
+            class="relative text-black-700 font-bold hover:text-sky-600 transition group"
           >
             {{ link.name }}
 
             <span
               class="absolute left-0 -bottom-1 h-[2px] bg-sky-600 transition-all duration-300"
               :class="
-                route.path === link.path
-                  ? 'w-full'
-                  : 'w-0 group-hover:w-full'
+                route.path === link.path ? 'w-full' : 'w-0 group-hover:w-full'
               "
             />
           </NuxtLink>
@@ -117,38 +110,38 @@ const navLinks = [
     </transition>
 
     <!-- MOBILE MENU -->
-   <transition name="slide-right">
-  <div
-    v-if="menuOpen"
-    class="fixed top-[72px] right-0 h-[calc(100%-72px)] w-1/2  z-40 md:hidden shadow-2xl border-l border-sky-200"
-  >
-    <div class="flex flex-col bg-white gap-4 px-3 py-4 rounded-l-3xl">
-      <NuxtLink
-        v-for="link in navLinks"
-        :key="link.name"
-        :to="link.path"
-        @click="menuOpen = false"
-        class="w-full text-center text-lg font-semibold px-2 py-3 rounded-xl border transition"
-        :class="
-          route.path === link.path
-            ? 'bg-sky-600 text-white border-sky-600'
-            : 'bg-sky-50 border-sky-100 hover:bg-sky-100'
-        "
+    <transition name="slide-right">
+      <div
+        v-if="menuOpen"
+        class="fixed top-[72px] right-0 h-[calc(100%-72px)] w-1/2 z-40 md:hidden shadow-2xl border-l border-sky-200"
       >
-        {{ link.name }}
-      </NuxtLink>
+        <div class="flex flex-col bg-white gap-4 px-3 py-4 rounded-l-3xl">
+          <NuxtLink
+            v-for="link in navLinks"
+            :key="link.name"
+            :to="link.path"
+            @click="menuOpen = false"
+            class="w-full text-center text-lg font-semibold px-2 py-3 rounded-xl border transition"
+            :class="
+              route.path === link.path
+                ? 'bg-sky-600 text-white border-sky-600'
+                : 'bg-sky-50 border-sky-100 hover:bg-sky-100'
+            "
+          >
+            {{ link.name }}
+          </NuxtLink>
 
-      <NuxtLink
-        to="/login"
-        @click="menuOpen = false"
-        class="w-full flex items-center text-center gap-3 text-sky-700 text-lg font-semibold px-4 py-3 rounded-xl bg-sky-100 border border-sky-200 hover:bg-sky-600 hover:text-white transition"
-      >
-        <User class="w-5 h-5 text-center" />
-        Login
-      </NuxtLink>
-    </div>
-  </div>
-</transition>
+          <NuxtLink
+            to="/login"
+            @click="menuOpen = false"
+            class="w-full flex items-center text-center gap-3 text-sky-700 text-lg font-semibold px-4 py-3 rounded-xl bg-sky-100 border border-sky-200 hover:bg-sky-600 hover:text-white transition"
+          >
+            <User class="w-5 h-5 text-center" />
+            Login
+          </NuxtLink>
+        </div>
+      </div>
+    </transition>
   </header>
 </template>
 
