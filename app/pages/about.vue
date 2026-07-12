@@ -119,75 +119,105 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next";
         </p>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-8">
-        <!-- Office Address -->
-        <div
-          class="bg-white border border-sky-100 rounded-3xl p-8 shadow-lg hover:shadow-xl transition duration-300"
-        >
-          <div class="flex items-center gap-3 mb-4">
-            <MapPin class="w-7 h-7 text-sky-500" />
-            <h3 class="text-2xl font-bold text-sky-600">Office Address</h3>
-          </div>
+     <div class="grid lg:grid-cols-2 gap-8">
 
-          <p class="text-gray-700 leading-8">
-            Coimbatore,<br />
-            Tamil Nadu - 641001,<br />
-            India
-          </p>
-        </div>
+  <!-- Google Map -->
+  <div
+    class="bg-white border border-sky-100 rounded-3xl p-3 shadow-lg hover:shadow-xl transition duration-300"
+  >
+    <iframe
+      src="https://www.google.com/maps?q=Gobichettipalayam,Tamil%20Nadu&output=embed"
+      class="w-full h-[450px] rounded-2xl"
+      style="border:0;"
+      loading="lazy"
+      allowfullscreen
+      referrerpolicy="no-referrer-when-downgrade"
+    >
+    </iframe>
+  </div>
 
-        <!-- Contact Information -->
-        <div
-          class="bg-white border border-sky-100 rounded-3xl p-8 shadow-lg hover:shadow-xl transition duration-300"
-        >
-          <div class="space-y-8">
-            <div class="flex items-start gap-4">
-              <Phone class="w-6 h-6 text-green-500 mt-1" />
+  <!-- Contact Information -->
+  <div
+    class="bg-white border border-sky-100 rounded-3xl p-8 shadow-lg hover:shadow-xl transition duration-300"
+  >
+    <div class="space-y-8">
 
-              <div>
-                <h4 class="font-semibold text-lg text-gray-800">Phone</h4>
+      <!-- Phone -->
+      <div class="flex items-start gap-4">
+        <Phone class="w-6 h-6 text-green-500 mt-1" />
 
-                <a
-                  href="tel:+919789738080"
-                  class="text-green-600 hover:text-green-700"
-                >
-                  +91 97897 38080
-                </a>
-              </div>
-            </div>
+        <div>
+          <h4 class="font-semibold text-lg text-gray-800">Phone</h4>
 
-            <div class="flex items-start gap-4">
-              <Mail class="w-6 h-6 text-blue-500 mt-1" />
-
-              <div>
-                <h4 class="font-semibold text-lg text-gray-800">Email</h4>
-
-                <a
-                  href="mailto:contact.inficorewaretechnologies@gmail.com"
-                  class="text-blue-600 break-all hover:text-blue-700"
-                >
-                  contact.inficorewaretechnologies@gmail.com
-                </a>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-4">
-              <Clock class="w-6 h-6 text-purple-500 mt-1" />
-
-              <div>
-                <h4 class="font-semibold text-lg text-gray-800">
-                  Working Hours
-                </h4>
-
-                <p class="text-purple-600">
-                  Monday - Saturday<br />
-                  9:00 AM - 6:00 PM
-                </p>
-              </div>
-            </div>
-          </div>
+          <a
+            href="tel:+919789738080"
+            class="text-green-600 hover:text-green-700"
+          >
+            +91 97897 38080
+          </a>
         </div>
       </div>
+
+      <!-- Email -->
+      <div class="flex items-start gap-4">
+        <Mail class="w-6 h-6 text-blue-500 mt-1" />
+
+        <div>
+          <h4 class="font-semibold text-lg text-gray-800">Email</h4>
+
+          <a
+            href="mailto:contact.inficorewaretechnologies@gmail.com"
+            class="text-blue-600 break-all hover:text-blue-700"
+          >
+            contact.inficorewaretechnologies@gmail.com
+          </a>
+        </div>
+      </div>
+
+      <!-- Working Hours -->
+      <div class="flex items-start gap-4">
+        <Clock class="w-6 h-6 text-purple-500 mt-1" />
+
+        <div>
+          <h4 class="font-semibold text-lg text-gray-800">
+            Working Hours
+          </h4>
+
+          <p class="text-purple-600">
+            Monday - Saturday <br />
+            9:00 AM - 6:00 PM
+          </p>
+        </div>
+      </div>
+
+      <!-- Office Address -->
+      <div class="flex items-start gap-4">
+        <MapPin class="w-6 h-6 text-sky-500 mt-1" />
+
+        <div>
+          <h4 class="font-semibold text-lg text-gray-800">
+            Office Address
+          </h4>
+
+        <p class="text-gray-600 mt-1 leading-7">
+  Gobichettipalayam,<br />
+  Erode District,<br />
+  Tamil Nadu - 638452,<br />
+  India.
+</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
     </div>
   </div>
 </template>

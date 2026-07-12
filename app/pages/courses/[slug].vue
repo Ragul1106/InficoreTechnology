@@ -2,6 +2,37 @@
 import { courses } from "../../../data/courses";
 import { ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { Plus, Minus } from "lucide-vue-next";
+
+const activeFaq = ref<number | null>(0);
+
+const faqs = [
+  {
+    question: "Who can join this course?",
+    answer:
+      "Students, fresh graduates, diploma holders, engineering students, and working professionals interested in this domain can enroll.",
+  },
+  {
+    question: "Will I receive a certificate?",
+    answer:
+      "Yes. Every student who successfully completes the course will receive an InfiCoreWare Industry-Recognized Course Completion Certificate.",
+  },
+  {
+    question: "Are hands-on projects included?",
+    answer:
+      "Absolutely. Every course includes multiple real-time industry projects, practical assignments, and guided implementation sessions.",
+  },
+  {
+    question: "Is placement assistance provided?",
+    answer:
+      "Yes. Eligible students receive placement assistance, interview preparation, resume building, and career guidance.",
+  },
+  {
+    question: "Are classes available online and offline?",
+    answer:
+      "Yes. We offer both classroom and live online training so you can choose the learning mode that best suits you.",
+  },
+];
 
 const route = useRoute();
 const router = useRouter();
@@ -346,30 +377,30 @@ const studentReviews = [...testimonials]
             </div>
 
             <!-- Split into Left & Right -->
-           <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-  <div
-    v-for="(topic, index) in course.topics"
-    :key="topic"
-    class="flex gap-5 p-5 bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition"
-  >
-    <div
-      class="w-14 h-14 flex-shrink-0 rounded-2xl bg-gradient-to-r from-sky-600 to-blue-700 text-white flex items-center justify-center font-bold text-lg"
-    >
-      {{ String(index + 1).padStart(2, "0") }}
-    </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div
+                v-for="(topic, index) in course.topics"
+                :key="topic"
+                class="flex gap-5 p-5 bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition"
+              >
+                <div
+                  class="w-14 h-14 flex-shrink-0 rounded-2xl bg-gradient-to-r from-sky-600 to-blue-700 text-white flex items-center justify-center font-bold text-lg"
+                >
+                  {{ String(index + 1).padStart(2, "0") }}
+                </div>
 
-    <div>
-      <h3 class="text-lg font-bold text-slate-800">
-        {{ topic }}
-      </h3>
+                <div>
+                  <h3 class="text-lg font-bold text-slate-800">
+                    {{ topic }}
+                  </h3>
 
-      <p class="mt-2 text-gray-500">
-        Practical demonstrations, debugging, implementation and
-        industry-oriented hands-on sessions.
-      </p>
-    </div>
-  </div>
-</div>
+                  <p class="mt-2 text-gray-500">
+                    Practical demonstrations, debugging, implementation and
+                    industry-oriented hands-on sessions.
+                  </p>
+                </div>
+              </div>
+            </div>
           </section>
         </div>
         <!-- RIGHT SIDEBAR -->
@@ -526,37 +557,61 @@ const studentReviews = [...testimonials]
       </div>
     </section>
 
-    <section class="py-20">
+    <section class="py-20 bg-gradient-to-b from-slate-50 via-white to-sky-50">
       <div class="max-w-5xl mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-12">
-          Frequently Asked Questions
-        </h2>
+        <div class="text-center mb-14">
+          <p class="text-sky-600 font-semibold uppercase tracking-widest">
+            Frequently Asked Questions
+          </p>
+
+          <h2 class="mt-3 text-4xl md:text-5xl font-extrabold text-slate-900">
+            Everything You Need to Know
+          </h2>
+
+          <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+            Find answers to the most common questions about our courses,
+            certification, projects, and placement support.
+          </p>
+        </div>
 
         <div class="space-y-5">
-          <div class="bg-white rounded-2xl shadow p-6">
-            <h3 class="font-bold">Who can join this course?</h3>
+          <div
+            v-for="(faq, index) in faqs"
+            :key="index"
+            class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:shadow-xl"
+          >
+            <button
+              @click="activeFaq = activeFaq === index ? null : index"
+              class="flex w-full items-center justify-between px-6 py-5 text-left"
+            >
+              <h3 class="text-lg font-bold text-slate-900">
+                {{ faq.question }}
+              </h3>
 
-            <p class="mt-3 text-gray-600">
-              Students, graduates and working professionals interested in this
-              domain.
-            </p>
-          </div>
+              <div
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-sky-100 text-sky-600"
+              >
+                <Minus v-if="activeFaq === index" class="h-5 w-5" />
 
-          <div class="bg-white rounded-2xl shadow p-6">
-            <h3 class="font-bold">Will I receive a certificate?</h3>
+                <Plus v-else class="h-5 w-5" />
+              </div>
+            </button>
 
-            <p class="mt-3 text-gray-600">
-              Yes. Every student receives an InfiCoreWare Course Completion
-              Certificate.
-            </p>
-          </div>
-
-          <div class="bg-white rounded-2xl shadow p-6">
-            <h3 class="font-bold">Are projects included?</h3>
-
-            <p class="mt-3 text-gray-600">
-              Yes. Every course includes multiple hands-on industry projects.
-            </p>
+            <transition
+              enter-active-class="transition-all duration-300"
+              leave-active-class="transition-all duration-300"
+              enter-from-class="opacity-0 max-h-0"
+              enter-to-class="opacity-100 max-h-96"
+              leave-from-class="opacity-100 max-h-96"
+              leave-to-class="opacity-0 max-h-0"
+            >
+              <div
+                v-if="activeFaq === index"
+                class="px-6 pb-6 text-gray-600 leading-8"
+              >
+                {{ faq.answer }}
+              </div>
+            </transition>
           </div>
         </div>
       </div>
