@@ -194,70 +194,93 @@ const programmingCourses = computed(() =>
         class="relative mb-10 overflow-hidden rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 via-yellow-50 to-orange-50 shadow-lg"
       >
         <div class="flex items-center">
+          <!-- Left Badge -->
+          <div
+            class="shrink-0 flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-red-600 to-orange-500 px-3 sm:px-5 md:px-6 py-3 md:py-4 font-bold text-white"
+          >
+            <Flame class="w-4 h-4 sm:w-5 sm:h-5" />
+            <span class="text-xs sm:text-sm md:text-base tracking-wide">
+              LIVE UPDATES
+            </span>
+          </div>
 
-  <!-- Left Badge -->
-  <div
-    class="shrink-0 flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-red-600 to-orange-500 px-3 sm:px-5 md:px-6 py-3 md:py-4 font-bold text-white"
-  >
-    <Flame class="w-4 h-4 sm:w-5 sm:h-5" />
-    <span class="text-xs sm:text-sm md:text-base tracking-wide">
-      LIVE UPDATES
-    </span>
-  </div>
+          <!-- Marquee -->
+          <div class="flex-1 overflow-hidden">
+            <div class="marquee">
+              <div class="marquee-content">
+                <span
+                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
+                >
+                  <GraduationCap
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-sky-600 shrink-0"
+                  />
+                  18 Students enrolled in Intelligent Product Engineering
+                </span>
 
-  <!-- Marquee -->
-  <div class="flex-1 overflow-hidden">
-    <div class="marquee">
-      <div class="marquee-content">
+                <span
+                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
+                >
+                  <Cpu
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 shrink-0"
+                  />
+                  12 Students enrolled in Smart Connected Systems Engineering
+                </span>
 
-        <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base">
-          <GraduationCap class="w-3 h-3 sm:w-4 sm:h-4 text-sky-600 shrink-0" />
-          18 Students enrolled in Intelligent Product Engineering
-        </span>
+                <span
+                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
+                >
+                  <BrainCircuit
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-violet-600 shrink-0"
+                  />
+                  9 Students enrolled in Edge AI & Intelligent Embedded Systems
+                </span>
 
-        <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base">
-          <Cpu class="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 shrink-0" />
-          12 Students enrolled in Smart Connected Systems Engineering
-        </span>
+                <span
+                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
+                >
+                  <MonitorSmartphone
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-blue-600 shrink-0"
+                  />
+                  22 Students enrolled in Full Stack Developer
+                </span>
 
-        <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base">
-          <BrainCircuit class="w-3 h-3 sm:w-4 sm:h-4 text-violet-600 shrink-0" />
-          9 Students enrolled in Edge AI & Intelligent Embedded Systems
-        </span>
+                <span
+                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
+                >
+                  <Bell
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-orange-600 shrink-0"
+                  />
+                  Early Bird Registration Closing Soon
+                </span>
 
-        <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base">
-          <MonitorSmartphone class="w-3 h-3 sm:w-4 sm:h-4 text-blue-600 shrink-0" />
-          22 Students enrolled in Full Stack Developer
-        </span>
+                <span
+                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
+                >
+                  <Clock3 class="w-3 h-3 sm:w-4 sm:h-4 text-red-600 shrink-0" />
+                  Only 15 Seats Remaining
+                </span>
 
-        <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base">
-          <Bell class="w-3 h-3 sm:w-4 sm:h-4 text-orange-600 shrink-0" />
-          Early Bird Registration Closing Soon
-        </span>
+                <span
+                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
+                >
+                  <BadgeCheck
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-green-600 shrink-0"
+                  />
+                  Industry Certificate Included
+                </span>
 
-        <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base">
-          <Clock3 class="w-3 h-3 sm:w-4 sm:h-4 text-red-600 shrink-0" />
-          Only 15 Seats Remaining
-        </span>
-
-        <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base">
-          <BadgeCheck class="w-3 h-3 sm:w-4 sm:h-4 text-green-600 shrink-0" />
-          Industry Certificate Included
-        </span>
-
-        <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base">
-          <BriefcaseBusiness class="w-3 h-3 sm:w-4 sm:h-4 text-sky-700 shrink-0" />
-          Placement Assistance Available
-        </span>
-
-      </div>
-    </div>
-  </div>
-
-</div>
-
-
-
+                <span
+                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
+                >
+                  <BriefcaseBusiness
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-sky-700 shrink-0"
+                  />
+                  Placement Assistance Available
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div
