@@ -736,7 +736,7 @@ export const courses = [
   {
     slug: "cpp-programming",
     title: "C++ Programming",
-    image: "/images/c++.jpg",
+    image: "/images/C++.jpg",
 
     available: true,
 
