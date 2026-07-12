@@ -18,7 +18,6 @@ export const courses = [
     rating: 4.9,
     reviews: 126,
 
-
     overview:
       "The Intelligent Product Engineering program is designed to develop complete industry-ready engineers capable of building smart electronic products from concept to deployment. The course integrates Embedded Systems, PCB Design, IoT, AI, Product Design, Firmware Development, Testing, and Industrial Automation, providing hands-on experience with real-world engineering projects.",
 
@@ -91,13 +90,12 @@ export const courses = [
     projects: "6+ Industry Projects",
     placement: true,
 
-     totalSeats: 30,
+    totalSeats: 30,
     seatsLeft: 12,
     enrolledThisWeek: 28,
     nextBatch: "22 Aug 2026",
     rating: 4.7,
     reviews: 102,
-
 
     overview:
       "Smart Connected Systems Engineering focuses on designing intelligent connected devices using Embedded Systems, IoT, Cloud Platforms, Wireless Communication, Automation, and Data Analytics. Students develop industrial-grade connected solutions for smart homes, healthcare, automotive, agriculture, and Industry 4.0.",
@@ -164,13 +162,12 @@ export const courses = [
     projects: "7+ Industry Projects",
     placement: true,
 
-     totalSeats: 30,
+    totalSeats: 30,
     seatsLeft: 10,
     enrolledThisWeek: 20,
     nextBatch: "10 Aug 2026",
     rating: 4.8,
     reviews: 159,
-
 
     overview:
       "Master Artificial Intelligence on Embedded Systems by combining Machine Learning, Computer Vision, Embedded Firmware Development, IoT, and Edge Computing. Learn how to deploy optimized AI models on embedded hardware for real-time industrial applications.",
@@ -236,13 +233,12 @@ export const courses = [
     projects: "5+ Industry Projects",
     placement: true,
 
-     totalSeats: 40,
+    totalSeats: 40,
     seatsLeft: 18,
     enrolledThisWeek: 22,
     nextBatch: "25 Aug 2026",
     rating: 4.9,
     reviews: 192,
-
 
     overview:
       "Learn BareMetal programming on PIC Microcontrollers by developing firmware directly at the register level without relying on external libraries. Gain hands-on experience in peripheral programming, interrupt handling, timers, communication protocols, and industrial embedded applications.",
@@ -306,13 +302,12 @@ export const courses = [
     projects: "5+ Industry Projects",
     placement: true,
 
-     totalSeats: 30,
+    totalSeats: 30,
     seatsLeft: 5,
     enrolledThisWeek: 25,
     nextBatch: "10 Aug 2026",
     rating: 4.9,
     reviews: 115,
-
 
     overview:
       "Master BareMetal programming using the ATmega328 microcontroller through register-level coding. Learn complete AVR architecture, peripheral programming, communication protocols, interrupt systems, and embedded firmware development for industrial applications.",
@@ -376,13 +371,12 @@ export const courses = [
     projects: "6+ Industry Projects",
     placement: true,
 
-     totalSeats: 20,
+    totalSeats: 20,
     seatsLeft: 8,
     enrolledThisWeek: 12,
     nextBatch: "05 Aug 2026",
     rating: 4.9,
     reviews: 121,
-
 
     overview:
       "Develop embedded firmware on ESP32 using BareMetal concepts by understanding low-level hardware programming, GPIO configuration, timers, interrupts, communication peripherals, Wi-Fi, Bluetooth, and real-time applications without relying heavily on high-level frameworks.",
@@ -446,13 +440,12 @@ export const courses = [
     projects: "8+ Industry Projects",
     placement: true,
 
-     totalSeats: 30,
+    totalSeats: 30,
     seatsLeft: 18,
     enrolledThisWeek: 12,
     nextBatch: "15 Aug 2026",
     rating: 4.7,
     reviews: 117,
-
 
     overview:
       "The Full Stack Developer – Industry Course is designed to transform beginners into industry-ready web developers. Learn frontend development, backend development, databases, REST APIs, authentication, deployment, cloud integration, and modern development practices through real-world projects used by software companies.",
@@ -529,13 +522,12 @@ export const courses = [
     projects: "5+ Industry Projects",
     placement: true,
 
-     totalSeats: 50,
+    totalSeats: 50,
     seatsLeft: 18,
     enrolledThisWeek: 32,
     nextBatch: "15 Aug 2026",
     rating: 4.9,
     reviews: 216,
-
 
     overview:
       "Master Python Programming from fundamentals to advanced concepts through practical coding exercises and real-world projects. Learn automation, object-oriented programming, data analysis, web development, and AI fundamentals using industry-standard tools.",
@@ -602,14 +594,13 @@ export const courses = [
     certificate: true,
     projects: "6+ Industry Projects",
     placement: true,
-    
-     totalSeats: 30,
+
+    totalSeats: 30,
     seatsLeft: 18,
     enrolledThisWeek: 12,
     nextBatch: "12 Aug 2026",
     rating: 4.5,
     reviews: 110,
-
 
     overview:
       "Learn Embedded Linux from Linux fundamentals to embedded application development. Understand shell scripting, Linux architecture, device drivers, bootloaders, Buildroot, Yocto, cross-compilation, and Raspberry Pi application development.",
@@ -673,13 +664,12 @@ export const courses = [
     projects: "5+ Industry Projects",
     placement: true,
 
-     totalSeats: 30,
+    totalSeats: 30,
     seatsLeft: 12,
     enrolledThisWeek: 18,
     nextBatch: "10 Aug 2026",
     rating: 4.6,
     reviews: 153,
-
 
     overview:
       "Learn VLSI Programming covering digital electronics, Verilog HDL, FPGA fundamentals, ASIC design flow, simulation, synthesis, verification, and RTL design. Build industry-ready digital hardware solutions using professional EDA tools.",
@@ -740,13 +730,12 @@ export const courses = [
     projects: "5+ Industry Projects",
     placement: true,
 
-     totalSeats: 50,
+    totalSeats: 50,
     seatsLeft: 12,
     enrolledThisWeek: 38,
     nextBatch: "12 Aug 2026",
     rating: 4.7,
     reviews: 173,
-
 
     overview:
       "Build a strong programming foundation with C Programming. Learn structured programming, pointers, memory management, functions, file handling, data structures, and problem-solving techniques widely used in Embedded Systems, VLSI, Robotics, and Software Development.",
@@ -811,13 +800,12 @@ export const courses = [
     projects: "5+ Industry Projects",
     placement: true,
 
-     totalSeats: 30,
+    totalSeats: 30,
     seatsLeft: 12,
     enrolledThisWeek: 18,
     nextBatch: "05 Aug 2026",
     rating: 4.6,
     reviews: 138,
-
 
     overview:
       "Master modern C++ programming using Object-Oriented Programming principles, Standard Template Library (STL), memory management, templates, and application development. Learn industry-standard coding practices through practical software engineering projects.",

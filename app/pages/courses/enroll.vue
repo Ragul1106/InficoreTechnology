@@ -2,18 +2,16 @@
 const props = defineProps({
   selectedCourse: {
     type: String,
-    default: ""
-  }
-})
+    default: "",
+  },
+});
 </script>
 
 <template>
   <div class="w-full">
     <!-- Heading -->
     <div class="text-center mb-8">
-      <h2 class="text-3xl font-bold text-blue-900">
-        Course Enrollment
-      </h2>
+      <h2 class="text-3xl font-bold text-blue-900">Course Enrollment</h2>
 
       <p class="mt-2 text-gray-600">
         Fill the form and our team will contact you shortly.

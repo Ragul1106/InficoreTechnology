@@ -1,9 +1,9 @@
 export default defineNuxtConfig({
   devtools: { enabled: true },
 
-  css: ['~/assets/css/main.css'],
+  css: ["~/assets/css/main.css"],
 
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ["@nuxtjs/tailwindcss"],
 
   app: {
     head: {
@@ -11,16 +11,16 @@ export default defineNuxtConfig({
       meta: [
         {
           name: "description",
-          content: "Engineering Infinite Possibilities"
-        }
+          content: "Engineering Infinite Possibilities",
+        },
       ],
       link: [
         {
           rel: "icon",
           type: "image/x-icon",
-          href: "/favicon.png"
-        }
-      ]
-    }
-  }
-})
+          href: "/favicon.png",
+        },
+      ],
+    },
+  },
+});

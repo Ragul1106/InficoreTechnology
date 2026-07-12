@@ -6,41 +6,41 @@ import {
   Star,
   CalendarDays,
   CheckCircle2,
-  ArrowRight
-} from "lucide-vue-next"
+  ArrowRight,
+} from "lucide-vue-next";
 
 interface Course {
-  slug: string
-  title: string
-  image: string
-  available: boolean
-  duration: string
-  mode: string
-  certificate: boolean
-  projects: string
-  placement: boolean
-  overview: string
-  levels: string[]
+  slug: string;
+  title: string;
+  image: string;
+  available: boolean;
+  duration: string;
+  mode: string;
+  certificate: boolean;
+  projects: string;
+  placement: boolean;
+  overview: string;
+  levels: string[];
 
-  totalSeats: number
-  seatsLeft: number
-  enrolledThisWeek: number
-  nextBatch: string
-  rating: number
-  reviews: number
+  totalSeats: number;
+  seatsLeft: number;
+  enrolledThisWeek: number;
+  nextBatch: string;
+  rating: number;
+  reviews: number;
 }
 
 const props = defineProps<{
-  course: Course
-}>()
+  course: Course;
+}>();
 
 const emit = defineEmits<{
-  (e: "coming-soon", title: string): void
-}>()
+  (e: "coming-soon", title: string): void;
+}>();
 
 const comingSoon = () => {
-  emit("coming-soon", props.course.title)
-}
+  emit("coming-soon", props.course.title);
+};
 </script>
 
 <template>
@@ -52,17 +52,13 @@ const comingSoon = () => {
   >
     <!-- Image -->
     <div class="relative overflow-hidden rounded-t-3xl">
-
-  <img
-    :src="course.image"
-    :alt="course.title"
-    loading="lazy"
-    class="w-full h-80 object-cover transition duration-500 group-hover:scale-105"
-  />
-
-  
-
-</div>
+      <img
+        :src="course.image"
+        :alt="course.title"
+        loading="lazy"
+        class="w-full h-80 object-cover transition duration-500 group-hover:scale-105"
+      />
+    </div>
 
     <!-- Content -->
     <div class="p-6">
@@ -87,27 +83,21 @@ const comingSoon = () => {
       </h2>
 
       <div class="grid grid-cols-2 gap-3 mb-6">
-       <div class="rounded-xl border border-red-100 bg-red-50 p-4">
+        <div class="rounded-xl border border-red-100 bg-red-50 p-4">
+          <div class="flex items-center gap-2">
+            <Users class="h-5 w-5 text-red-600" />
 
-  <div class="flex items-center gap-2">
+            <span class="text-sm font-medium text-red-600"> Seats Left </span>
+          </div>
 
-    <Users class="h-5 w-5 text-red-600"/>
+          <p class="mt-2 text-4xl font-bold text-red-700">
+            {{ course.seatsLeft }}
+          </p>
 
-    <span class="text-sm font-medium text-red-600">
-      Seats Left
-    </span>
-
-  </div>
-
-  <p class="mt-2 text-4xl font-bold text-red-700">
-    {{ course.seatsLeft }}
-  </p>
-
-  <p class="text-xs text-red-500">
-    Out of {{ course.totalSeats }} seats
-  </p>
-
-</div>
+          <p class="text-xs text-red-500">
+            Out of {{ course.totalSeats }} seats
+          </p>
+        </div>
 
         <div class="rounded-xl bg-green-50 border border-green-100 p-3">
           <p class="text-xs text-green-600 font-medium">Joined This Week</p>
@@ -119,22 +109,20 @@ const comingSoon = () => {
       </div>
 
       <div class="flex items-center gap-1 mb-5">
+        <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
+        <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
+        <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
+        <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
+        <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
 
-  <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
-  <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
-  <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
-  <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
-  <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
+        <span class="ml-2 font-semibold">
+          {{ course.rating }}
+        </span>
 
-  <span class="ml-2 font-semibold">
-    {{ course.rating }}
-  </span>
-
-  <span class="text-gray-500 text-sm">
-    ({{ course.reviews }} Reviews)
-  </span>
-
-</div>
+        <span class="text-gray-500 text-sm">
+          ({{ course.reviews }} Reviews)
+        </span>
+      </div>
 
       <p class="text-gray-600 leading-7 line-clamp-3 mb-6">
         {{ course.overview }}
@@ -154,53 +142,47 @@ const comingSoon = () => {
       <!-- Features -->
       <div class="space-y-3 text-sm text-gray-700 mb-5">
         <!-- Feature 1 -->
-       <div class="flex items-center gap-3">
-  <CheckCircle2 class="h-5 w-5 text-green-600" />
-  <span>Online & Offline Training</span>
-</div>
+        <div class="flex items-center gap-3">
+          <CheckCircle2 class="h-5 w-5 text-green-600" />
+          <span>Online & Offline Training</span>
+        </div>
 
         <!-- Feature 2 -->
-     <div class="flex items-center gap-3">
-  <CheckCircle2 class="h-5 w-5 text-green-600" />
-  <span>Industry Expert Mentors</span>
-</div>
+        <div class="flex items-center gap-3">
+          <CheckCircle2 class="h-5 w-5 text-green-600" />
+          <span>Industry Expert Mentors</span>
+        </div>
 
         <!-- Feature 3 -->
         <div class="flex items-center gap-3">
-  <CheckCircle2 class="h-5 w-5 text-green-600" />
-  <span>{{ course.projects }}</span>
-</div>
+          <CheckCircle2 class="h-5 w-5 text-green-600" />
+          <span>{{ course.projects }}</span>
+        </div>
 
         <!-- Feature 4 -->
         <div class="flex items-center gap-3">
-  <CheckCircle2 class="h-5 w-5 text-green-600" />
-  <span>Course Completion Certificate</span>
-</div>
+          <CheckCircle2 class="h-5 w-5 text-green-600" />
+          <span>Course Completion Certificate</span>
+        </div>
 
         <!-- Feature 5 -->
-       <div class="flex items-center gap-3 ">
-  <CheckCircle2 class="h-5 w-5 text-green-600" />
-  <span>Placement Assistance</span>
-</div>
+        <div class="flex items-center gap-3">
+          <CheckCircle2 class="h-5 w-5 text-green-600" />
+          <span>Placement Assistance</span>
+        </div>
       </div>
 
-     <div class="mb-6 rounded-xl border border-sky-100 bg-sky-50 p-4">
+      <div class="mb-6 rounded-xl border border-sky-100 bg-sky-50 p-4">
+        <div class="flex items-center gap-2">
+          <CalendarDays class="h-5 w-5 text-sky-600" />
 
-  <div class="flex items-center gap-2 ">
+          <span class="text-sm text-gray-500"> Next Batch </span>
+        </div>
 
-    <CalendarDays class="h-5 w-5 text-sky-600"/>
-
-    <span class="text-sm text-gray-500">
-      Next Batch
-    </span>
-
-  </div>
-
-  <p class="mt-2 font-bold text-sky-700">
-    {{ course.nextBatch }}
-  </p>
-
-</div>
+        <p class="mt-2 font-bold text-sky-700">
+          {{ course.nextBatch }}
+        </p>
+      </div>
 
       <div class="mb-6">
         <div class="flex justify-between text-sm mb-2">

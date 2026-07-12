@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { MapPin, Phone, Mail, Clock } from "lucide-vue-next"
+import { MapPin, Phone, Mail, Clock } from "lucide-vue-next";
 </script>
 
 <template>
-  <div class="min-h-screen bg-white px-6 md:px-16 py-16 relative overflow-hidden">
-
+  <div
+    class="min-h-screen bg-white px-6 md:px-16 py-16 relative overflow-hidden"
+  >
     <!-- Soft Background Shapes -->
     <div
       class="absolute top-20 left-20 w-72 h-72 bg-sky-100 blur-3xl rounded-full"
@@ -30,17 +31,13 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next"
 
     <!-- Contact Section -->
     <div class="grid md:grid-cols-2 gap-10 relative z-10">
-
       <!-- Left Side -->
       <div
         class="bg-white border border-sky-100 rounded-3xl p-8 shadow-lg hover:shadow-xl transition duration-500"
       >
-        <h2 class="text-3xl font-bold text-sky-600 mb-8">
-          Get in Touch
-        </h2>
+        <h2 class="text-3xl font-bold text-sky-600 mb-8">Get in Touch</h2>
 
         <div class="space-y-8">
-
           <!-- Address -->
           <div
             class="p-5 rounded-2xl bg-sky-50 border border-sky-100 hover:shadow-md transition"
@@ -63,9 +60,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next"
           >
             <div class="flex items-center gap-3 mb-3">
               <Phone class="w-6 h-6 text-green-500" />
-              <h3 class="font-semibold text-xl text-blue-900">
-                Phone
-              </h3>
+              <h3 class="font-semibold text-xl text-blue-900">Phone</h3>
             </div>
 
             <a
@@ -82,9 +77,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next"
           >
             <div class="flex items-center gap-3 mb-3">
               <Mail class="w-6 h-6 text-blue-500" />
-              <h3 class="font-semibold text-xl text-blue-900">
-                Email
-              </h3>
+              <h3 class="font-semibold text-xl text-blue-900">Email</h3>
             </div>
 
             <a
@@ -101,16 +94,11 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next"
           >
             <div class="flex items-center gap-3 mb-3">
               <Clock class="w-6 h-6 text-purple-500" />
-              <h3 class="font-semibold text-xl text-blue-900">
-                Working Hours
-              </h3>
+              <h3 class="font-semibold text-xl text-blue-900">Working Hours</h3>
             </div>
 
-            <p class="text-purple-600">
-              Mon - Sat : 9:00 AM - 6:00 PM
-            </p>
+            <p class="text-purple-600">Mon - Sat : 9:00 AM - 6:00 PM</p>
           </div>
-
         </div>
       </div>
 
@@ -118,9 +106,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next"
       <div
         class="bg-white border border-sky-100 rounded-3xl p-8 shadow-lg hover:shadow-xl transition duration-500"
       >
-        <h2 class="text-3xl font-bold text-sky-600 mb-8">
-          Send us a Message
-        </h2>
+        <h2 class="text-3xl font-bold text-sky-600 mb-8">Send us a Message</h2>
 
         <form
           action="https://formspree.io/f/xvzjrrej"
@@ -159,7 +145,6 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next"
           </button>
         </form>
       </div>
-
     </div>
   </div>
 </template>

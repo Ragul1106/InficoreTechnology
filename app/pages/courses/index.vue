@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref, reactive, computed } from "vue";
 import { courses } from "../../../data/courses";
 import CourseCard from "../components/CourseCard.vue";
 import {
@@ -11,8 +11,68 @@ import {
   Bell,
   Clock3,
   BadgeCheck,
-  BriefcaseBusiness
-} from "lucide-vue-next"
+  BriefcaseBusiness,
+} from "lucide-vue-next";
+
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const selectedCourse = ref("General Course Enquiry");
+const showEnroll = ref(false);
+const submitted = ref(false);
+const loading = ref(false);
+
+const form = reactive({
+  name: "",
+  mobile: "",
+  email: "",
+  message: "",
+});
+
+const closeAndGoHome = () => {
+  showEnroll.value = false;
+  submitted.value = false;
+  router.push("/");
+};
+
+const openEnroll = (courseName: string) => {
+  selectedCourse.value = courseName;
+  submitted.value = false;
+  showEnroll.value = true;
+};
+
+const submitForm = async () => {
+  loading.value = true;
+
+  const response = await fetch("https://formspree.io/f/xvzjrrej", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      name: form.name,
+      mobile: form.mobile,
+      email: form.email,
+      course: selectedCourse.value,
+      message: form.message,
+    }),
+  });
+
+  loading.value = false;
+
+  if (response.ok) {
+    submitted.value = true;
+
+    form.name = "";
+    form.mobile = "";
+    form.email = "";
+    form.message = "";
+  } else {
+    alert("Something went wrong. Please try again.");
+  }
+};
 
 const showToast = ref(false);
 const toastTitle = ref("");
@@ -128,81 +188,71 @@ const programmingCourses = computed(() =>
     </Transition>
 
     <div class="max-w-7xl mx-auto px-6 md:px-10">
-
       <!-- Premium Announcement Bar -->
-<!-- Live Updates -->
-<div
-  class="relative mb-10 overflow-hidden rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 via-yellow-50 to-orange-50 shadow-lg"
->
-  <div class="flex items-center">
+      <!-- Live Updates -->
+      <div
+        class="relative mb-10 overflow-hidden rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 via-yellow-50 to-orange-50 shadow-lg"
+      >
+        <div class="flex items-center">
+          <!-- Left Badge -->
+          <div
+            class="flex items-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 px-6 py-4 font-bold text-white shrink-0"
+          >
+            <Flame class="w-5 h-5" />
+            <span>LIVE UPDATES</span>
+          </div>
 
-    <!-- Left Badge -->
-    <div
-      class="flex items-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 px-6 py-4 font-bold text-white shrink-0"
-    >
-      <Flame class="w-5 h-5" />
-      <span>LIVE UPDATES</span>
-    </div>
+          <!-- Full Width Marquee -->
+          <div class="flex-1 overflow-hidden">
+            <div class="marquee">
+              <div class="marquee-content">
+                <span class="marquee-item">
+                  <GraduationCap class="w-4 h-4 text-sky-600" />
+                  18 Students enrolled in Intelligent Product Engineering
+                </span>
 
-    <!-- Full Width Marquee -->
-    <div class="flex-1 overflow-hidden">
+                <span class="marquee-item">
+                  <Cpu class="w-4 h-4 text-emerald-600" />
+                  12 Students enrolled in Smart Connected Systems Engineering
+                </span>
 
-      <div class="marquee">
+                <span class="marquee-item">
+                  <BrainCircuit class="w-4 h-4 text-violet-600" />
+                  9 Students enrolled in Edge AI & Intelligent Embedded Systems
+                </span>
 
-        <div class="marquee-content">
+                <span class="marquee-item">
+                  <MonitorSmartphone class="w-4 h-4 text-blue-600" />
+                  22 Students enrolled in Full Stack Developer
+                </span>
 
-          <span class="marquee-item">
-            <GraduationCap class="w-4 h-4 text-sky-600" />
-            18 Students enrolled in Intelligent Product Engineering
-          </span>
+                <span class="marquee-item">
+                  <Bell class="w-4 h-4 text-orange-600" />
+                  Early Bird Registration Closing Soon
+                </span>
 
-          <span class="marquee-item">
-            <Cpu class="w-4 h-4 text-emerald-600" />
-            12 Students enrolled in Smart Connected Systems Engineering
-          </span>
+                <span class="marquee-item">
+                  <Clock3 class="w-4 h-4 text-red-600" />
+                  Only 15 Seats Remaining
+                </span>
 
-          <span class="marquee-item">
-            <BrainCircuit class="w-4 h-4 text-violet-600" />
-            9 Students enrolled in Edge AI & Intelligent Embedded Systems
-          </span>
+                <span class="marquee-item">
+                  <BadgeCheck class="w-4 h-4 text-green-600" />
+                  Industry Certificate Included
+                </span>
 
-          <span class="marquee-item">
-            <MonitorSmartphone class="w-4 h-4 text-blue-600" />
-            22 Students enrolled in Full Stack Developer
-          </span>
-
-          <span class="marquee-item">
-            <Bell class="w-4 h-4 text-orange-600" />
-            Early Bird Registration Closing Soon
-          </span>
-
-          <span class="marquee-item">
-            <Clock3 class="w-4 h-4 text-red-600" />
-            Only 15 Seats Remaining
-          </span>
-
-          <span class="marquee-item">
-            <BadgeCheck class="w-4 h-4 text-green-600" />
-            Industry Certificate Included
-          </span>
-
-          <span class="marquee-item">
-            <BriefcaseBusiness class="w-4 h-4 text-sky-700" />
-            Placement Assistance Available
-          </span>
-
+                <span class="marquee-item">
+                  <BriefcaseBusiness class="w-4 h-4 text-sky-700" />
+                  Placement Assistance Available
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
-
       </div>
 
-    </div>
-
-  </div>
-</div>
-
-
       <div
-        class=" rounded-3xl overflow-hidden bg-gradient-to-r from-sky-700 via-sky-600 to-blue-700 text-white px-8 py-12 md:px-16"
+        class="rounded-3xl overflow-hidden bg-gradient-to-r from-sky-700 via-sky-600 to-blue-700 text-white px-8 py-12 md:px-16"
       >
         <div
           class="flex flex-col lg:flex-row items-center justify-between gap-8"
@@ -219,12 +269,12 @@ const programmingCourses = computed(() =>
             </p>
           </div>
 
-          <NuxtLink
-            to="/contact"
-            class="rounded-xl bg-white text-sky-700 px-8 py-4 font-bold hover:bg-slate-100 transition"
+          <button
+            @click="openEnroll('General Course Enquiry')"
+            class="mt-10 rounded-2xl bg-white px-10 py-5 text-lg font-bold text-sky-700 transition duration-300 hover:scale-105 hover:shadow-xl"
           >
             Enroll Now
-          </NuxtLink>
+          </button>
         </div>
       </div>
 
@@ -373,12 +423,137 @@ const programmingCourses = computed(() =>
             v-for="course in programmingCourses"
             :key="course.slug"
             :course="course"
-            @coming-soon="comingSoon"
+            @coming-soon="openEnroll"
           />
         </div>
       </section>
     </div>
   </section>
+
+  <transition name="fade">
+    <div
+      v-if="showEnroll"
+      class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+      @click.self="showEnroll = false"
+    >
+      <div
+        class="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl p-6 md:p-8"
+      >
+        <!-- Close -->
+        <button
+          @click="
+            showEnroll = false;
+            submitted = false;
+          "
+          class="absolute top-4 right-5 text-3xl font-bold text-gray-500 hover:text-red-500"
+        >
+          ×
+        </button>
+
+        <!-- Success Message -->
+        <div v-if="submitted" class="text-center py-12 px-6">
+          <!-- Success Icon -->
+          <div
+            class="w-24 h-24 mx-auto mb-6 flex items-center justify-center rounded-full bg-green-100"
+          >
+            <svg
+              class="w-14 h-14 text-green-600"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="3"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+          </div>
+
+          <!-- Title -->
+          <h2 class="text-3xl font-bold text-green-600 mb-4">
+            Enrollment Successful
+          </h2>
+
+          <!-- Message -->
+          <p class="text-gray-700 text-lg leading-relaxed max-w-md mx-auto">
+            Thank you for enrolling in
+            <strong class="text-sky-700"> {{ selectedCourse }} </strong>.
+            <br />
+            Our team will reach out to you soon with further details regarding
+            your course.
+          </p>
+
+          <!-- Close Button -->
+          <button
+            @click="closeAndGoHome"
+            class="mt-8 bg-sky-600 hover:bg-sky-700 text-white px-8 py-3 rounded-xl font-semibold transition"
+          >
+            Done
+          </button>
+        </div>
+
+        <!-- Form -->
+        <div v-else>
+          <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-blue-900">
+              Enroll for {{ selectedCourse }}
+            </h2>
+
+            <p class="mt-2 text-gray-600">
+              Fill the form and our team will contact you shortly.
+            </p>
+          </div>
+
+          <form @submit.prevent="submitForm" class="space-y-5">
+            <input
+              v-model="form.name"
+              type="text"
+              placeholder="Full Name"
+              required
+              class="w-full border border-gray-300 rounded-lg px-4 py-3"
+            />
+
+            <input
+              v-model="form.mobile"
+              type="tel"
+              placeholder="Mobile Number"
+              required
+              class="w-full border border-gray-300 rounded-lg px-4 py-3"
+            />
+
+            <input
+              v-model="form.email"
+              type="email"
+              placeholder="Email Address"
+              required
+              class="w-full border border-gray-300 rounded-lg px-4 py-3"
+            />
+
+            <input
+              :value="selectedCourse"
+              readonly
+              class="w-full rounded-lg border border-gray-300 bg-gray-100 px-4 py-3"
+            />
+
+            <textarea
+              v-model="form.message"
+              rows="4"
+              placeholder="Any specific requirements..."
+              class="w-full border border-gray-300 rounded-lg px-4 py-3"
+            ></textarea>
+
+            <button
+              type="submit"
+              :disabled="loading"
+              class="w-full bg-blue-900 text-white py-4 rounded-xl hover:bg-blue-700 transition"
+            >
+              {{ loading ? "Submitting..." : "Submit Enrollment" }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </transition>
 </template>
-
-

@@ -1,5 +1,5 @@
-import Toast from "vue-toastification"
-import "vue-toastification/dist/index.css"
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.use(Toast, {
@@ -8,6 +8,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     closeOnClick: true,
     pauseOnHover: true,
     newestOnTop: true,
-    maxToasts: 5
-  })
-})
+    maxToasts: 5,
+  });
+});

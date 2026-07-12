@@ -1,20 +1,19 @@
 <script setup lang="ts">
-import logo from "../assets/images/logo.png"
+import logo from "../assets/images/logo.png";
 import {
   MapPin,
   Phone,
   Mail,
   Facebook,
   Instagram,
-  Linkedin
-} from "lucide-vue-next"
+  Linkedin,
+} from "lucide-vue-next";
 </script>
 
 <template>
   <footer class="bg-white border-t border-sky-100">
     <div class="px-6 md:px-16 py-14">
       <div class="grid md:grid-cols-4 gap-10">
-
         <!-- Logo + About -->
         <div>
           <div class="flex items-center gap-3 mb-5">
@@ -32,23 +31,18 @@ import {
           </div>
 
           <p class="text-gray-600 leading-7">
-            Engineering Infinite Possibilities through Embedded Systems,
-            IoT Solutions, AI Edge Computing, EV Innovation, and
-            Industry-Focused Training Programs.
+            Engineering Infinite Possibilities through Embedded Systems, IoT
+            Solutions, AI Edge Computing, EV Innovation, and Industry-Focused
+            Training Programs.
           </p>
         </div>
 
         <!-- Quick Links -->
         <div>
-          <h3 class="text-xl font-bold mb-5 text-sky-600">
-            Quick Links
-          </h3>
+          <h3 class="text-xl font-bold mb-5 text-sky-600">Quick Links</h3>
 
           <div class="flex flex-col gap-3 text-gray-600">
-            <NuxtLink
-              to="/"
-              class="hover:text-sky-500 transition duration-300"
-            >
+            <NuxtLink to="/" class="hover:text-sky-500 transition duration-300">
               Home
             </NuxtLink>
 
@@ -84,18 +78,12 @@ import {
 
         <!-- Contact -->
         <div>
-          <h3 class="text-xl font-bold mb-5 text-sky-600">
-            Contact Us
-          </h3>
+          <h3 class="text-xl font-bold mb-5 text-sky-600">Contact Us</h3>
 
           <div class="space-y-4 text-gray-600">
-
             <div class="flex gap-3 items-start">
               <Phone class="w-5 h-5 text-sky-500 mt-1" />
-              <a
-                href="tel:+919789738080"
-                class="hover:text-sky-500 transition"
-              >
+              <a href="tel:+919789738080" class="hover:text-sky-500 transition">
                 +91 97897 38080
               </a>
             </div>
@@ -112,18 +100,14 @@ import {
 
             <div class="flex gap-3 items-start">
               <MapPin class="w-5 h-5 text-sky-500 mt-1" />
-              <span>
-                Coimbatore, Tamil Nadu, India
-              </span>
+              <span> Coimbatore, Tamil Nadu, India </span>
             </div>
           </div>
         </div>
 
         <!-- Social Links -->
         <div>
-          <h3 class="text-xl font-bold mb-5 text-sky-600">
-            Follow Us
-          </h3>
+          <h3 class="text-xl font-bold mb-5 text-sky-600">Follow Us</h3>
 
           <div class="flex gap-4">
             <a
@@ -148,7 +132,6 @@ import {
             </a>
           </div>
         </div>
-
       </div>
 
       <!-- Bottom -->
