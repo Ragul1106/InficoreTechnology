@@ -2,6 +2,17 @@
 import { computed, ref } from "vue";
 import { courses } from "../../../data/courses";
 import CourseCard from "../components/CourseCard.vue";
+import {
+  Flame,
+  GraduationCap,
+  Cpu,
+  BrainCircuit,
+  MonitorSmartphone,
+  Bell,
+  Clock3,
+  BadgeCheck,
+  BriefcaseBusiness
+} from "lucide-vue-next"
 
 const showToast = ref(false);
 const toastTitle = ref("");
@@ -117,6 +128,79 @@ const programmingCourses = computed(() =>
     </Transition>
 
     <div class="max-w-7xl mx-auto px-6 md:px-10">
+
+      <!-- Premium Announcement Bar -->
+<!-- Live Updates -->
+<div
+  class="relative mb-10 overflow-hidden rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 via-yellow-50 to-orange-50 shadow-lg"
+>
+  <div class="flex items-center">
+
+    <!-- Left Badge -->
+    <div
+      class="flex items-center gap-2 bg-gradient-to-r from-red-600 to-orange-500 px-6 py-4 font-bold text-white shrink-0"
+    >
+      <Flame class="w-5 h-5" />
+      <span>LIVE UPDATES</span>
+    </div>
+
+    <!-- Full Width Marquee -->
+    <div class="flex-1 overflow-hidden">
+
+      <div class="marquee">
+
+        <div class="marquee-content">
+
+          <span class="marquee-item">
+            <GraduationCap class="w-4 h-4 text-sky-600" />
+            18 Students enrolled in Intelligent Product Engineering
+          </span>
+
+          <span class="marquee-item">
+            <Cpu class="w-4 h-4 text-emerald-600" />
+            12 Students enrolled in Smart Connected Systems Engineering
+          </span>
+
+          <span class="marquee-item">
+            <BrainCircuit class="w-4 h-4 text-violet-600" />
+            9 Students enrolled in Edge AI & Intelligent Embedded Systems
+          </span>
+
+          <span class="marquee-item">
+            <MonitorSmartphone class="w-4 h-4 text-blue-600" />
+            22 Students enrolled in Full Stack Developer
+          </span>
+
+          <span class="marquee-item">
+            <Bell class="w-4 h-4 text-orange-600" />
+            Early Bird Registration Closing Soon
+          </span>
+
+          <span class="marquee-item">
+            <Clock3 class="w-4 h-4 text-red-600" />
+            Only 15 Seats Remaining
+          </span>
+
+          <span class="marquee-item">
+            <BadgeCheck class="w-4 h-4 text-green-600" />
+            Industry Certificate Included
+          </span>
+
+          <span class="marquee-item">
+            <BriefcaseBusiness class="w-4 h-4 text-sky-700" />
+            Placement Assistance Available
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
       <div
         class=" rounded-3xl overflow-hidden bg-gradient-to-r from-sky-700 via-sky-600 to-blue-700 text-white px-8 py-12 md:px-16"
       >
@@ -296,3 +380,5 @@ const programmingCourses = computed(() =>
     </div>
   </section>
 </template>
+
+

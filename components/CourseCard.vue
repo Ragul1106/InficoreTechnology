@@ -1,29 +1,46 @@
 <script setup lang="ts">
+import {
+  BadgeCheck,
+  Clock3,
+  Users,
+  Star,
+  CalendarDays,
+  CheckCircle2,
+  ArrowRight
+} from "lucide-vue-next"
+
 interface Course {
-  slug: string;
-  title: string;
-  image: string;
-  available: boolean;
-  duration: string;
-  mode: string;
-  certificate: boolean;
-  projects: string;
-  placement: boolean;
-  overview: string;
-  levels: string[];
+  slug: string
+  title: string
+  image: string
+  available: boolean
+  duration: string
+  mode: string
+  certificate: boolean
+  projects: string
+  placement: boolean
+  overview: string
+  levels: string[]
+
+  totalSeats: number
+  seatsLeft: number
+  enrolledThisWeek: number
+  nextBatch: string
+  rating: number
+  reviews: number
 }
 
 const props = defineProps<{
-  course: Course;
-}>();
+  course: Course
+}>()
 
 const emit = defineEmits<{
-  (e: "coming-soon", title: string): void;
-}>();
+  (e: "coming-soon", title: string): void
+}>()
 
 const comingSoon = () => {
-  emit("coming-soon", props.course.title);
-};
+  emit("coming-soon", props.course.title)
+}
 </script>
 
 <template>
@@ -34,34 +51,90 @@ const comingSoon = () => {
     ]"
   >
     <!-- Image -->
-    <div class="overflow-hidden rounded-t-3xl">
-      <img
-        :src="course.image"
-        :alt="course.title"
-        loading="lazy"
-        class="w-full h-82 object-cover transition duration-500 group-hover:scale-105"
-      />
-    </div>
+    <div class="relative overflow-hidden rounded-t-3xl">
+
+  <img
+    :src="course.image"
+    :alt="course.title"
+    loading="lazy"
+    class="w-full h-80 object-cover transition duration-500 group-hover:scale-105"
+  />
+
+  
+
+</div>
 
     <!-- Content -->
     <div class="p-6">
       <div class="flex justify-between items-center mb-5">
-        <span
-          class="bg-sky-100 text-sky-700 text-xs font-semibold px-3 py-1 rounded-full"
+        <div
+          class="flex items-center gap-2 rounded-full bg-sky-100 px-3 py-1 text-xs font-semibold text-sky-700"
         >
-          🎓 Certified Course
-        </span>
+          <BadgeCheck class="h-4 w-4" />
+          <span>Certified Course</span>
+        </div>
 
-        <span
-          class="bg-orange-100 text-orange-700 text-xs font-semibold px-3 py-1 rounded-full"
+        <div
+          class="flex items-center gap-2 rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold text-orange-700"
         >
-          ⏱ {{ course.duration }}
-        </span>
+          <Clock3 class="h-4 w-4" />
+          <span>{{ course.duration }}</span>
+        </div>
       </div>
 
       <h2 class="text-2xl font-bold text-slate-900 leading-snug mb-4">
         {{ course.title }}
       </h2>
+
+      <div class="grid grid-cols-2 gap-3 mb-6">
+       <div class="rounded-xl border border-red-100 bg-red-50 p-4">
+
+  <div class="flex items-center gap-2">
+
+    <Users class="h-5 w-5 text-red-600"/>
+
+    <span class="text-sm font-medium text-red-600">
+      Seats Left
+    </span>
+
+  </div>
+
+  <p class="mt-2 text-4xl font-bold text-red-700">
+    {{ course.seatsLeft }}
+  </p>
+
+  <p class="text-xs text-red-500">
+    Out of {{ course.totalSeats }} seats
+  </p>
+
+</div>
+
+        <div class="rounded-xl bg-green-50 border border-green-100 p-3">
+          <p class="text-xs text-green-600 font-medium">Joined This Week</p>
+
+          <p class="text-6xl mx-5 font-bold text-green-700">
+            {{ course.enrolledThisWeek }}
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-1 mb-5">
+
+  <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
+  <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
+  <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
+  <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
+  <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
+
+  <span class="ml-2 font-semibold">
+    {{ course.rating }}
+  </span>
+
+  <span class="text-gray-500 text-sm">
+    ({{ course.reviews }} Reviews)
+  </span>
+
+</div>
 
       <p class="text-gray-600 leading-7 line-clamp-3 mb-6">
         {{ course.overview }}
@@ -79,100 +152,75 @@ const comingSoon = () => {
       </div>
 
       <!-- Features -->
-      <div class="space-y-3 text-sm text-gray-700">
+      <div class="space-y-3 text-sm text-gray-700 mb-5">
         <!-- Feature 1 -->
-        <div class="flex items-center gap-3">
-          <svg
-            class="h-5 w-5 flex-shrink-0 text-green-600"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-
-          <span>Online & Offline Training</span>
-        </div>
+       <div class="flex items-center gap-3">
+  <CheckCircle2 class="h-5 w-5 text-green-600" />
+  <span>Online & Offline Training</span>
+</div>
 
         <!-- Feature 2 -->
-        <div class="flex items-center gap-3">
-          <svg
-            class="h-5 w-5 flex-shrink-0 text-green-600"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-
-          <span>Industry Expert Mentors</span>
-        </div>
+     <div class="flex items-center gap-3">
+  <CheckCircle2 class="h-5 w-5 text-green-600" />
+  <span>Industry Expert Mentors</span>
+</div>
 
         <!-- Feature 3 -->
         <div class="flex items-center gap-3">
-          <svg
-            class="h-5 w-5 flex-shrink-0 text-green-600"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-
-          <span>{{ course.projects }}</span>
-        </div>
+  <CheckCircle2 class="h-5 w-5 text-green-600" />
+  <span>{{ course.projects }}</span>
+</div>
 
         <!-- Feature 4 -->
         <div class="flex items-center gap-3">
-          <svg
-            class="h-5 w-5 flex-shrink-0 text-green-600"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-
-          <span>Course Completion Certificate</span>
-        </div>
+  <CheckCircle2 class="h-5 w-5 text-green-600" />
+  <span>Course Completion Certificate</span>
+</div>
 
         <!-- Feature 5 -->
-        <div v-if="course.placement" class="flex items-center gap-3">
-          <svg
-            class="h-5 w-5 flex-shrink-0 text-green-600"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
+       <div class="flex items-center gap-3 ">
+  <CheckCircle2 class="h-5 w-5 text-green-600" />
+  <span>Placement Assistance</span>
+</div>
+      </div>
 
-          <span>Placement Assistance</span>
+     <div class="mb-6 rounded-xl border border-sky-100 bg-sky-50 p-4">
+
+  <div class="flex items-center gap-2 ">
+
+    <CalendarDays class="h-5 w-5 text-sky-600"/>
+
+    <span class="text-sm text-gray-500">
+      Next Batch
+    </span>
+
+  </div>
+
+  <p class="mt-2 font-bold text-sky-700">
+    {{ course.nextBatch }}
+  </p>
+
+</div>
+
+      <div class="mb-6">
+        <div class="flex justify-between text-sm mb-2">
+          <span>Seats Filled</span>
+
+          <span>
+            {{ course.totalSeats - course.seatsLeft }}/{{ course.totalSeats }}
+          </span>
+        </div>
+
+        <div class="w-full h-2 rounded-full bg-gray-200">
+          <div
+            class="h-2 rounded-full bg-gradient-to-r from-red-500 to-orange-500"
+            :style="{
+              width:
+                ((course.totalSeats - course.seatsLeft) / course.totalSeats) *
+                  100 +
+                '%',
+            }"
+          ></div>
         </div>
       </div>
 

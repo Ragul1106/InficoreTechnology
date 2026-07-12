@@ -292,7 +292,7 @@ const studentReviews = [...testimonials]
                 class="flex items-start gap-4 bg-white rounded-2xl p-5 shadow-sm border"
               >
                 <div
-                  class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center"
+                  class="w-10 h-10 rounded-full bg-sky-300 flex items-center justify-center"
                 >
                   ✓
                 </div>

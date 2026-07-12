@@ -12,3 +12,42 @@ html,
 body {
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
+
+/* ===========================================
+   Marquee Animation
+=========================================== */
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee-content {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  min-width: max-content;
+  animation: marquee 50s linear infinite;
+}
+
+.marquee:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+.marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 70px;
+  font-weight: 600;
+  color: #334155;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
