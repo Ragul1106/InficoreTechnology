@@ -1,9 +1,17 @@
 export default defineNuxtConfig({
-  devtools: { enabled: true },
+  devtools: {
+    enabled: true,
+  },
 
   css: ["~/assets/css/main.css"],
 
   modules: ["@nuxtjs/tailwindcss"],
+
+  runtimeConfig: {
+    public: {
+      apiBase: "http://localhost:5000/api",
+    },
+  },
 
   app: {
     head: {
@@ -17,7 +25,6 @@ export default defineNuxtConfig({
       link: [
         {
           rel: "icon",
-          type: "image/x-icon",
           href: "/favicon.png",
         },
       ],

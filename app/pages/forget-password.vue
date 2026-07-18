@@ -5,36 +5,41 @@ import { useToast } from "vue-toastification"
 const email = ref("")
 const toast = useToast()
 
-const handleSubmit = () => {
-  const users = JSON.parse(localStorage.getItem("users") || "[]")
+const config = useRuntimeConfig()
 
-  const userIndex = users.findIndex(
-    (u: any) => u.email.toLowerCase() === email.value.toLowerCase()
-  )
+const handleSubmit = async () => {
+  try {
+    const response: any = await $fetch(
+      `${config.public.apiBase}/auth/forgot-password`,
+      {
+        method: "POST",
+        body: {
+          email: email.value
+        }
+      }
+    )
 
-  if (userIndex === -1) {
     toast.clear()
-    toast.error("Email not found", {
-      position: "top-right",
-      timeout: 2000
+
+    toast.success(response.message, {
+      position: "top-center",
+      timeout: 2500
     })
-    return
+
+    setTimeout(() => {
+      navigateTo("/login")
+    }, 2500)
+  } catch (err: any) {
+    toast.clear()
+
+    toast.error(
+      err?.data?.message || "Something went wrong",
+      {
+        position: "top-right",
+        timeout: 2500
+      }
+    )
   }
-
-  const newPassword = "inficore123"
-  users[userIndex].password = newPassword
-
-  localStorage.setItem("users", JSON.stringify(users))
-
-  toast.clear()
-  toast.success("Password reset successful", {
-    position: "top-center",
-    timeout: 2000
-  })
-
-  setTimeout(() => {
-    navigateTo("/login")
-  }, 2200)
 }
 </script>
 
