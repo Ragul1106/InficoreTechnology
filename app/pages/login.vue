@@ -22,14 +22,6 @@ const handleLogin = async (e: Event) => {
   e.preventDefault();
   error.value = "";
 
-  await $fetch(`${config.public.apiBase}/auth/login`, {
-    method: "POST",
-    body: {
-      email: email.value,
-      password: password.value,
-    },
-  });
-
   try {
     const response: any = await $fetch(`${config.public.apiBase}/auth/login`, {
       method: "POST",
@@ -53,18 +45,18 @@ const handleLogin = async (e: Event) => {
 const resendVerification = async () => {
   try {
     const response: any = await $fetch(
-      `${config.public.apiBase}/auth/send-verification`,
+      `${config.public.apiBase}/auth/send-verification-email`,
       {
         method: "POST",
         body: {
           email: email.value,
         },
-      },
+      }
     );
 
-    toast.success(response.message || "Verification email sent.");
+    toast.success(response.message);
   } catch (err: any) {
-    toast.error(err?.data?.message || "Failed to send verification email.");
+    toast.error(err?.data?.message || "Failed to send verification email");
   }
 };
 
