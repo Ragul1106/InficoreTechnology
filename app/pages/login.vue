@@ -18,10 +18,12 @@ const phone = ref("");
 
 const config = useRuntimeConfig();
 
+const DEFAULT_API_BASE = "https://infocorewarebackend.onrender.com/api";
+
 const apiBase = computed(() => {
-  const rawBase =
-    config.public?.apiBase || "https://infocorewarebackend.onrender.com/api";
-  return rawBase.replace(/\/+$/, "");
+  const raw = (config.public?.apiBase ?? "").trim();
+  const cleaned = raw.replace(/\/+$/, "");
+  return cleaned || DEFAULT_API_BASE;   // fall back if empty after cleaning
 });
 
 const buildAuthUrl = (path: string) => {
