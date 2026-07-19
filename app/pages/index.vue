@@ -19,7 +19,38 @@ import divya from "../assets/images/divya.jpg";
 import "swiper/css";
 import "swiper/css/pagination";
 
-import { Award, Briefcase, Rocket } from "lucide-vue-next";
+import {
+  Award,
+  Briefcase,
+  Rocket,
+  Cpu,
+  Wifi,
+  Bot,
+  Car,
+  CircuitBoard,
+  Microchip,
+  Code,
+  MonitorCog,
+  Zap,
+  BrainCircuit,
+  Workflow,
+  Cable,
+} from "lucide-vue-next";
+
+const technologies = [
+  { title: "Embedded", icon: Cpu },
+  { title: "IoT", icon: Wifi },
+  { title: "Robotics", icon: Bot },
+  // { title: "EV Tech", icon: Car },
+  { title: "PCB Design", icon: CircuitBoard },
+  { title: "Edge AI", icon: BrainCircuit },
+  // { title: "Firmware", icon: Microchip },
+  // { title: "C Programming", icon: Code },
+  // { title: "C++", icon: MonitorCog },
+  // { title: "Python", icon: Workflow },
+  // { title: "Automation", icon: Zap },
+  // { title: "Product Design", icon: Cable },
+];
 
 const featuredCards = [
   {
@@ -132,12 +163,33 @@ const studentReviews = [
       </div>
 
       <!-- Right -->
-      <div class="md:w-1/2 flex justify-center mt-10 md:mt-0">
-        <img
-          :src="banner"
-          alt="Banner"
-          class="w-[420px] md:w-[650px] rounded-3xl shadow-xl"
-        />
+      <div class="hero-orbit">
+        <div class="absolute inset-0 overflow-hidden">
+          <div class="grid-pattern"></div>
+          <div class="glow glow1"></div>
+          <div class="glow glow2"></div>
+          <div class="glow glow3"></div>
+        </div>
+
+        <div class="orbit-ring">
+          <div
+            v-for="(item, index) in technologies"
+            :key="item.title"
+            class="tech-card"
+            :style="{
+              '--angle': `${index * (360 / technologies.length)}deg`,
+            }"
+          >
+            <component :is="item.icon" class="icon" />
+            <span>{{ item.title }}</span>
+          </div>
+
+          <div class="center">
+            <Cpu class="center-icon" />
+            <!-- <h2>INFICOREWARE</h2>
+            <p>COREWARE</p>  -->
+          </div>
+        </div>
       </div>
     </section>
 

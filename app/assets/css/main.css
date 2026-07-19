@@ -56,3 +56,273 @@ body {
 .font-montserrat {
   font-family: "Montserrat", sans-serif;
 }
+
+/* .hero-orbit {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 580px;
+  overflow: hidden;
+} */
+
+/* --------------------- */
+/* Orbit */
+/* --------------------- */
+
+.orbit-ring {
+  position: relative;
+  width: clamp(320px, 70vw, 560px);
+  height: clamp(320px, 70vw, 560px);
+  border-radius: 50%;
+  border: 2px dashed rgba(14, 165, 233, 0.15);
+  animation: orbit 30s linear infinite;
+}
+
+@keyframes orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --------------------- */
+/* Center */
+/* --------------------- */
+
+.center {
+  position: absolute;
+  inset: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(130px, 25vw, 190px);
+  height: clamp(130px, 25vw, 190px);
+
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0284c7, #38bdf8);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  box-shadow:
+    0 0 40px rgba(14,165,233,.5),
+    0 0 100px rgba(14,165,233,.25);
+
+  animation: pulse 3s ease-in-out infinite;
+  z-index: 20;
+}
+
+.center h2{
+  font-size: clamp(24px,3vw,34px);
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.center p{
+  font-size: clamp(10px,1.5vw,14px);
+  letter-spacing:3px;
+}
+
+.center-icon{
+  width: clamp(35px,6vw,55px);
+  height: clamp(35px,6vw,55px);
+}
+
+@keyframes pulse{
+  50%{
+    transform:translate(-50%,-50%) scale(1.05);
+  }
+}
+
+/* --------------------- */
+/* Cards */
+/* --------------------- */
+
+.tech-card{
+  position:absolute;
+
+  top:50%;
+  left:50%;
+
+  width:clamp(85px,12vw,120px);
+  height:clamp(85px,12vw,120px);
+
+  margin-left:calc(clamp(85px,12vw,120px) / -2);
+  margin-top:calc(clamp(85px,12vw,120px) / -2);
+
+  border-radius:20px;
+
+  background:rgba(255,255,255,.75);
+  backdrop-filter:blur(20px);
+
+  border:1px solid rgba(255,255,255,.5);
+
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+
+  box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+  transform:
+      rotate(var(--angle))
+      translate(clamp(120px,30vw,230px))
+      rotate(calc(-1 * var(--angle)));
+
+  animation:counterOrbit 30s linear infinite;
+
+  transition:.4s;
+}
+
+@keyframes counterOrbit{
+  to{
+    transform:
+      rotate(var(--angle))
+      translate(clamp(120px,30vw,230px))
+      rotate(calc(-1 * var(--angle)))
+      rotate(-360deg);
+  }
+}
+
+.tech-card:hover{
+  transform:
+      rotate(var(--angle))
+      translate(clamp(120px,30vw,230px))
+      rotate(calc(-1 * var(--angle)))
+      scale(1.1);
+
+  background:#fff;
+}
+
+.icon{
+  width:clamp(24px,4vw,34px);
+  height:clamp(24px,4vw,34px);
+  color:#0284c7;
+}
+
+.tech-card span{
+  margin-top:8px;
+  font-size:clamp(10px,1.3vw,13px);
+  font-weight:700;
+  text-align:center;
+  color:#1e293b;
+  padding:0 4px;
+}
+
+/* --------------------- */
+/* Background */
+/* --------------------- */
+
+.grid-pattern{
+  position:absolute;
+  inset:0;
+
+  background-image:
+    linear-gradient(rgba(14,165,233,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(14,165,233,.08) 1px,transparent 1px);
+
+  background-size:40px 40px;
+}
+
+.glow{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(90px);
+}
+
+.glow1{
+  width:260px;
+  height:260px;
+  top:0;
+  left:0;
+  background:#38bdf8;
+  opacity:.2;
+}
+
+.glow2{
+  width:220px;
+  height:220px;
+  right:0;
+  bottom:0;
+  background:#0ea5e9;
+  opacity:.15;
+}
+
+.glow3{
+  width:180px;
+  height:180px;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  background:#7dd3fc;
+  opacity:.15;
+}
+
+/* --------------------- */
+/* Tablet */
+/* --------------------- */
+
+@media (max-width:768px){
+
+.hero-orbit{
+  min-height:500px;
+}
+
+.tech-card span{
+  font-size:10px;
+}
+
+}
+
+/* --------------------- */
+/* Mobile */
+/* --------------------- */
+
+@media (max-width:480px){
+
+.hero-orbit{
+  min-height:380px;
+}
+
+.orbit-ring{
+  width:300px;
+  height:300px;
+}
+
+.center{
+  width:110px;
+  height:110px;
+}
+
+.center h2{
+  font-size:20px;
+}
+
+.center p{
+  font-size:9px;
+  letter-spacing:2px;
+}
+
+.tech-card{
+  width:70px;
+  height:70px;
+
+  transform:
+    rotate(var(--angle))
+    translate(110px)
+    rotate(calc(-1 * var(--angle)));
+}
+
+.tech-card span{
+  display:none;
+}
+
+.icon{
+  width:22px;
+  height:22px;
+}
+
+}
