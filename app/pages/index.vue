@@ -150,35 +150,6 @@ const featuredCards = [
     </section>
 
     
-    <section class="px-6 md:px-16 py-20 bg-white">
-      <div class="grid md:grid-cols-2 gap-14 items-center">
-        <div class="flex justify-center">
-          <img
-            :src="founder"
-            alt="Founder"
-            class="w-72 md:w-96 rounded-3xl shadow-xl object-cover"
-          />
-        </div>
-
-        <div>
-          <h2 class="text-3xl md:text-5xl font-bold text-sky-700 mb-6">
-            Meet Our Founder
-          </h2>
-
-          <h3 class="text-3xl font-bold text-gray-800 mb-2">Askar Ali N</h3>
-
-          <p class="text-sky-600 text-lg mb-6">Founder & CEO</p>
-
-          <p class="text-gray-700 leading-8 text-lg">
-            Driven by innovation and practical engineering excellence, InfiCore
-            Technologies was founded to bridge the gap between academic learning
-            and industrial implementation.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    
     <section class="px-6 md:px-16 py-20 bg-sky-50">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-5xl font-bold text-sky-700">
