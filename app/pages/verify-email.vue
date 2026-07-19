@@ -1,29 +1,23 @@
 <script setup lang="ts">
-import { computed, onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { useToast } from "vue-toastification";
 
 const toast = useToast();
 const route = useRoute();
-const config = useRuntimeConfig();
+const buildAuthUrl = useAuthUrl();
 
-const DEFAULT_API_BASE = "https://infocorewarebackend.onrender.com/api";
-
-const apiBase = computed(() => {
-  const raw = (config.public?.apiBase ?? "").trim();
-  const cleaned = raw.replace(/\/+$/, "");
-  return cleaned || DEFAULT_API_BASE;   // fall back if empty after cleaning
-});
-
-const buildAuthUrl = (path: string) => {
-  const normalizedPath = path.replace(/^\/+/, "");
-  return `${apiBase.value}/${normalizedPath}`;
-};
+const status = ref<"verifying" | "success" | "error">("verifying");
+const message = ref("Verifying your email...");
 
 onMounted(async () => {
   try {
     const token = Array.isArray(route.query.token)
       ? route.query.token[0]
       : route.query.token;
+
+    if (!token) {
+      throw new Error("Verification token is missing");
+    }
 
     const response: any = await $fetch(buildAuthUrl("auth/verify-email"), {
       method: "GET",
@@ -32,19 +26,40 @@ onMounted(async () => {
       },
     });
 
-    toast.success(response.message);
+    status.value = "success";
+    message.value = response?.message || "Email verified successfully";
+    toast.success(message.value);
 
     setTimeout(() => {
       navigateTo("/login");
     }, 2000);
   } catch (err: any) {
-    toast.error(err?.data?.message || "Verification failed");
+    status.value = "error";
+    message.value = getApiErrorMessage(err, "Verification failed");
+    toast.error(message.value);
   }
 });
 </script>
 
 <template>
-  <div class="min-h-screen flex items-center justify-center">
-    <h2 class="text-2xl font-bold text-sky-600">Verifying your email...</h2>
+  <div class="min-h-screen flex flex-col items-center justify-center px-4">
+    <h2
+      class="text-2xl font-bold text-center"
+      :class="{
+        'text-sky-600': status === 'verifying',
+        'text-green-600': status === 'success',
+        'text-red-500': status === 'error',
+      }"
+    >
+      {{ message }}
+    </h2>
+
+    <NuxtLink
+      v-if="status === 'error'"
+      to="/login"
+      class="mt-6 text-sky-600 hover:text-sky-700 font-medium transition"
+    >
+      Back to Login
+    </NuxtLink>
   </div>
 </template>

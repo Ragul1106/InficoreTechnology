@@ -1,26 +1,18 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { useToast } from "vue-toastification";
 
 const email = ref("");
+const loading = ref(false);
 const toast = useToast();
 
-const config = useRuntimeConfig();
-
-const DEFAULT_API_BASE = "https://infocorewarebackend.onrender.com/api";
-
-const apiBase = computed(() => {
-  const raw = (config.public?.apiBase ?? "").trim();
-  const cleaned = raw.replace(/\/+$/, "");
-  return cleaned || DEFAULT_API_BASE;   // fall back if empty after cleaning
-});
-
-const buildAuthUrl = (path: string) => {
-  const normalizedPath = path.replace(/^\/+/, "");
-  return `${apiBase.value}/${normalizedPath}`;
-};
+const buildAuthUrl = useAuthUrl();
 
 const handleSubmit = async () => {
+  if (loading.value) return;
+
+  loading.value = true;
+
   try {
     const response: any = await $fetch(buildAuthUrl("auth/forgot-password"), {
       method: "POST",
@@ -42,10 +34,12 @@ const handleSubmit = async () => {
   } catch (err: any) {
     toast.clear();
 
-    toast.error(err?.data?.message || "Something went wrong", {
+    toast.error(getApiErrorMessage(err, "Something went wrong"), {
       position: "top-right" as any,
       timeout: 2500,
     });
+  } finally {
+    loading.value = false;
   }
 };
 </script>
@@ -87,9 +81,10 @@ const handleSubmit = async () => {
 
         <button
           type="submit"
-          class="w-full py-4 rounded-xl font-semibold text-white bg-sky-600 hover:bg-sky-700 transition duration-300 shadow-md"
+          :disabled="loading"
+          class="w-full py-4 rounded-xl font-semibold text-white bg-sky-600 hover:bg-sky-700 transition duration-300 shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Reset Password
+          {{ loading ? "Sending..." : "Reset Password" }}
         </button>
       </form>
 

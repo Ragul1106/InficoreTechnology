@@ -1,11 +1,40 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
+import { useToast } from "vue-toastification";
 import logo from "../assets/images/logo.png";
-import { User } from "lucide-vue-next";
+import { User, LogOut } from "lucide-vue-next";
 
 const menuOpen = ref(false);
 const route = useRoute();
+const toast = useToast();
+
+const { user, isAuthenticated, loadFromStorage, logout } = useAuth();
+const buildAuthUrl = useAuthUrl();
+
+onMounted(() => {
+  loadFromStorage();
+});
+
+const handleLogout = async () => {
+  const userId = user.value?.id;
+
+  try {
+    if (userId) {
+      await $fetch(buildAuthUrl("auth/logout"), {
+        method: "POST",
+        body: { userId },
+      });
+    }
+  } catch {
+    // Ignore network/logout errors; clear local session regardless.
+  }
+
+  logout();
+  menuOpen.value = false;
+  toast.success("Logged out successfully");
+  await navigateTo("/login");
+};
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -60,7 +89,23 @@ const navLinks = [
             />
           </NuxtLink>
 
+          <template v-if="isAuthenticated">
+            <span class="font-semibold text-sky-700">
+              Hi, {{ user?.firstName || "User" }}
+            </span>
+
+            <button
+              type="button"
+              @click="handleLogout"
+              class="flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 border border-sky-200 text-sky-700 font-semibold hover:bg-sky-600 hover:text-white transition"
+            >
+              <LogOut class="w-5 h-5" />
+              Logout
+            </button>
+          </template>
+
           <NuxtLink
+            v-else
             to="/login"
             class="p-2 rounded-full bg-sky-100 border border-sky-200 text-sky-700 hover:bg-sky-600 hover:text-white transition"
           >
@@ -131,7 +176,18 @@ const navLinks = [
             {{ link.name }}
           </NuxtLink>
 
+          <button
+            v-if="isAuthenticated"
+            type="button"
+            @click="handleLogout"
+            class="w-full flex items-center justify-center gap-3 text-sky-700 text-lg font-semibold px-4 py-3 rounded-xl bg-sky-100 border border-sky-200 hover:bg-sky-600 hover:text-white transition"
+          >
+            <LogOut class="w-5 h-5" />
+            Logout
+          </button>
+
           <NuxtLink
+            v-else
             to="/login"
             @click="menuOpen = false"
             class="w-full flex items-center text-center gap-3 text-sky-700 text-lg font-semibold px-4 py-3 rounded-xl bg-sky-100 border border-sky-200 hover:bg-sky-600 hover:text-white transition"
