@@ -64,7 +64,7 @@ const handleLogin = async (e: Event) => {
     });
 
     persistAuth(response);
-    router.replace("/");
+    await navigateTo("/");
   } catch (err: any) {
     error.value = err?.data?.message || "Invalid email or password";
   }
@@ -98,7 +98,7 @@ const handleSignup = async (e: Event) => {
   }
 
   try {
-    const response: any = await $fetch(buildAuthUrl("auth/signup"), {
+    await $fetch(buildAuthUrl("auth/signup"), {
       method: "POST",
       body: {
         firstName: firstName.value,
@@ -109,8 +109,13 @@ const handleSignup = async (e: Event) => {
       },
     });
 
-    persistAuth(response);
-    router.replace("/");
+    toast.success(
+      "Account created! Please check your email to verify your account before logging in.",
+    );
+
+    isLogin.value = true;
+    password.value = "";
+    rePassword.value = "";
   } catch (err: any) {
     error.value = err?.data?.message || "Signup failed";
   }
