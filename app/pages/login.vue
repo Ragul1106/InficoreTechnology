@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { useToast } from "vue-toastification";
 
 const toast = useToast();
+const { setAuth } = useAuth();
+const buildAuthUrl = useAuthUrl();
 
 const isLogin = ref(true);
 const email = ref("");
@@ -10,49 +12,28 @@ const password = ref("");
 const rePassword = ref("");
 const error = ref("");
 
+const loginLoading = ref(false);
+const signupLoading = ref(false);
+const resendLoading = ref(false);
+
 const router = useRouter();
 
 const firstName = ref("");
 const lastName = ref("");
 const phone = ref("");
 
-const config = useRuntimeConfig();
-
-const DEFAULT_API_BASE = "https://infocorewarebackend.onrender.com/api";
-
-const apiBase = computed(() => {
-  const raw = (config.public?.apiBase ?? "").trim();
-  const cleaned = raw.replace(/\/+$/, "");
-  return cleaned || DEFAULT_API_BASE;   // fall back if empty after cleaning
-});
-
-const buildAuthUrl = (path: string) => {
-  const normalizedPath = path.replace(/^\/+/, "");
-  return `${apiBase.value}/${normalizedPath}`;
-};
-
-const persistAuth = (payload: any) => {
-  const authData = payload?.data ?? payload;
-  const accessToken = authData?.accessToken ?? authData?.token;
-  const refreshToken = authData?.refreshToken ?? null;
-  const user = authData?.user ?? null;
-
-  if (accessToken) {
-    localStorage.setItem("token", accessToken);
-  }
-
-  if (refreshToken) {
-    localStorage.setItem("refreshToken", refreshToken);
-  }
-
-  if (user) {
-    localStorage.setItem("user", JSON.stringify(user));
-  }
+const switchMode = (login: boolean) => {
+  isLogin.value = login;
+  error.value = "";
 };
 
 const handleLogin = async (e: Event) => {
   e.preventDefault();
+
+  if (loginLoading.value) return;
+
   error.value = "";
+  loginLoading.value = true;
 
   try {
     const response: any = await $fetch(buildAuthUrl("auth/login"), {
@@ -63,14 +44,21 @@ const handleLogin = async (e: Event) => {
       },
     });
 
-    persistAuth(response);
+    setAuth(response);
+    toast.success(response?.message || "Login successful");
     await navigateTo("/");
   } catch (err: any) {
-    error.value = err?.data?.message || "Invalid email or password";
+    error.value = getApiErrorMessage(err, "Invalid email or password");
+  } finally {
+    loginLoading.value = false;
   }
 };
 
 const resendVerification = async () => {
+  if (resendLoading.value) return;
+
+  resendLoading.value = true;
+
   try {
     const response: any = await $fetch(
       buildAuthUrl("auth/send-verification-email"),
@@ -82,20 +70,27 @@ const resendVerification = async () => {
       },
     );
 
-    toast.success(response.message);
+    toast.success(response?.message || "Verification email sent");
   } catch (err: any) {
-    toast.error(err?.data?.message || "Failed to send verification email");
+    toast.error(getApiErrorMessage(err, "Failed to send verification email"));
+  } finally {
+    resendLoading.value = false;
   }
 };
 
 const handleSignup = async (e: Event) => {
   e.preventDefault();
+
+  if (signupLoading.value) return;
+
   error.value = "";
 
   if (password.value !== rePassword.value) {
     error.value = "Passwords do not match.";
     return;
   }
+
+  signupLoading.value = true;
 
   try {
     await $fetch(buildAuthUrl("auth/signup"), {
@@ -113,11 +108,13 @@ const handleSignup = async (e: Event) => {
       "Account created! Please check your email to verify your account before logging in.",
     );
 
-    isLogin.value = true;
+    switchMode(true);
     password.value = "";
     rePassword.value = "";
   } catch (err: any) {
-    error.value = err?.data?.message || "Signup failed";
+    error.value = getApiErrorMessage(err, "Signup failed");
+  } finally {
+    signupLoading.value = false;
   }
 };
 </script>
@@ -140,10 +137,8 @@ const handleSignup = async (e: Event) => {
         class="flex justify-between bg-sky-50 rounded-xl p-2 mb-6 border border-sky-100"
       >
         <button
-          @click="
-            isLogin = true;
-            error = '';
-          "
+          type="button"
+          @click="switchMode(true)"
           :class="[
             'w-1/2 py-2 rounded-lg font-semibold transition duration-300',
             isLogin
@@ -155,10 +150,8 @@ const handleSignup = async (e: Event) => {
         </button>
 
         <button
-          @click="
-            isLogin = false;
-            error = '';
-          "
+          type="button"
+          @click="switchMode(false)"
           :class="[
             'w-1/2 py-2 rounded-lg font-semibold transition duration-300',
             !isLogin
@@ -178,10 +171,12 @@ const handleSignup = async (e: Event) => {
 
         <button
           v-if="error.includes('verify your email')"
+          type="button"
           @click="resendVerification"
-          class="mt-3 w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600 transition"
+          :disabled="resendLoading"
+          class="mt-3 w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600 transition disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Resend Verification Email
+          {{ resendLoading ? "Sending..." : "Resend Verification Email" }}
         </button>
       </div>
 
@@ -210,9 +205,10 @@ const handleSignup = async (e: Event) => {
 
         <button
           type="submit"
-          class="w-full py-3 rounded-xl font-semibold bg-sky-600 text-white hover:bg-sky-700 transition duration-300 shadow-md"
+          :disabled="loginLoading"
+          class="w-full py-3 rounded-xl font-semibold bg-sky-600 text-white hover:bg-sky-700 transition duration-300 shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Login
+          {{ loginLoading ? "Logging in..." : "Login" }}
         </button>
 
         <div
@@ -300,9 +296,10 @@ const handleSignup = async (e: Event) => {
 
         <button
           type="submit"
-          class="w-full py-3 rounded-xl font-semibold bg-blue-600 text-white hover:bg-blue-700 transition duration-300 shadow-md"
+          :disabled="signupLoading"
+          class="w-full py-3 rounded-xl font-semibold bg-blue-600 text-white hover:bg-blue-700 transition duration-300 shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          Sign Up
+          {{ signupLoading ? "Creating account..." : "Sign Up" }}
         </button>
       </form>
     </div>

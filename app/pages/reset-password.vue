@@ -1,51 +1,119 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { useToast } from "vue-toastification";
 
 const toast = useToast();
 const route = useRoute();
-const config = useRuntimeConfig();
+const buildAuthUrl = useAuthUrl();
 
 const password = ref("");
 const confirmPassword = ref("");
+const loading = ref(false);
 
-const DEFAULT_API_BASE = "https://infocorewarebackend.onrender.com/api";
-
-const apiBase = computed(() => {
-  const raw = (config.public?.apiBase ?? "").trim();
-  const cleaned = raw.replace(/\/+$/, "");
-  return cleaned || DEFAULT_API_BASE;   // fall back if empty after cleaning
-});
-
-const buildAuthUrl = (path: string) => {
-  const normalizedPath = path.replace(/^\/+/, "");
-  return `${apiBase.value}/${normalizedPath}`;
-};
+const token = computed(() =>
+  Array.isArray(route.query.token) ? route.query.token[0] : route.query.token,
+);
 
 const handleSubmit = async () => {
+  if (loading.value) return;
+
+  if (!token.value) {
+    toast.error("Invalid or missing reset token");
+    return;
+  }
+
   if (password.value !== confirmPassword.value) {
     toast.error("Passwords do not match");
     return;
   }
 
+  loading.value = true;
+
   try {
     const response: any = await $fetch(buildAuthUrl("auth/reset-password"), {
       method: "POST",
       body: {
-        token: Array.isArray(route.query.token)
-          ? route.query.token[0]
-          : route.query.token,
+        token: token.value,
         password: password.value,
       },
     });
 
-    toast.success(response.message);
+    toast.success(response?.message || "Password reset successful");
 
     setTimeout(() => {
       navigateTo("/login");
     }, 2000);
   } catch (err: any) {
-    toast.error(err?.data?.message || "Unable to reset password");
+    toast.error(getApiErrorMessage(err, "Unable to reset password"));
+  } finally {
+    loading.value = false;
   }
 };
 </script>
+
+<template>
+  <div
+    class="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-sky-50 to-blue-100 px-4"
+  >
+    <div
+      class="w-full max-w-lg bg-white rounded-3xl shadow-[0_20px_60px_rgba(14,165,233,0.18)] border border-sky-100 p-8"
+    >
+      <div class="text-center mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-sky-700">
+          Reset Password
+        </h1>
+
+        <p class="text-gray-500 mt-3 text-sm">
+          Enter a new password for your account
+        </p>
+      </div>
+
+      <form @submit.prevent="handleSubmit" class="space-y-6">
+        <div>
+          <label class="block text-gray-700 mb-2 font-medium">
+            New Password
+          </label>
+
+          <input
+            v-model="password"
+            type="password"
+            placeholder="Enter new password"
+            class="w-full px-5 py-4 rounded-xl bg-white border border-gray-200 text-gray-800 placeholder-gray-400 outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-200 transition"
+            required
+          />
+        </div>
+
+        <div>
+          <label class="block text-gray-700 mb-2 font-medium">
+            Confirm Password
+          </label>
+
+          <input
+            v-model="confirmPassword"
+            type="password"
+            placeholder="Re-enter new password"
+            class="w-full px-5 py-4 rounded-xl bg-white border border-gray-200 text-gray-800 placeholder-gray-400 outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-200 transition"
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          :disabled="loading"
+          class="w-full py-4 rounded-xl font-semibold text-white bg-sky-600 hover:bg-sky-700 transition duration-300 shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
+        >
+          {{ loading ? "Resetting..." : "Reset Password" }}
+        </button>
+      </form>
+
+      <div class="mt-6 text-center">
+        <NuxtLink
+          to="/login"
+          class="text-sky-600 hover:text-sky-700 font-medium transition"
+        >
+          Back to Login
+        </NuxtLink>
+      </div>
+    </div>
+  </div>
+</template>
