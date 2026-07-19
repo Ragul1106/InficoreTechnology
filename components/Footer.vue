@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import logo from "../assets/images/logo.png";
+import val from "../assets/images/val.png";
+import valuvar from "../assets/images/thiruvalluvar.png";
 import {
   MapPin,
   Phone,
@@ -13,8 +15,10 @@ import {
 <template>
   <footer class="bg-white border-t border-sky-100">
     <div class="px-6 md:px-16 py-14">
-      <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-10">
-        <!-- Logo + About -->
+      <!-- <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-10"> -->
+      <div
+        class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1.5fr_1fr_1fr_1fr] gap-12"
+      >
         <!-- Logo + About -->
         <div>
           <div
@@ -36,28 +40,47 @@ import {
           </div>
 
           <!-- Thirukkural -->
-          <div
-            class="mt-5 border-l-4 border-sky-500 pl-4 italic text-gray-700 leading-7"
-          >
-            <p class="font-semibold text-base text-gray-800">
-              கற்க கசடறக் கற்பவை கற்றபின்
-              <br />
-              நிற்க அதற்குத் தக.
-            </p>
+          <div class="mt-6 flex items-start gap-2">
+            <!-- Thiruvalluvar Image -->
+            <div class="flex-shrink-0">
+              <!-- <img
+                :src="val"
+                alt="Thiruvalluvar"
+                class="w-28 h-24 md:w-36 md:h-36 object-cover"
+              /> -->
+              <img
+                :src="valuvar"
+                alt="Thiruvalluvar"
+                class="w-28 h-24 md:w-36 md:h-36 object-cover"
+              />
+            </div>
 
-            <p class="mt-2 text-sm text-gray-500">
-              Learn thoroughly what is worth learning; having learned it, live
-              by it.
-            </p>
+            <!-- Kural -->
+            <div
+              class="border-l-4 border-sky-500 pl-4 italic text-gray-700 leading-7"
+            >
+              <p
+                class="font-semibold text-[14px] text-gray-800 leading-8 tracking-wide font-serif"
+              >
+                <span class="block">கற்க கசடறக் கற்பவை கற்றபின்</span>
+                <span class="block">நிற்க அதற்குத் தக.</span>
+              </p>
 
-            <p class="mt-2 text-xs font-semibold text-sky-600">
-              — திருக்குறள் 391
-            </p>
+              <p class="mt-2 text-sm text-gray-500 not-italic">
+                Learn thoroughly what is worth learning; having learned it, live
+                by it.
+              </p>
+
+              <p class="mt-2 text-xs font-semibold text-sky-600 not-italic">
+                — திருக்குறள் 391
+              </p>
+            </div>
           </div>
         </div>
 
         <!-- Quick Links -->
-        <div>
+        <!-- <div> -->
+        <div class="xl:pl-10">
           <h3 class="text-xl font-bold mb-5 text-sky-600">Quick Links</h3>
 
           <div class="flex flex-col gap-3 text-gray-600">
@@ -96,7 +119,7 @@ import {
         </div>
 
         <!-- Contact -->
-        <div>
+        <div class="xl:pl-10">
           <h3 class="text-xl font-bold mb-5 text-sky-600">Contact Us</h3>
 
           <div class="space-y-4 text-gray-600">
@@ -125,7 +148,7 @@ import {
         </div>
 
         <!-- Social Links -->
-        <div>
+        <div class="xl:pl-10">
           <h3 class="text-xl font-bold mb-5 text-sky-600">Follow Us</h3>
 
           <div class="flex gap-4">
