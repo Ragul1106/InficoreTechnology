@@ -29,7 +29,6 @@ const featuredCards = [
 
 <template>
   <div class="bg-white">
-    
     <!-- <section
   class="min-h-[65vh] flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-8 bg-gradient-to-br from-white via-sky-50 to-blue-100"
   
@@ -37,7 +36,6 @@ const featuredCards = [
     <section
       class="flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-8 md:py-10 bg-gradient-to-br from-white via-sky-50 to-blue-100"
     >
-     
       <div class="md:w-1/2">
         <h1 class="text-4xl md:text-6xl font-bold text-sky-700 leading-tight">
           Engineering Infinite Possibilities
@@ -91,7 +89,6 @@ const featuredCards = [
       </div>
     </section>
 
-    
     <section
       class="relative px-6 md:px-16 py-24 bg-cover bg-center"
       :style="{ backgroundImage: `url(${servicebg})` }"
@@ -149,7 +146,65 @@ const featuredCards = [
       </div>
     </section>
 
-    
+    <section class="px-6 md:px-16 py-20 bg-white">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold text-sky-700">
+          Why Choose InfiCoreWare?
+        </h2>
+
+        <p class="mt-4 text-gray-600 text-lg max-w-3xl mx-auto leading-8">
+          Building future-ready engineers with practical industrial knowledge,
+          real-time product development, and innovation-focused learning.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 text-center">
+        <div
+          class="p-8 bg-gray-50 rounded-3xl border border-gray-200 shadow-[0_8px_30px_rgba(14,165,233,0.10)] hover:shadow-[0_12px_40px_rgba(14,165,233,0.18)] hover:-translate-y-2 transition duration-300"
+        >
+          <Award class="mx-auto w-14 h-14 text-sky-600 mb-5" />
+
+          <h3 class="font-bold text-2xl text-gray-800 mb-4">
+            Industry-Oriented Training
+          </h3>
+
+          <p class="text-gray-600 leading-7">
+            Structured learning programs aligned with real industrial
+            requirements in Embedded Systems, IoT, and Product Engineering.
+          </p>
+        </div>
+
+        <div
+          class="p-8 bg-gray-50 rounded-3xl border border-gray-200 shadow-[0_8px_30px_rgba(14,165,233,0.10)] hover:shadow-[0_12px_40px_rgba(14,165,233,0.18)] hover:-translate-y-2 transition duration-300"
+        >
+          <Briefcase class="mx-auto w-14 h-14 text-sky-600 mb-5" />
+
+          <h3 class="font-bold text-2xl text-gray-800 mb-4">
+            Product-Based Learning
+          </h3>
+
+          <p class="text-gray-600 leading-7">
+            Learn by building real-world prototypes, products, and industrial
+            applications for hands-on engineering excellence.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div
+          class="p-8 bg-gray-50 rounded-3xl border border-gray-200 shadow-[0_8px_30px_rgba(14,165,233,0.10)] hover:shadow-[0_12px_40px_rgba(14,165,233,0.18)] hover:-translate-y-2 transition duration-300"
+        >
+          <Rocket class="mx-auto w-14 h-14 text-sky-600 mb-5" />
+
+          <h3 class="font-bold text-2xl text-gray-800 mb-4">Startup Mindset</h3>
+
+          <p class="text-gray-600 leading-7">
+            Transform ideas into scalable solutions through innovation,
+            research-driven development, and entrepreneurial thinking.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <section class="px-6 md:px-16 py-20 bg-sky-50">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-5xl font-bold text-sky-700">
@@ -169,7 +224,6 @@ const featuredCards = [
           </p>
         </div>
 
-        
         <div
           class="bg-white p-6 rounded-2xl shadow-lg border border-green-100 hover:shadow-xl hover:-translate-y-2 transition duration-300"
         >
@@ -180,7 +234,6 @@ const featuredCards = [
           </p>
         </div>
 
-        
         <div
           class="bg-white p-6 rounded-2xl shadow-lg border border-blue-100 hover:shadow-xl hover:-translate-y-2 transition duration-300"
         >
@@ -193,7 +246,6 @@ const featuredCards = [
           </p>
         </div>
 
-        
         <div
           class="bg-white p-6 rounded-2xl shadow-lg border border-purple-100 hover:shadow-xl hover:-translate-y-2 transition duration-300"
         >
@@ -207,7 +259,6 @@ const featuredCards = [
         </div>
       </div>
 
-      
       <div class="grid md:grid-cols-4 gap-8">
         <div class="bg-white p-8 rounded-2xl text-center shadow-lg">
           <h2 class="text-4xl font-bold text-sky-700">500+</h2>
@@ -231,9 +282,7 @@ const featuredCards = [
       </div>
     </section>
 
-    
     <section class="px-6 md:px-16 py-20 bg-white">
-      
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-5xl font-bold text-sky-700">
           Why Choose InfiCoreWare?
@@ -245,9 +294,7 @@ const featuredCards = [
         </p>
       </div>
 
-      
       <div class="grid md:grid-cols-3 gap-8 text-center">
-        
         <div
           class="p-8 bg-gray-50 rounded-3xl border border-gray-200 shadow-[0_8px_30px_rgba(14,165,233,0.10)] hover:shadow-[0_12px_40px_rgba(14,165,233,0.18)] hover:-translate-y-2 transition duration-300"
         >
@@ -263,7 +310,6 @@ const featuredCards = [
           </p>
         </div>
 
-        
         <div
           class="p-8 bg-gray-50 rounded-3xl border border-gray-200 shadow-[0_8px_30px_rgba(14,165,233,0.10)] hover:shadow-[0_12px_40px_rgba(14,165,233,0.18)] hover:-translate-y-2 transition duration-300"
         >
