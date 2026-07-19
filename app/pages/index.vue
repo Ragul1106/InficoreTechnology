@@ -265,7 +265,7 @@ const featuredCards = [
       
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-5xl font-bold text-sky-700">
-          Why Choose InfiCore?
+          Why Choose InfiCoreWare?
         </h2>
 
         <p class="mt-4 text-gray-600 text-lg max-w-3xl mx-auto leading-8">
@@ -331,7 +331,7 @@ const featuredCards = [
       </h2>
 
       <p class="text-lg max-w-3xl mx-auto mb-10">
-        Collaborate with InfiCore Technologies for next-generation embedded
+        Collaborate with InfiCoreWare Technologies for next-generation embedded
         systems, IoT ecosystems, and engineering education.
       </p>
 

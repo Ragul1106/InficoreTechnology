@@ -36,7 +36,7 @@ import { FileText, ShieldCheck, BookOpen, Cpu, Wallet, Lock, Mail } from "lucide
         </div>
 
         <p class="text-gray-700 leading-8">
-          By accessing InfiCore Technologies’ services, website, products,
+          By accessing InfiCoreWare Technologies’ services, website, products,
           or training programs, you agree to comply with these terms and conditions.
         </p>
       </div>

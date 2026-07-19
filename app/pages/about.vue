@@ -19,11 +19,11 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next";
       <h1
         class="text-4xl md:text-6xl pb-4 font-bold bg-gradient-to-r from-sky-500 via-blue-500 to-blue-700 bg-clip-text text-transparent"
       >
-        About InfiCore Technologies
+        About InfiCoreWare Technologies
       </h1>
 
       <p class="mt-6 text-gray-600 text-lg max-w-4xl mx-auto leading-8">
-        InfiCore Technologies is an innovation-driven engineering company
+        InfiCoreWare Technologies is an innovation-driven engineering company
         dedicated to bridging the gap between academic learning and industrial
         expectations through Embedded Systems, IoT, AI, EV, and Product
         Development.
@@ -42,7 +42,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next";
 
         <p class="text-gray-700 leading-8 text-lg">
           Founded with the vision of creating infinite possibilities in
-          engineering, InfiCore focuses on practical innovation, industrial
+          engineering, InfiCoreWare focuses on practical innovation, industrial
           research, and product-based development.
         </p>
 

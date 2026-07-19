@@ -1,46 +1,51 @@
 <script setup lang="ts">
-import { ref } from "vue"
-import { useToast } from "vue-toastification"
+import { computed, ref } from "vue";
+import { useToast } from "vue-toastification";
 
-const email = ref("")
-const toast = useToast()
+const email = ref("");
+const toast = useToast();
 
-const config = useRuntimeConfig()
+const config = useRuntimeConfig();
+
+const apiBase = computed(() => {
+  const rawBase =
+    config.public?.apiBase || "https://infocorewarebackend.onrender.com/api";
+  return rawBase.replace(/\/+$/, "");
+});
+
+const buildAuthUrl = (path: string) => {
+  const normalizedPath = path.replace(/^\/+/, "");
+  return `${apiBase.value}/${normalizedPath}`;
+};
 
 const handleSubmit = async () => {
   try {
-    const response: any = await $fetch(
-      `${config.public.apiBase}/auth/forgot-password`,
-      {
-        method: "POST",
-        body: {
-          email: email.value
-        }
-      }
-    )
+    const response: any = await $fetch(buildAuthUrl("auth/forgot-password"), {
+      method: "POST",
+      body: {
+        email: email.value,
+      },
+    });
 
-    toast.clear()
+    toast.clear();
 
     toast.success(response.message, {
-      position: "top-center",
-      timeout: 2500
-    })                          
+      position: "top-center" as any,
+      timeout: 2500,
+    });
 
     setTimeout(() => {
-      navigateTo("/login")
-    }, 2500)
+      navigateTo("/login");
+    }, 2500);
   } catch (err: any) {
-    toast.clear()
+    toast.clear();
 
-    toast.error(
-      err?.data?.message || "Something went wrong",
-      {
-        position: "top-right",
-        timeout: 2500
-      }
-    )
+    toast.error(err?.data?.message || "Something went wrong", {
+      position: "top-right" as any,
+      timeout: 2500,
+    });
   }
-}
+};
 </script>
 
 <template>
