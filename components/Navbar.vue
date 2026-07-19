@@ -53,23 +53,23 @@ const navLinks = [
       <div class="flex items-center justify-between w-full">
         <!-- LOGO -->
         <NuxtLink
-          to="/"
-          class="flex items-center gap-2 md:gap-3 group flex-shrink-0"
-        >
-          <div
-            class="w-10 h-10 md:w-24 md:h-24 rounded-full overflow-hidden border border-sky-200"
-          >
-            <img :src="logo" alt="Logo" class="w-full h-full object-cover" />
-          </div>
+  to="/"
+  class="flex items-center gap-2 md:gap-3 group flex-shrink-0"
+>
+  <div
+    class="w-10 h-10 md:w-24 md:h-24 rounded-full overflow-hidden border border-sky-200"
+  >
+    <img :src="logo" alt="Logo" class="w-full h-full object-cover" />
+  </div>
 
-          <h1
-            class="text-xl md:text-4xl font-extrabold tracking-[2px] md:tracking-[4px] whitespace-nowrap"
-          >
-            <span class="text-gray-900">INFI</span>
-            <span class="text-sky-600">CORE</span>
-            <span class="text-gray-900">WARE</span>
-          </h1>
-        </NuxtLink>
+  <h1
+    class="font-montserrat font-black text-xl md:text-4xl tracking-[2px] md:tracking-[4px] whitespace-nowrap uppercase"
+  >
+    <span class="text-gray-900">INFI</span>
+    <span class="text-sky-600">CORE</span>
+    <span class="text-gray-900">WARE</span>
+  </h1>
+</NuxtLink>
 
         <!-- DESKTOP MENU -->
         <div class="hidden md:flex items-center gap-8">

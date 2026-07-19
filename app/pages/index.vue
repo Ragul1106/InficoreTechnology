@@ -6,6 +6,19 @@ import products from "../assets/images/product.webp";
 import courseImg from "../assets/images/courses.jpg";
 import servicebg from "../assets/images/servicebg.jpg";
 
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Autoplay, Pagination } from "swiper/modules";
+
+import arun from "../assets/images/arun.jpg";
+import priya from "../assets/images/priya.jpg";
+import ragul from "../assets/images/ragul.jpg";
+import sneha from "../assets/images/sneha.jpg";
+import karthick from "../assets/images/karthik.jpg";
+import divya from "../assets/images/divya.jpg";
+
+import "swiper/css";
+import "swiper/css/pagination";
+
 import { Award, Briefcase, Rocket } from "lucide-vue-next";
 
 const featuredCards = [
@@ -23,6 +36,45 @@ const featuredCards = [
     title: "Products & components",
     image: products,
     path: "/products",
+  },
+];
+
+const studentReviews = [
+  {
+    name: "Arun Kumar",
+    image: arun,
+    review:
+      "The Embedded Systems course provided excellent hands-on training with real industrial projects. The mentors were highly supportive throughout the learning journey.",
+  },
+  {
+    name: "Priya Sharma",
+    image: priya,
+    review:
+      "InfiCore's practical approach helped me gain confidence in IoT and PCB Design. The curriculum is perfectly aligned with industry needs.",
+  },
+  {
+    name: "Rahul Raj",
+    image: ragul,
+    review:
+      "One of the best training institutes for Embedded Systems. The real-time product development experience was invaluable for my career.",
+  },
+  {
+    name: "Sneha Reddy",
+    image: sneha,
+    review:
+      "The faculty explained every concept clearly, and the practical sessions helped me develop confidence in designing and debugging embedded systems.",
+  },
+  {
+    name: "Karthick S",
+    image: karthick,
+    review:
+      "I joined the IoT program with very little knowledge. After completing the course, I successfully built multiple real-time projects and improved my technical skills significantly.",
+  },
+  {
+    name: "Divya Nair",
+    image: divya,
+    review:
+      "The industry-focused curriculum, live projects, and continuous mentor support made my learning experience outstanding. I highly recommend InfiCore Technologies to aspiring engineers.",
   },
 ];
 </script>
@@ -205,6 +257,131 @@ const featuredCards = [
       </div>
     </section>
 
+    <section
+      class="relative py-24 overflow-hidden bg-gradient-to-br from-sky-50 via-white to-cyan-50"
+    >
+      <!-- Decorative Background -->
+      <div
+        class="absolute -top-20 -left-20 w-96 h-96 bg-sky-300/30 rounded-full blur-3xl"
+      ></div>
+
+      <div
+        class="absolute -bottom-20 -right-20 w-96 h-96 bg-cyan-300/30 rounded-full blur-3xl"
+      ></div>
+
+      <div class="relative max-w-7xl mx-auto px-6">
+        <!-- Section Heading -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <!-- <span
+            class="inline-flex items-center gap-2 rounded-full bg-sky-100 text-sky-700 px-5 py-2 text-5xl font-semibold"
+          >
+             Testimonials
+          </span> -->
+
+          <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900">
+            Loved by Our Students
+          </h2>
+
+          <p class="mt-5 text-lg text-gray-600 leading-8">
+            Hear from students who transformed their careers through
+            <span class="font-bold text-sky-600">
+              InfiCoreWare Technologies </span
+            >.
+          </p>
+        </div>
+
+        <!-- Testimonial Cards -->
+        <Swiper
+          :modules="[Autoplay, Pagination]"
+          :slides-per-view="3"
+          :space-between="30"
+          :loop="true"
+          :centered-slides="false"
+          :autoplay="{
+            delay: 2500,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+          }"
+          :pagination="{ clickable: true }"
+          :breakpoints="{
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 25,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+          }"
+          class="testimonialSwiper"
+        >
+          <SwiperSlide v-for="student in studentReviews" :key="student.name">
+            <div
+              class="bg-white rounded-3xl border border-sky-100 p-8 shadow-lg hover:shadow-2xl transition-all duration-300 h-full"
+            >
+              <!-- Stars -->
+              <div class="flex justify-center text-yellow-500 text-xl mb-4">
+                ⭐⭐⭐⭐⭐
+              </div>
+
+              <!-- Review -->
+              <p class="text-gray-600 italic text-center leading-8">
+                "{{ student.review }}"
+              </p>
+
+              <div
+                class="my-6 h-px bg-gradient-to-r from-transparent via-sky-200 to-transparent"
+              ></div>
+
+              <!-- Student -->
+              <div class="flex flex-col items-center">
+                <img
+                  :src="student.image"
+                  :alt="student.name"
+                  class="w-14 h-14 rounded-full object-cover border-2 border-sky-500 shadow-md"
+                />
+
+                <h4 class="mt-4 text-lg font-bold text-slate-900">
+                  {{ student.name }}
+                </h4>
+
+                <p class="text-sm text-gray-500">
+                  InfiCore Technologies Student
+                </p>
+              </div>
+            </div>
+          </SwiperSlide>
+        </Swiper>
+
+        <!-- Bottom Statistics -->
+        <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <h3 class="text-4xl font-bold text-sky-600">500+</h3>
+            <p class="mt-2 text-gray-600">Students Trained</p>
+          </div>
+
+          <div class="text-center">
+            <h3 class="text-4xl font-bold text-sky-600">4.9★</h3>
+            <p class="mt-2 text-gray-600">Average Rating</p>
+          </div>
+
+          <div class="text-center">
+            <h3 class="text-4xl font-bold text-sky-600">95%</h3>
+            <p class="mt-2 text-gray-600">Course Completion</p>
+          </div>
+
+          <div class="text-center">
+            <h3 class="text-4xl font-bold text-sky-600">100+</h3>
+            <p class="mt-2 text-gray-600">Industry Projects</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="px-6 md:px-16 py-20 bg-sky-50">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-5xl font-bold text-sky-700">
@@ -259,7 +436,7 @@ const featuredCards = [
         </div>
       </div>
 
-      <div class="grid md:grid-cols-4 gap-8">
+      <!-- <div class="grid md:grid-cols-4 gap-8">
         <div class="bg-white p-8 rounded-2xl text-center shadow-lg">
           <h2 class="text-4xl font-bold text-sky-700">500+</h2>
           <p class="mt-3 text-gray-600">Engineers Trained</p>
@@ -279,66 +456,7 @@ const featuredCards = [
           <h2 class="text-4xl font-bold text-purple-700">15+</h2>
           <p class="mt-3 text-gray-600">Prototype Products</p>
         </div>
-      </div>
-    </section>
-
-    <section class="px-6 md:px-16 py-20 bg-white">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-5xl font-bold text-sky-700">
-          Why Choose InfiCoreWare?
-        </h2>
-
-        <p class="mt-4 text-gray-600 text-lg max-w-3xl mx-auto leading-8">
-          Building future-ready engineers with practical industrial knowledge,
-          real-time product development, and innovation-focused learning.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8 text-center">
-        <div
-          class="p-8 bg-gray-50 rounded-3xl border border-gray-200 shadow-[0_8px_30px_rgba(14,165,233,0.10)] hover:shadow-[0_12px_40px_rgba(14,165,233,0.18)] hover:-translate-y-2 transition duration-300"
-        >
-          <Award class="mx-auto w-14 h-14 text-sky-600 mb-5" />
-
-          <h3 class="font-bold text-2xl text-gray-800 mb-4">
-            Industry-Oriented Training
-          </h3>
-
-          <p class="text-gray-600 leading-7">
-            Structured learning programs aligned with real industrial
-            requirements in Embedded Systems, IoT, and Product Engineering.
-          </p>
-        </div>
-
-        <div
-          class="p-8 bg-gray-50 rounded-3xl border border-gray-200 shadow-[0_8px_30px_rgba(14,165,233,0.10)] hover:shadow-[0_12px_40px_rgba(14,165,233,0.18)] hover:-translate-y-2 transition duration-300"
-        >
-          <Briefcase class="mx-auto w-14 h-14 text-sky-600 mb-5" />
-
-          <h3 class="font-bold text-2xl text-gray-800 mb-4">
-            Product-Based Learning
-          </h3>
-
-          <p class="text-gray-600 leading-7">
-            Learn by building real-world prototypes, products, and industrial
-            applications for hands-on engineering excellence.
-          </p>
-        </div>
-
-        <!-- Card 3 -->
-        <div
-          class="p-8 bg-gray-50 rounded-3xl border border-gray-200 shadow-[0_8px_30px_rgba(14,165,233,0.10)] hover:shadow-[0_12px_40px_rgba(14,165,233,0.18)] hover:-translate-y-2 transition duration-300"
-        >
-          <Rocket class="mx-auto w-14 h-14 text-sky-600 mb-5" />
-
-          <h3 class="font-bold text-2xl text-gray-800 mb-4">Startup Mindset</h3>
-
-          <p class="text-gray-600 leading-7">
-            Transform ideas into scalable solutions through innovation,
-            research-driven development, and entrepreneurial thinking.
-          </p>
-        </div>
-      </div>
+      </div> -->
     </section>
 
     <!-- FINAL CTA -->
@@ -370,3 +488,31 @@ const featuredCards = [
     </section>
   </div>
 </template>
+
+<style scoped>
+:deep(.testimonialSwiper) {
+  padding-bottom: 60px;
+}
+
+:deep(.swiper-pagination-bullet) {
+  width: 10px;
+  height: 10px;
+  background: #0ea5e9;
+  opacity: 0.4;
+}
+
+:deep(.swiper-pagination-bullet-active) {
+  width: 30px;
+  border-radius: 999px;
+  opacity: 1;
+}
+
+:deep(.swiper-slide) {
+  height: auto;
+  display: flex;
+}
+
+:deep(.swiper-slide > div) {
+  width: 100%;
+}
+</style>
