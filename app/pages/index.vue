@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import founder from "../assets/images/founder.png";
 import banner from "../assets/images/banner.jpg";
-import rndImg from "../assets/images/rd.jpg";
-import products from "../assets/images/product.webp";
-import courseImg from "../assets/images/courses.jpg";
+import rndImg from "../assets/images/rnd.png";
+import products from "../assets/images/products.png";
+import courseImg from "../assets/images/courses.png";
 import servicebg from "../assets/images/servicebg.jpg";
 
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -57,16 +57,22 @@ const featuredCards = [
     title: "Courses",
     image: courseImg,
     path: "/courses",
+    description:
+      "Gain industry-ready skills through hands-on training in Embedded Systems, IoT, Edge AI, Robotics, PCB Design, and Product Development with real-world projects.",
   },
   {
-    title: "R&D Innovation",
+    title: "R&D Innovations",
     image: rndImg,
-    path: "/rnd",
+    path: "/innovations",
+    description:
+      "Discover cutting-edge research, intelligent automation, AI-powered solutions, rapid prototyping, and next-generation engineering innovations developed by InfiCoreWare.",
   },
   {
-    title: "Products & components",
+    title: "Products & Components",
     image: products,
     path: "/products",
+    description:
+      "Explore premium embedded hardware, IoT modules, development boards, industrial controllers, sensors, and high-quality electronic components for modern applications.",
   },
 ];
 
@@ -218,12 +224,12 @@ const studentReviews = [
           >
             <!-- Image Container -->
             <div
-              class="w-full h-[260px] md:h-[310px] bg-gray-100 flex items-center justify-center"
+              class="w-full h-[180px] md:h-[310px] bg-gray-100 flex items-center justify-center"
             >
               <img
                 :src="card.image"
                 :alt="card.title"
-                class="w-full h-full object-contain md:object-cover"
+                class="w-full h-full object-contain md:object-contain"
               />
             </div>
 
@@ -234,8 +240,7 @@ const studentReviews = [
               </h3>
 
               <p class="text-gray-600 mb-5 leading-7">
-                Explore advanced innovations, industrial applications, and
-                practical learning in this domain.
+                {{ card.description }}
               </p>
 
               <NuxtLink
