@@ -24,7 +24,7 @@ const handleSubmit = async () => {
     toast.success(response.message, {
       position: "top-center",
       timeout: 2500
-    })
+    })                          
 
     setTimeout(() => {
       navigateTo("/login")
