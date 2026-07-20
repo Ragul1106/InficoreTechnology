@@ -63,7 +63,7 @@ const navLinks = [
   </div>
 
   <h1
-    class="font-montserrat font-black text-xl md:text-4xl tracking-[2px] md:tracking-[4px] whitespace-nowrap"
+    class="font-montserrat font-black text-xl md:text-4xl tracking-[2px] md:tracking-[4px] whitespace-nowrap uppercase"
   >
     <span class="text-gray-900">Infi</span>
     <span class="text-sky-600">Core</span>
