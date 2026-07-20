@@ -63,11 +63,11 @@ const navLinks = [
   </div>
 
   <h1
-    class="font-montserrat font-black text-xl md:text-4xl tracking-[2px] md:tracking-[4px] whitespace-nowrap uppercase"
+    class="font-montserrat font-black text-xl md:text-4xl tracking-[2px] md:tracking-[4px] whitespace-nowrap"
   >
-    <span class="text-gray-900">INFI</span>
-    <span class="text-sky-600">CORE</span>
-    <span class="text-gray-900">WARE</span>
+    <span class="text-gray-900">Infi</span>
+    <span class="text-sky-600">Core</span>
+    <span class="text-gray-900">ware</span>
   </h1>
 </NuxtLink>
 
