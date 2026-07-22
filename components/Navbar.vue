@@ -9,12 +9,9 @@ const menuOpen = ref(false);
 const route = useRoute();
 const toast = useToast();
 
-const { user, isAuthenticated, loadFromStorage, logout } = useAuth();
-const buildAuthUrl = useAuthUrl();
+const { user, accessToken, logout } = useAuth();const buildAuthUrl = useAuthUrl();
 
-onMounted(() => {
-  loadFromStorage();
-});
+const isAuthenticated = computed(() => !!accessToken.value);
 
 const handleLogout = async () => {
   const userId = user.value?.id;

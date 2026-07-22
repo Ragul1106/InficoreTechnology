@@ -1,51 +1,60 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { useToast } from "vue-toastification";
+import { useRouter } from "vue-router";
 
 const toast = useToast();
+const router = useRouter();
+
 const { setAuth } = useAuth();
 const buildAuthUrl = useAuthUrl();
 
 const isLogin = ref(true);
+const error = ref("");
+
 const email = ref("");
 const password = ref("");
 const rePassword = ref("");
-const error = ref("");
+const firstName = ref("");
+const lastName = ref("");
+const phone = ref("");
 
 const loginLoading = ref(false);
 const signupLoading = ref(false);
 const resendLoading = ref(false);
-
-const router = useRouter();
-
-const firstName = ref("");
-const lastName = ref("");
-const phone = ref("");
 
 const switchMode = (login: boolean) => {
   isLogin.value = login;
   error.value = "";
 };
 
+const getApiErrorMessage = (err: any, defaultMsg: string): string => {
+  return (
+    err?.data?.message ||
+    err?.response?._data?.message ||
+    err?.message ||
+    defaultMsg
+  );
+};
+
 const handleLogin = async (e: Event) => {
   e.preventDefault();
-
   if (loginLoading.value) return;
 
   error.value = "";
   loginLoading.value = true;
 
   try {
-    const response: any = await $fetch(buildAuthUrl("auth/login"), {
+    const res: any = await $fetch(buildAuthUrl("auth/login"), {
       method: "POST",
-      body: {
-        email: email.value,
-        password: password.value,
-      },
+      body: { email: email.value, password: password.value },
     });
 
-    setAuth(response);
-    toast.success(response?.message || "Login successful");
+    setAuth(res.data || res);
+    // After successful login
+    const redirectPath = (route.query.redirect as string) || "/";
+    await navigateTo(redirectPath);
+    toast.success(res.message || "Login successful!");
     await navigateTo("/");
   } catch (err: any) {
     error.value = getApiErrorMessage(err, "Invalid email or password");
@@ -55,22 +64,15 @@ const handleLogin = async (e: Event) => {
 };
 
 const resendVerification = async () => {
-  if (resendLoading.value) return;
+  if (resendLoading.value || !email.value) return;
 
   resendLoading.value = true;
-
   try {
-    const response: any = await $fetch(
-      buildAuthUrl("auth/send-verification-email"),
-      {
-        method: "POST",
-        body: {
-          email: email.value,
-        },
-      },
-    );
-
-    toast.success(response?.message || "Verification email sent");
+    const res = await $fetch(buildAuthUrl("auth/send-verification-email"), {
+      method: "POST",
+      body: { email: email.value },
+    });
+    toast.success(res.message || "Verification email sent successfully");
   } catch (err: any) {
     toast.error(getApiErrorMessage(err, "Failed to send verification email"));
   } finally {
@@ -80,7 +82,6 @@ const resendVerification = async () => {
 
 const handleSignup = async (e: Event) => {
   e.preventDefault();
-
   if (signupLoading.value) return;
 
   error.value = "";
@@ -93,29 +94,35 @@ const handleSignup = async (e: Event) => {
   signupLoading.value = true;
 
   try {
-    await $fetch(buildAuthUrl("auth/signup"), {
+    const res = await $fetch(buildAuthUrl("auth/signup"), {
       method: "POST",
       body: {
-        firstName: firstName.value,
-        lastName: lastName.value,
+        firstName: firstName.value.trim(),
+        lastName: lastName.value.trim(),
         email: email.value,
         password: password.value,
-        phone: phone.value,
+        phone: phone.value || undefined,
       },
     });
 
-    toast.success(
-      "Account created! Please check your email to verify your account before logging in.",
-    );
-
+    toast.success(res.message || "Account created! Please verify your email.");
     switchMode(true);
-    password.value = "";
-    rePassword.value = "";
+    firstName.value =
+      lastName.value =
+      phone.value =
+      password.value =
+      rePassword.value =
+        "";
   } catch (err: any) {
     error.value = getApiErrorMessage(err, "Signup failed");
   } finally {
     signupLoading.value = false;
   }
+  setAuth(res.data);
+
+  toast.success("Account created!");
+
+  await navigateTo("/");
 };
 </script>
 

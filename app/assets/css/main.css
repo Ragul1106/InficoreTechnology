@@ -66,7 +66,11 @@ body {
   min-height: 580px;
   overflow: hidden;
 } */
-
+.hero-orbit {
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
 /* --------------------- */
 /* Orbit */
 /* --------------------- */
