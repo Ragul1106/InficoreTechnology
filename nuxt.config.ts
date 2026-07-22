@@ -3,7 +3,10 @@ export default defineNuxtConfig({
     enabled: true,
   },
 
-  css: ["~/assets/css/main.css"],
+  css: [
+    "~/assets/css/main.css",
+    "vue-toastification/dist/index.css",
+  ],
 
   modules: ["@nuxtjs/tailwindcss"],
 
@@ -16,12 +19,6 @@ export default defineNuxtConfig({
       apiBase: "https://infocorewarebackend.onrender.com",
     },
   },
-
-  routeRules: {
-    "/dashboard/**": { middleware: ["auth"] },
-    "/profile/**": { middleware: ["auth"] },
-    // Add more protected routes
-  }, // <-- Missing comma was here
 
   app: {
     head: {
@@ -40,4 +37,6 @@ export default defineNuxtConfig({
       ],
     },
   },
+
+  compatibilityDate: "2026-07-22",
 });
