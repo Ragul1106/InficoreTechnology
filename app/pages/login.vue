@@ -5,7 +5,6 @@ import { useRouter } from "vue-router";
 
 const toast = useToast();
 const router = useRouter();
-const route = useRoute();
 
 const { setAuth } = useAuth();
 const buildAuthUrl = useAuthUrl();
@@ -52,9 +51,6 @@ const handleLogin = async (e: Event) => {
     });
 
     setAuth(res.data || res);
-    // After successful login
-    const redirectPath = (route.query.redirect as string) || "/";
-    await navigateTo(redirectPath);
     toast.success(res.message || "Login successful!");
     await navigateTo("/");
   } catch (err: any) {
