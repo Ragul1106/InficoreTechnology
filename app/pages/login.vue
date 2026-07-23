@@ -5,6 +5,7 @@ import { useRouter } from "vue-router";
 
 const toast = useToast();
 const router = useRouter();
+const route = useRoute();
 
 const { setAuth } = useAuth();
 const buildAuthUrl = useAuthUrl();
@@ -118,11 +119,6 @@ const handleSignup = async (e: Event) => {
   } finally {
     signupLoading.value = false;
   }
-  setAuth(res.data);
-
-  toast.success("Account created!");
-
-  await navigateTo("/");
 };
 </script>
 
