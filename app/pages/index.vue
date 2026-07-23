@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// Home page — static marketing content (hero, founder, services, etc.).
 import founder from "../assets/images/founder.png";
 import banner from "../assets/images/banner.jpg";
 import rndImg from "../assets/images/rnd.png";

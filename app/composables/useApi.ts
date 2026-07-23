@@ -1,3 +1,6 @@
+// Helpers for building backend API URLs and reading error messages.
+
+// Used when runtimeConfig.public.apiBase is empty.
 const DEFAULT_API_BASE = "https://infocorewarebackend.onrender.com/api";
 
 /**

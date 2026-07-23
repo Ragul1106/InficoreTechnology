@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// Site navigation bar. Shows nav links plus a Login button, or the user's name
+// and a Logout button when signed in. Also handles the mobile menu.
 import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useToast } from "vue-toastification";
@@ -9,8 +11,10 @@ const menuOpen = ref(false);
 const route = useRoute();
 const toast = useToast();
 
-const { user, accessToken, logout } = useAuth();const buildAuthUrl = useAuthUrl();
+const { user, accessToken, logout } = useAuth();
+const buildAuthUrl = useAuthUrl();
 
+// True when an access token is present (i.e. the user is logged in).
 const isAuthenticated = computed(() => !!accessToken.value);
 
 const handleLogout = async () => {

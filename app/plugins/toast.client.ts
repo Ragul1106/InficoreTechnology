@@ -1,3 +1,5 @@
+// Client-side plugin that registers vue-toastification so any component can
+// call useToast() to show pop-up notifications.
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
 

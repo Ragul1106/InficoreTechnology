@@ -1,3 +1,5 @@
+// Nuxt configuration: CSS, modules, and the public `apiBase` used by the app
+// to reach the backend API.
 export default defineNuxtConfig({
   devtools: {
     enabled: true,

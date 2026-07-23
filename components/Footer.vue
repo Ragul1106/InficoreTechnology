@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// Site footer — logo, quick links, and contact info shown on every page.
 import logo from "../assets/images/logo.png";
 import val from "../assets/images/val.png";
 import valuvar from "../assets/images/thiruvalluvar.png";

@@ -1,22 +1,29 @@
-export default defineNuxtRouteMiddleware((to, from) => {
+// Route guard: runs before navigating to a page.
+// - Public pages are always allowed (but a logged-in user visiting /login or
+//   /signup is redirected home).
+// - Any other page requires a logged-in user; otherwise send them to /login.
+export default defineNuxtRouteMiddleware((to) => {
   const { accessToken } = useAuth();
 
-  // List of public pages (no login required)
-  const publicPages = ['/login', '/signup', '/forget-password', '/reset-password', '/verify-email'];
+  // Pages that don't require login.
+  const publicPages = [
+    "/login",
+    "/signup",
+    "/forget-password",
+    "/reset-password",
+    "/verify-email",
+  ];
 
   if (publicPages.includes(to.path)) {
-    // If user is already logged in and tries to access login/signup, redirect to home
-    if (accessToken.value && (to.path === '/login' || to.path === '/signup')) {
-      return navigateTo('/');
+    // Already logged in? Don't show the login/signup pages again.
+    if (accessToken.value && (to.path === "/login" || to.path === "/signup")) {
+      return navigateTo("/");
     }
     return;
   }
 
-  // Protected route — user not logged in
+  // Protected page and no token → require login.
   if (!accessToken.value) {
-    return navigateTo('/login');
+    return navigateTo("/login");
   }
-  definePageMeta({
-  middleware: ["auth"],
-});
 });

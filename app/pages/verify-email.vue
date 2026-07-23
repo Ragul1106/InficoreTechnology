@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// Email verification page. Reads the ?token= from the link in the email, calls
+// the backend to verify it, and on success redirects to /login.
 import { onMounted, ref } from "vue";
 import { useToast } from "vue-toastification";
 
@@ -6,9 +8,11 @@ const toast = useToast();
 const route = useRoute();
 const buildAuthUrl = useAuthUrl();
 
+// Drives which message/colour is shown in the template.
 const status = ref<"verifying" | "success" | "error">("verifying");
 const message = ref("Verifying your email...");
 
+// Run the verification as soon as the page loads.
 onMounted(async () => {
   try {
     const token = Array.isArray(route.query.token)

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// Contact page — static contact information and form.
 import { MapPin, Phone, Mail, Clock } from "lucide-vue-next";
 </script>
 
