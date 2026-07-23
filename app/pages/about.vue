@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// About page — static company info and contact details.
 import { MapPin, Phone, Mail, Clock } from "lucide-vue-next";
 </script>
 

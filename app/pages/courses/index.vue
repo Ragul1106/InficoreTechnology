@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// Courses listing page — shows/filters the course catalogue.
 import { ref, reactive, computed } from "vue";
 import { courses } from "../../../data/courses";
 import CourseCard from "../components/CourseCard.vue";

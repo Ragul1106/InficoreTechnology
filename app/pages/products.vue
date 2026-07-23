@@ -1,3 +1,4 @@
+<!-- Products page — placeholder "coming soon" style screen. -->
 <template>
   <div class="min-h-screen flex items-center justify-center text-4xl font-bold">
     <div class="text-center">

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// Single course detail page. The [slug] in the filename is the URL param used
+// to look up the matching course from the shared courses data.
 import { courses } from "../../../data/courses";
 import { ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// Reusable enrollment form. `selectedCourse` pre-fills the course field; the
+// form posts directly to Formspree, which emails the submission to the team.
 const props = defineProps({
   selectedCourse: {
     type: String,

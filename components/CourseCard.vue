@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// Card that displays a single course's summary in the courses list.
 import {
   BadgeCheck,
   Clock3,

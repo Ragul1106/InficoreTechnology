@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// Combined Login / Sign-up page. `isLogin` toggles between the two forms.
+// Login and signup both call the backend, store the returned auth tokens, and
+// on success send the user to the home page.
 import { ref } from "vue";
 import { useToast } from "vue-toastification";
 import { useRouter } from "vue-router";

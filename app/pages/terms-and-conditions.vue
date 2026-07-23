@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// Terms & Conditions page — static legal content.
 import { FileText, ShieldCheck, BookOpen, Cpu, Wallet, Lock, Mail } from "lucide-vue-next"
 </script>
 
