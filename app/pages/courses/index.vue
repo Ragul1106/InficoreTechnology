@@ -323,143 +323,99 @@ const programmingCourses = computed(() =>
           programs.
         </p>
       </div>
-      <!-- =========================
-     Flagship Courses
+     <!-- =========================
+     Flagship Courses  →  SHOW seats
 ========================= -->
+<section class="mb-20">
+  <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <CourseCard
+      v-for="course in flagshipCourses"
+      :key="course.slug"
+      :course="course"
+      :show-seats="true"          
+      @coming-soon="comingSoon"
+    />
+  </div>
+</section>
 
-      <section class="mb-20">
-        <!-- <div class="mb-10">
-    <h2 class="text-3xl font-bold text-slate-900">
-      InfiCoreWare Flagship Courses
-    </h2>
-
-    <p class="mt-2 text-gray-600">
-      Master complete product development from concept to deployment.
-    </p>
-  </div> -->
-
-        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <CourseCard
-            v-for="course in flagshipCourses"
-            :key="course.slug"
-            :course="course"
-            @coming-soon="comingSoon"
-          />
-        </div>
-      </section>
-
-      <!-- =========================
-     BareMetal Courses
+<!-- =========================
+     BareMetal Courses  →  NO seats
 ========================= -->
-
-      <section class="mb-20">
-        <div class="text-center max-w-3xl mx-auto mt-16 mb-16">
-          <h1 class="text-5xl font-extrabold text-slate-900">
-            Explore Our
-
-            <span class="text-sky-600"> Baremetal Courses </span>
-          </h1>
-
-          <p class="mt-5 text-lg text-gray-600">
-            Learn register-level embedded firmware development from scratch.
-          </p>
-        </div>
-
-        <!-- <div class="mb-10">
-    <h2 class="text-3xl font-bold text-slate-900">
-      InfiCoreWare BareMetal Courses
-    </h2>
-
-    <p class="mt-2 text-gray-600">
+<section class="mb-20">
+  <div class="text-center max-w-3xl mx-auto mt-16 mb-16">
+    <h1 class="text-5xl font-extrabold text-slate-900">
+      Explore Our
+      <span class="text-sky-600"> Baremetal Courses </span>
+    </h1>
+    <p class="mt-5 text-lg text-gray-600">
       Learn register-level embedded firmware development from scratch.
     </p>
-  </div> -->
+  </div>
 
-        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <CourseCard
-            v-for="course in baremetalCourses"
-            :key="course.slug"
-            :course="course"
-            @coming-soon="comingSoon"
-          />
-        </div>
-      </section>
+  <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <CourseCard
+      v-for="course in baremetalCourses"
+      :key="course.slug"
+      :course="course"
+      :show-seats="false"         
+      @coming-soon="comingSoon"
+    />
+  </div>
+</section>
 
-      <!-- =========================
-     Full Stack Course
+<!-- =========================
+     Full Stack Course  →  NO seats
 ========================= -->
-
-      <section class="mb-20">
-        <div class="text-center max-w-3xl mx-auto mt-16 mb-16">
-          <h1 class="text-5xl font-extrabold text-slate-900">
-            Explore Our
-
-            <span class="text-sky-600"> Full Stack Courses </span>
-          </h1>
-
-          <p class="mt-5 text-lg text-gray-600">
-            Become a professional Full Stack Developer using modern web
-            technologies.
-          </p>
-        </div>
-
-        <!-- <div class="mb-10">
-    <h2 class="text-3xl font-bold text-slate-900">
-      Full Stack Developer – Industry Course
-    </h2>
-
-    <p class="mt-2 text-gray-600">
+<section class="mb-20">
+  <div class="text-center max-w-3xl mx-auto mt-16 mb-16">
+    <h1 class="text-5xl font-extrabold text-slate-900">
+      Explore Our
+      <span class="text-sky-600"> Full Stack Courses </span>
+    </h1>
+    <p class="mt-5 text-lg text-gray-600">
       Become a professional Full Stack Developer using modern web technologies.
     </p>
-  </div> -->
+  </div>
 
-        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <CourseCard
-            v-for="course in fullstackCourses"
-            :key="course.slug"
-            :course="course"
-            @coming-soon="comingSoon"
-          />
-        </div>
-      </section>
+  <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <CourseCard
+      v-for="course in fullstackCourses"
+      :key="course.slug"
+      :course="course"
+      :show-seats="false"
+      @coming-soon="comingSoon"
+    />
+  </div>
+</section>
 
-      <!-- =========================
-     Programming Courses
+<!-- =========================
+     Programming Courses  →  NO seats
 ========================= -->
-
-      <section class="mb-20">
-        <div class="text-center max-w-3xl mx-auto mt-16 mb-16">
-          <h1 class="text-5xl font-extrabold text-slate-900">
-            Explore Our
-
-            <span class="text-sky-600"> Programming Courses </span>
-          </h1>
-
-          <p class="mt-5 text-lg text-gray-600">
-            Build strong programming fundamentals for Embedded, VLSI and
-            Software Engineering.
-          </p>
-        </div>
-
-        <!-- <div class="mb-10">
-    <h2 class="text-3xl font-bold text-slate-900">
-      InfiCoreWare Programming Courses
-    </h2>
-
-    <p class="mt-2 text-gray-600">
+<section class="mb-20">
+  <div class="text-center max-w-3xl mx-auto mt-16 mb-16">
+    <h1 class="text-5xl font-extrabold text-slate-900">
+      Explore Our
+      <span class="text-sky-600"> Programming Courses </span>
+    </h1>
+    <p class="mt-5 text-lg text-gray-600">
       Build strong programming fundamentals for Embedded, VLSI and Software Engineering.
     </p>
-  </div> -->
+  </div>
 
-        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <CourseCard
-            v-for="course in programmingCourses"
-            :key="course.slug"
-            :course="course"
-            @coming-soon="openEnroll"
-          />
-        </div>
-      </section>
+  <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <CourseCard
+      v-for="course in programmingCourses"
+      :key="course.slug"
+      :course="course"
+      :show-seats="false"
+      @coming-soon="openEnroll"
+    />
+  </div>
+</section>
+
+
+
+
     </div>
   </section>
 
@@ -590,3 +546,5 @@ const programmingCourses = computed(() =>
     </div>
   </transition>
 </template>
+
+

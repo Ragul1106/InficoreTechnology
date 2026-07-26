@@ -33,6 +33,7 @@ interface Course {
 
 const props = defineProps<{
   course: Course;
+  showSeats?: boolean; // ← new prop (default false)
 }>();
 
 const emit = defineEmits<{
@@ -83,12 +84,14 @@ const comingSoon = () => {
         {{ course.title }}
       </h2>
 
-      <div class="grid grid-cols-2 gap-3 mb-6">
+      <!-- ===================== -->
+      <!-- SEATS SECTION (only for Flagship) -->
+      <!-- ===================== -->
+      <div v-if="showSeats" class="grid grid-cols-2 gap-3 mb-6">
         <div class="rounded-xl border border-red-100 bg-red-50 p-4">
           <div class="flex items-center gap-2">
             <Users class="h-5 w-5 text-red-600" />
-
-            <span class="text-sm font-medium text-red-600"> Seats Left </span>
+            <span class="text-sm font-medium text-red-600">Seats Left</span>
           </div>
 
           <p class="mt-2 text-4xl font-bold text-red-700">
@@ -102,13 +105,13 @@ const comingSoon = () => {
 
         <div class="rounded-xl bg-green-50 border border-green-100 p-3">
           <p class="text-xs text-green-600 font-medium">Joined This Week</p>
-
           <p class="text-6xl mx-5 font-bold text-green-700">
             {{ course.enrolledThisWeek }}
           </p>
         </div>
       </div>
 
+      <!-- Rating (always shown) -->
       <div class="flex items-center gap-1 mb-5">
         <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
         <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
@@ -116,13 +119,8 @@ const comingSoon = () => {
         <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
         <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
 
-        <span class="ml-2 font-semibold">
-          {{ course.rating }}
-        </span>
-
-        <span class="text-gray-500 text-sm">
-          ({{ course.reviews }} Reviews)
-        </span>
+        <span class="ml-2 font-semibold">{{ course.rating }}</span>
+        <span class="text-gray-500 text-sm">({{ course.reviews }} Reviews)</span>
       </div>
 
       <p class="text-gray-600 leading-7 line-clamp-3 mb-6">
@@ -142,53 +140,43 @@ const comingSoon = () => {
 
       <!-- Features -->
       <div class="space-y-3 text-sm text-gray-700 mb-5">
-        <!-- Feature 1 -->
         <div class="flex items-center gap-3">
           <CheckCircle2 class="h-5 w-5 text-green-600" />
           <span>Online & Offline Training</span>
         </div>
-
-        <!-- Feature 2 -->
         <div class="flex items-center gap-3">
           <CheckCircle2 class="h-5 w-5 text-green-600" />
           <span>Industry Expert Mentors</span>
         </div>
-
-        <!-- Feature 3 -->
         <div class="flex items-center gap-3">
           <CheckCircle2 class="h-5 w-5 text-green-600" />
           <span>{{ course.projects }}</span>
         </div>
-
-        <!-- Feature 4 -->
         <div class="flex items-center gap-3">
           <CheckCircle2 class="h-5 w-5 text-green-600" />
           <span>Course Completion Certificate</span>
         </div>
-
-        <!-- Feature 5 -->
         <div class="flex items-center gap-3">
           <CheckCircle2 class="h-5 w-5 text-green-600" />
           <span>Placement Assistance</span>
         </div>
       </div>
 
+      <!-- Next Batch -->
       <div class="mb-6 rounded-xl border border-sky-100 bg-sky-50 p-4">
         <div class="flex items-center gap-2">
           <CalendarDays class="h-5 w-5 text-sky-600" />
-
-          <span class="text-sm text-gray-500"> Next Batch </span>
+          <span class="text-sm text-gray-500">Next Batch</span>
         </div>
-
-        <p class="mt-2 font-bold text-sky-700">
-          {{ course.nextBatch }}
-        </p>
+        <p class="mt-2 font-bold text-sky-700">{{ course.nextBatch }}</p>
       </div>
 
-      <div class="mb-6">
+      <!-- ===================== -->
+      <!-- SEATS FILLED BAR (only for Flagship) -->
+      <!-- ===================== -->
+      <div v-if="showSeats" class="mb-6">
         <div class="flex justify-between text-sm mb-2">
           <span>Seats Filled</span>
-
           <span>
             {{ course.totalSeats - course.seatsLeft }}/{{ course.totalSeats }}
           </span>
@@ -211,10 +199,7 @@ const comingSoon = () => {
       <div class="mt-8 flex items-center justify-between border-t pt-5">
         <div>
           <p class="text-xs uppercase tracking-wide text-gray-400">Mode</p>
-
-          <p class="font-semibold text-slate-800">
-            {{ course.mode }}
-          </p>
+          <p class="font-semibold text-slate-800">{{ course.mode }}</p>
         </div>
 
         <NuxtLink
@@ -223,7 +208,6 @@ const comingSoon = () => {
           class="inline-flex items-center gap-2 rounded-xl bg-sky-600 px-5 py-3 font-semibold text-white transition hover:bg-sky-700"
         >
           View Details
-
           <svg
             class="h-5 w-5 transition group-hover:translate-x-1"
             fill="none"

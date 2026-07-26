@@ -123,11 +123,30 @@ const studentReviews = [
   class="min-h-[65vh] flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-8 bg-gradient-to-br from-white via-sky-50 to-blue-100"
   
 > -->
-   <section
-  class="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 px-6 sm:px-8 md:px-10 lg:px-16 py-10 lg:py-16 bg-gradient-to-br from-white via-sky-50 to-blue-100"
+  <section
+  class="relative w-full overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 px-6 sm:px-8 md:px-10 lg:px-16 py-10 lg:py-16 bg-gradient-to-br from-white via-sky-50 to-blue-100"
 >
-  <!-- Left -->
-  <div class="w-full lg:w-1/2 text-center lg:text-left">
+  <!-- Animated Background Layer -->
+  <div class="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+    <!-- Soft grid -->
+    <div class="grid-pattern"></div>
+
+    <!-- Floating particles -->
+    <div class="particle particle-1"></div>
+    <div class="particle particle-2"></div>
+    <div class="particle particle-3"></div>
+    <div class="particle particle-4"></div>
+    <div class="particle particle-5"></div>
+    <div class="particle particle-6"></div>
+
+    <!-- Soft glowing orbs -->
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+    <div class="glow glow3"></div>
+  </div>
+
+  <!-- Left Content -->
+  <div class="relative z-10 w-full lg:w-1/2 text-center lg:text-left">
     <h1
       class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-sky-700 leading-tight"
     >
@@ -142,37 +161,25 @@ const studentReviews = [
       Development.
     </p>
 
-    <div
-      class="mt-8 flex flex-wrap justify-center lg:justify-start gap-3"
-    >
+    <div class="mt-8 flex flex-wrap justify-center lg:justify-start gap-3">
       <div class="px-4 py-2 bg-sky-100 text-sky-700 rounded-full">
         Embedded Systems
       </div>
-
       <div class="px-4 py-2 bg-green-100 text-green-700 rounded-full">
         IoT Automation
       </div>
-
       <div class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full">
         Robotics
       </div>
-
       <div class="px-4 py-2 bg-purple-100 text-purple-700 rounded-full">
         Edge AI
       </div>
     </div>
   </div>
 
-  <!-- Right -->
-  <div class="w-full lg:w-1/2 flex justify-center">
+  <!-- Right Orbit -->
+  <div class="relative z-10 w-full lg:w-1/2 flex justify-center">
     <div class="hero-orbit">
-      <div class="absolute inset-0 overflow-hidden">
-        <div class="grid-pattern"></div>
-        <div class="glow glow1"></div>
-        <div class="glow glow2"></div>
-        <div class="glow glow3"></div>
-      </div>
-
       <div class="orbit-ring">
         <div
           v-for="(item, index) in technologies"
@@ -568,3 +575,9 @@ const studentReviews = [
   width: 100%;
 }
 </style>
+
+
+
+
+
+
