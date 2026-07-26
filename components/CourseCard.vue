@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// Card that displays a single course's summary in the courses list.
 import {
   BadgeCheck,
   Clock3,
@@ -7,7 +6,7 @@ import {
   Star,
   CalendarDays,
   CheckCircle2,
-  ArrowRight,
+  Flame,
 } from "lucide-vue-next";
 
 interface Course {
@@ -22,7 +21,6 @@ interface Course {
   placement: boolean;
   overview: string;
   levels: string[];
-
   totalSeats: number;
   seatsLeft: number;
   enrolledThisWeek: number;
@@ -33,7 +31,7 @@ interface Course {
 
 const props = defineProps<{
   course: Course;
-  showSeats?: boolean; // ← new prop (default false)
+  showSeats?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -48,7 +46,7 @@ const comingSoon = () => {
 <template>
   <div
     :class="[
-      'group overflow-hidden rounded-3xl bg-white shadow-lg transition duration-500',
+      'group relative overflow-hidden rounded-3xl bg-white shadow-lg transition duration-500',
       course.available ? 'hover:shadow-2xl hover:-translate-y-2' : 'opacity-90',
     ]"
   >
@@ -60,6 +58,33 @@ const comingSoon = () => {
         loading="lazy"
         class="w-full h-80 object-cover transition duration-500 group-hover:scale-105"
       />
+
+      <!-- LIVE indicator (Flagship only) -->
+      <div
+        v-if="showSeats"
+        class="absolute top-4 right-4 flex items-center gap-2 rounded-full  backdrop-blur-sm px-3 py-1.5"
+      >
+        <span class="relative flex h-2.5 w-2.5">
+          <span
+            class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"
+          ></span>
+          <span
+            class="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500"
+          ></span>
+        </span>
+        <!-- <span class="text-xs font-semibold text-white tracking-wide">LIVE</span> -->
+      </div>
+
+      <!-- Filling Fast badge (only when seatsLeft < 10) -->
+      <div
+        v-if="showSeats && course.seatsLeft < 10"
+        class="absolute top-4 left-4 flex items-center gap-1.5 rounded-full bg-gradient-to-r from-orange-500 to-red-600 px-3 py-1.5 shadow-lg animate-pulse"
+      >
+        <Flame class="h-3.5 w-3.5 text-white" />
+        <span class="text-xs font-bold text-white tracking-wide">
+          Filling Fast
+        </span>
+      </div>
     </div>
 
     <!-- Content -->
@@ -85,24 +110,34 @@ const comingSoon = () => {
       </h2>
 
       <!-- ===================== -->
-      <!-- SEATS SECTION (only for Flagship) -->
+      <!-- SEATS SECTION (Flagship only) -->
       <!-- ===================== -->
       <div v-if="showSeats" class="grid grid-cols-2 gap-3 mb-6">
-        <div class="rounded-xl border border-red-100 bg-red-50 p-4">
-          <div class="flex items-center gap-2">
-            <Users class="h-5 w-5 text-red-600" />
-            <span class="text-sm font-medium text-red-600">Seats Left</span>
+        <!-- Seats Left - with pulse -->
+        <div
+          class="relative rounded-xl border border-red-100 bg-red-50 p-4 overflow-hidden"
+        >
+          <div
+            class="absolute inset-0 bg-red-200/40  rounded-xl"
+          ></div>
+
+          <div class="relative z-10">
+            <div class="flex items-center gap-2">
+              <Users class="h-5 w-5 text-red-600" />
+              <span class="text-sm font-medium text-red-600">Seats Left</span>
+            </div>
+
+            <p class="mt-2 text-4xl font-bold text-red-700">
+              {{ course.seatsLeft }}
+            </p>
+
+            <p class="text-xs text-red-500">
+              Out of {{ course.totalSeats }} seats
+            </p>
           </div>
-
-          <p class="mt-2 text-4xl font-bold text-red-700">
-            {{ course.seatsLeft }}
-          </p>
-
-          <p class="text-xs text-red-500">
-            Out of {{ course.totalSeats }} seats
-          </p>
         </div>
 
+        <!-- Joined This Week -->
         <div class="rounded-xl bg-green-50 border border-green-100 p-3">
           <p class="text-xs text-green-600 font-medium">Joined This Week</p>
           <p class="text-6xl mx-5 font-bold text-green-700">
@@ -111,7 +146,7 @@ const comingSoon = () => {
         </div>
       </div>
 
-      <!-- Rating (always shown) -->
+      <!-- Rating -->
       <div class="flex items-center gap-1 mb-5">
         <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
         <Star class="w-4 h-4 fill-yellow-400 text-yellow-400" />
@@ -171,20 +206,23 @@ const comingSoon = () => {
         <p class="mt-2 font-bold text-sky-700">{{ course.nextBatch }}</p>
       </div>
 
-      <!-- ===================== -->
-      <!-- SEATS FILLED BAR (only for Flagship) -->
-      <!-- ===================== -->
+      <!-- Seats Filled Progress (Flagship only) -->
       <div v-if="showSeats" class="mb-6">
         <div class="flex justify-between text-sm mb-2">
-          <span>Seats Filled</span>
+          <span class="flex items-center gap-2">
+            Seats Filled
+            <span
+              class="inline-flex h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse"
+            ></span>
+          </span>
           <span>
             {{ course.totalSeats - course.seatsLeft }}/{{ course.totalSeats }}
           </span>
         </div>
 
-        <div class="w-full h-2 rounded-full bg-gray-200">
+        <div class="w-full h-2.5 rounded-full bg-gray-200 overflow-hidden">
           <div
-            class="h-2 rounded-full bg-gradient-to-r from-red-500 to-orange-500"
+            class="h-full rounded-full bg-gradient-to-r from-red-500 to-orange-500 transition-all duration-1000"
             :style="{
               width:
                 ((course.totalSeats - course.seatsLeft) / course.totalSeats) *
@@ -234,49 +272,3 @@ const comingSoon = () => {
     </div>
   </div>
 </template>
-
-<!-- <script setup lang="ts">
-defineProps({
-  course: {
-    type: Object,
-    required: true
-  }
-})
-</script>
-
-<template>
-  <NuxtLink
-    :to="`/courses/${course.slug}`"
-    class="group bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
-  >
-    
-    <div class="overflow-hidden">
-      <img
-        :src="course.image"
-        :alt="course.title"
-        class="w-full h-56 object-cover group-hover:scale-110 transition duration-500"
-      />
-    </div>
-
-    <div class="p-5">
-      <h2 class="text-xl font-bold text-gray-900 mb-3">
-        {{ course.title }}
-      </h2>
-
-      <p class="text-gray-600 text-sm leading-relaxed line-clamp-3 mb-4">
-        {{ course.overview }}
-      </p>
-
-   
-      <div class="flex flex-wrap gap-2">
-        <span
-          v-for="level in course.levels"
-          :key="level"
-          class="px-3 py-1 text-xs font-medium bg-sky-100 text-sky-700 rounded-full"
-        >
-          {{ level }}
-        </span>
-      </div>
-    </div>
-  </NuxtLink>
-</template> -->
