@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Courses listing page — shows/filters the course catalogue.
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, onMounted, onUnmounted } from "vue";
 import { courses } from "../../../data/courses";
 import CourseCard from "../components/CourseCard.vue";
 import {
@@ -42,6 +42,39 @@ const openEnroll = (courseName: string) => {
   submitted.value = false;
   showEnroll.value = true;
 };
+
+const enrollments = ref({
+  product: 18,
+  connected: 12,
+  edgeai: 9,
+  fullstack: 22,
+});
+
+const seatsLeft = ref(15);
+
+let intervalId: ReturnType<typeof setInterval> | null = null;
+
+onMounted(() => {
+  intervalId = setInterval(() => {
+    // Randomly increase one of the enrollment numbers by 1 (small & believable)
+    const keys = ["product", "connected", "edgeai", "fullstack"] as const;
+    const randomKey = keys[Math.floor(Math.random() * keys.length)];
+
+    // Keep numbers realistic (don't go too high)
+    if (enrollments.value[randomKey] < 35) {
+      enrollments.value[randomKey]++;
+    }
+
+    // Occasionally reduce seats left
+    if (Math.random() > 0.7 && seatsLeft.value > 5) {
+      seatsLeft.value--;
+    }
+  }, 8000); // updates every 8 seconds
+});
+
+onUnmounted(() => {
+  if (intervalId) clearInterval(intervalId);
+});
 
 const submitForm = async () => {
   loading.value = true;
@@ -189,7 +222,6 @@ const programmingCourses = computed(() =>
     </Transition>
 
     <div class="max-w-7xl mx-auto px-6 md:px-10">
-      <!-- Premium Announcement Bar -->
       <!-- Live Updates -->
       <div
         class="relative mb-10 overflow-hidden rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 via-yellow-50 to-orange-50 shadow-lg"
@@ -206,6 +238,7 @@ const programmingCourses = computed(() =>
           </div>
 
           <!-- Marquee -->
+
           <div class="flex-1 overflow-hidden">
             <div class="marquee">
               <div class="marquee-content">
@@ -215,7 +248,8 @@ const programmingCourses = computed(() =>
                   <GraduationCap
                     class="w-3 h-3 sm:w-4 sm:h-4 text-sky-600 shrink-0"
                   />
-                  18 Students enrolled in Intelligent Product Engineering
+                  {{ enrollments.product }} Students enrolled in Intelligent
+                  Product Engineering
                 </span>
 
                 <span
@@ -224,7 +258,8 @@ const programmingCourses = computed(() =>
                   <Cpu
                     class="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 shrink-0"
                   />
-                  12 Students enrolled in Smart Connected Systems Engineering
+                  {{ enrollments.connected }} Students enrolled in Smart
+                  Connected Systems Engineering
                 </span>
 
                 <span
@@ -233,7 +268,8 @@ const programmingCourses = computed(() =>
                   <BrainCircuit
                     class="w-3 h-3 sm:w-4 sm:h-4 text-violet-600 shrink-0"
                   />
-                  9 Students enrolled in Edge AI & Intelligent Embedded Systems
+                  {{ enrollments.edgeai }} Students enrolled in Edge AI &
+                  Intelligent Embedded Systems
                 </span>
 
                 <span
@@ -242,7 +278,8 @@ const programmingCourses = computed(() =>
                   <MonitorSmartphone
                     class="w-3 h-3 sm:w-4 sm:h-4 text-blue-600 shrink-0"
                   />
-                  22 Students enrolled in Full Stack Developer
+                  {{ enrollments.fullstack }} Students enrolled in Full Stack
+                  Developer
                 </span>
 
                 <span
@@ -258,7 +295,7 @@ const programmingCourses = computed(() =>
                   class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
                 >
                   <Clock3 class="w-3 h-3 sm:w-4 sm:h-4 text-red-600 shrink-0" />
-                  Only 15 Seats Remaining
+                  Only {{ seatsLeft }} Seats Remaining
                 </span>
 
                 <span
@@ -277,6 +314,75 @@ const programmingCourses = computed(() =>
                     class="w-3 h-3 sm:w-4 sm:h-4 text-sky-700 shrink-0"
                   />
                   Placement Assistance Available
+                </span>
+
+                <!-- Extra realistic items -->
+                <span
+                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
+                >
+                  <Cpu class="w-3 h-3 sm:w-4 sm:h-4 text-indigo-600 shrink-0" />
+                  Baremetal Programming Batches Starting Soon
+                </span>
+
+                <span
+                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
+                >
+                  <BrainCircuit
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-purple-600 shrink-0"
+                  />
+                  Hands-on Edge AI Projects with Real Hardware
+                </span>
+
+                <span
+                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
+                >
+                  <GraduationCap
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-sky-700 shrink-0"
+                  />
+                  Learn Embedded Systems from Industry Experts
+                </span>
+
+                <span
+                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
+                >
+                  <MonitorSmartphone
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-cyan-600 shrink-0"
+                  />
+                  Build Complete IoT Products from Scratch
+                </span>
+
+                <span
+                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
+                >
+                  <BadgeCheck
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 shrink-0"
+                  />
+                  100% Practical & Project-Based Training
+                </span>
+
+                <span
+                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
+                >
+                  <BriefcaseBusiness
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-blue-700 shrink-0"
+                  />
+                  Career Guidance & Interview Preparation
+                </span>
+
+                <span
+                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
+                >
+                  <Clock3
+                    class="w-3 h-3 sm:w-4 sm:h-4 text-rose-600 shrink-0"
+                  />
+                  Limited Seats for Next Batch – Enroll Now
+                </span>
+
+                <span
+                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
+                >
+                  <Bell class="w-3 h-3 sm:w-4 sm:h-4 text-amber-600 shrink-0" />
+                  New Batch for PIC & ESP32 Baremetal Starting Soon
                 </span>
               </div>
             </div>
@@ -323,99 +429,97 @@ const programmingCourses = computed(() =>
           programs.
         </p>
       </div>
-     <!-- =========================
+      <!-- =========================
      Flagship Courses  →  SHOW seats
 ========================= -->
-<section class="mb-20">
-  <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-    <CourseCard
-      v-for="course in flagshipCourses"
-      :key="course.slug"
-      :course="course"
-      :show-seats="true"          
-      @coming-soon="comingSoon"
-    />
-  </div>
-</section>
+      <section class="mb-20">
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <CourseCard
+            v-for="course in flagshipCourses"
+            :key="course.slug"
+            :course="course"
+            :show-seats="true"
+            @coming-soon="comingSoon"
+          />
+        </div>
+      </section>
 
-<!-- =========================
+      <!-- =========================
      BareMetal Courses  →  NO seats
 ========================= -->
-<section class="mb-20">
-  <div class="text-center max-w-3xl mx-auto mt-16 mb-16">
-    <h1 class="text-5xl font-extrabold text-slate-900">
-      Explore Our
-      <span class="text-sky-600"> Baremetal Courses </span>
-    </h1>
-    <p class="mt-5 text-lg text-gray-600">
-      Learn register-level embedded firmware development from scratch.
-    </p>
-  </div>
+      <section class="mb-20">
+        <div class="text-center max-w-3xl mx-auto mt-16 mb-16">
+          <h1 class="text-5xl font-extrabold text-slate-900">
+            Explore Our
+            <span class="text-sky-600"> Baremetal Courses </span>
+          </h1>
+          <p class="mt-5 text-lg text-gray-600">
+            Learn register-level embedded firmware development from scratch.
+          </p>
+        </div>
 
-  <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-    <CourseCard
-      v-for="course in baremetalCourses"
-      :key="course.slug"
-      :course="course"
-      :show-seats="false"         
-      @coming-soon="comingSoon"
-    />
-  </div>
-</section>
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <CourseCard
+            v-for="course in baremetalCourses"
+            :key="course.slug"
+            :course="course"
+            :show-seats="false"
+            @coming-soon="comingSoon"
+          />
+        </div>
+      </section>
 
-<!-- =========================
+      <!-- =========================
      Full Stack Course  →  NO seats
 ========================= -->
-<section class="mb-20">
-  <div class="text-center max-w-3xl mx-auto mt-16 mb-16">
-    <h1 class="text-5xl font-extrabold text-slate-900">
-      Explore Our
-      <span class="text-sky-600"> Full Stack Courses </span>
-    </h1>
-    <p class="mt-5 text-lg text-gray-600">
-      Become a professional Full Stack Developer using modern web technologies.
-    </p>
-  </div>
+      <section class="mb-20">
+        <div class="text-center max-w-3xl mx-auto mt-16 mb-16">
+          <h1 class="text-5xl font-extrabold text-slate-900">
+            Explore Our
+            <span class="text-sky-600"> Full Stack Courses </span>
+          </h1>
+          <p class="mt-5 text-lg text-gray-600">
+            Become a professional Full Stack Developer using modern web
+            technologies.
+          </p>
+        </div>
 
-  <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-    <CourseCard
-      v-for="course in fullstackCourses"
-      :key="course.slug"
-      :course="course"
-      :show-seats="false"
-      @coming-soon="comingSoon"
-    />
-  </div>
-</section>
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <CourseCard
+            v-for="course in fullstackCourses"
+            :key="course.slug"
+            :course="course"
+            :show-seats="false"
+            @coming-soon="comingSoon"
+          />
+        </div>
+      </section>
 
-<!-- =========================
+      <!-- =========================
      Programming Courses  →  NO seats
 ========================= -->
-<section class="mb-20">
-  <div class="text-center max-w-3xl mx-auto mt-16 mb-16">
-    <h1 class="text-5xl font-extrabold text-slate-900">
-      Explore Our
-      <span class="text-sky-600"> Programming Courses </span>
-    </h1>
-    <p class="mt-5 text-lg text-gray-600">
-      Build strong programming fundamentals for Embedded, VLSI and Software Engineering.
-    </p>
-  </div>
+      <section class="mb-20">
+        <div class="text-center max-w-3xl mx-auto mt-16 mb-16">
+          <h1 class="text-5xl font-extrabold text-slate-900">
+            Explore Our
+            <span class="text-sky-600"> Programming Courses </span>
+          </h1>
+          <p class="mt-5 text-lg text-gray-600">
+            Build strong programming fundamentals for Embedded, VLSI and
+            Software Engineering.
+          </p>
+        </div>
 
-  <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-    <CourseCard
-      v-for="course in programmingCourses"
-      :key="course.slug"
-      :course="course"
-      :show-seats="false"
-      @coming-soon="openEnroll"
-    />
-  </div>
-</section>
-
-
-
-
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <CourseCard
+            v-for="course in programmingCourses"
+            :key="course.slug"
+            :course="course"
+            :show-seats="false"
+            @coming-soon="openEnroll"
+          />
+        </div>
+      </section>
     </div>
   </section>
 
@@ -546,5 +650,3 @@ const programmingCourses = computed(() =>
     </div>
   </transition>
 </template>
-
-
