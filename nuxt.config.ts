@@ -1,5 +1,4 @@
-// Nuxt configuration: CSS, modules, and the public `apiBase` used by the app
-// to reach the backend API.
+// Nuxt configuration
 export default defineNuxtConfig({
   devtools: {
     enabled: true,
@@ -10,7 +9,17 @@ export default defineNuxtConfig({
     "vue-toastification/dist/index.css",
   ],
 
-  modules: ["@nuxtjs/tailwindcss"],
+  modules: [
+    "@nuxtjs/tailwindcss",
+    "@nuxtjs/color-mode",
+  ],
+
+  colorMode: {
+    preference: "system",   // light | dark | system
+    fallback: "light",
+    classSuffix: "",        // important → adds class "dark"
+    storageKey: "nuxt-color-mode",
+  },
 
   build: {
     transpile: ["vue-toastification"],

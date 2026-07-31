@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// Root component: shows the Navbar and Footer around every page (<NuxtPage />)
-// and preloads the Montserrat font used in the site header.
 import Navbar from "../components/Navbar.vue";
 import Footer from "../components/Footer.vue";
 
@@ -24,7 +22,9 @@ useHead({
 </script>
 
 <template>
-  <div>
+  <div
+    class="min-h-screen bg-white text-gray-900 dark:bg-slate-950 dark:text-white transition-colors duration-300"
+  >
     <Navbar />
     <NuxtPage />
     <Footer />

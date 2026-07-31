@@ -56,20 +56,17 @@ let intervalId: ReturnType<typeof setInterval> | null = null;
 
 onMounted(() => {
   intervalId = setInterval(() => {
-    // Randomly increase one of the enrollment numbers by 1 (small & believable)
     const keys = ["product", "connected", "edgeai", "fullstack"] as const;
     const randomKey = keys[Math.floor(Math.random() * keys.length)];
 
-    // Keep numbers realistic (don't go too high)
     if (enrollments.value[randomKey] < 35) {
       enrollments.value[randomKey]++;
     }
 
-    // Occasionally reduce seats left
     if (Math.random() > 0.7 && seatsLeft.value > 5) {
       seatsLeft.value--;
     }
-  }, 8000); // updates every 8 seconds
+  }, 8000);
 });
 
 onUnmounted(() => {
@@ -98,7 +95,6 @@ const submitForm = async () => {
 
   if (response.ok) {
     submitted.value = true;
-
     form.name = "";
     form.mobile = "";
     form.email = "";
@@ -114,7 +110,7 @@ const toastMessage = ref("");
 
 const comingSoon = (title: string) => {
   toastTitle.value = "Coming Soon";
-  toastMessage.value = `${title} is currently under development. Registration will open soon. Stay connected with InfiCore Technologies for updates.`;
+  toastMessage.value = `${title} is currently under development. Registration will open soon. Stay connected with InfiCoreWare Technologies for updates.`;
 
   showToast.value = true;
 
@@ -162,10 +158,9 @@ const programmingCourses = computed(() =>
 
 <template>
   <section
-    class="bg-gradient-to-b from-slate-50 via-white to-sky-50 py-16 md:py-20"
+    class="bg-gradient-to-b from-slate-50 via-white to-sky-50 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 py-16 md:py-20 transition-colors duration-300"
   >
     <!-- Toast -->
-
     <Transition
       enter-active-class="transition duration-300 ease-out"
       enter-from-class="opacity-0 translate-y-5"
@@ -176,17 +171,17 @@ const programmingCourses = computed(() =>
     >
       <div
         v-if="showToast"
-        class="fixed top-6 right-6 z-50 w-[360px] rounded-2xl bg-white shadow-2xl border border-sky-100 overflow-hidden"
+        class="fixed top-6 right-6 z-50 w-[360px] rounded-2xl bg-white dark:bg-slate-800 shadow-2xl border border-sky-100 dark:border-slate-700 overflow-hidden"
       >
         <div class="h-1 bg-gradient-to-r from-sky-500 to-blue-600"></div>
 
         <div class="p-5">
           <div class="flex items-start gap-4">
             <div
-              class="flex h-12 w-12 items-center justify-center rounded-full bg-sky-100"
+              class="flex h-12 w-12 items-center justify-center rounded-full bg-sky-100 dark:bg-sky-900/50"
             >
               <svg
-                class="w-6 h-6 text-sky-600"
+                class="w-6 h-6 text-sky-600 dark:text-sky-400"
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2"
@@ -201,18 +196,18 @@ const programmingCourses = computed(() =>
             </div>
 
             <div class="flex-1">
-              <h3 class="font-bold text-slate-800">
+              <h3 class="font-bold text-slate-800 dark:text-white">
                 {{ toastTitle }}
               </h3>
 
-              <p class="mt-1 text-sm text-gray-600 leading-relaxed">
+              <p class="mt-1 text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
                 {{ toastMessage }}
               </p>
             </div>
 
             <button
               @click="showToast = false"
-              class="text-gray-400 hover:text-gray-700"
+              class="text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
             >
               ✕
             </button>
@@ -224,10 +219,9 @@ const programmingCourses = computed(() =>
     <div class="max-w-7xl mx-auto px-6 md:px-10">
       <!-- Live Updates -->
       <div
-        class="relative mb-10 overflow-hidden rounded-2xl border border-amber-200 bg-gradient-to-r from-amber-50 via-yellow-50 to-orange-50 shadow-lg"
+        class="relative mb-10 overflow-hidden rounded-2xl border border-amber-200 dark:border-amber-700/50 bg-gradient-to-r from-amber-50 via-yellow-50 to-orange-50 dark:from-amber-950/40 dark:via-yellow-950/30 dark:to-orange-950/40 shadow-lg"
       >
         <div class="flex items-center">
-          <!-- Left Badge -->
           <div
             class="shrink-0 flex items-center gap-1.5 sm:gap-2 bg-gradient-to-r from-red-600 to-orange-500 px-3 sm:px-5 md:px-6 py-3 md:py-4 font-bold text-white"
           >
@@ -237,150 +231,85 @@ const programmingCourses = computed(() =>
             </span>
           </div>
 
-          <!-- Marquee -->
-
           <div class="flex-1 overflow-hidden">
             <div class="marquee">
               <div class="marquee-content">
-                <span
-                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
-                >
-                  <GraduationCap
-                    class="w-3 h-3 sm:w-4 sm:h-4 text-sky-600 shrink-0"
-                  />
-                  {{ enrollments.product }} Students enrolled in Intelligent
-                  Product Engineering
+                <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-800 dark:text-gray-200">
+                  <GraduationCap class="w-3 h-3 sm:w-4 sm:h-4 text-sky-600 shrink-0" />
+                  {{ enrollments.product }} Students enrolled in Intelligent Product Engineering
                 </span>
 
-                <span
-                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
-                >
-                  <Cpu
-                    class="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 shrink-0"
-                  />
-                  {{ enrollments.connected }} Students enrolled in Smart
-                  Connected Systems Engineering
+                <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-800 dark:text-gray-200">
+                  <Cpu class="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 shrink-0" />
+                  {{ enrollments.connected }} Students enrolled in Smart Connected Systems Engineering
                 </span>
 
-                <span
-                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
-                >
-                  <BrainCircuit
-                    class="w-3 h-3 sm:w-4 sm:h-4 text-violet-600 shrink-0"
-                  />
-                  {{ enrollments.edgeai }} Students enrolled in Edge AI &
-                  Intelligent Embedded Systems
+                <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-800 dark:text-gray-200">
+                  <BrainCircuit class="w-3 h-3 sm:w-4 sm:h-4 text-violet-600 shrink-0" />
+                  {{ enrollments.edgeai }} Students enrolled in Edge AI & Intelligent Embedded Systems
                 </span>
 
-                <span
-                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
-                >
-                  <MonitorSmartphone
-                    class="w-3 h-3 sm:w-4 sm:h-4 text-blue-600 shrink-0"
-                  />
-                  {{ enrollments.fullstack }} Students enrolled in Full Stack
-                  Developer
+                <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-800 dark:text-gray-200">
+                  <MonitorSmartphone class="w-3 h-3 sm:w-4 sm:h-4 text-blue-600 shrink-0" />
+                  {{ enrollments.fullstack }} Students enrolled in Full Stack Developer
                 </span>
 
-                <span
-                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
-                >
-                  <Bell
-                    class="w-3 h-3 sm:w-4 sm:h-4 text-orange-600 shrink-0"
-                  />
+                <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-800 dark:text-gray-200">
+                  <Bell class="w-3 h-3 sm:w-4 sm:h-4 text-orange-600 shrink-0" />
                   Early Bird Registration Closing Soon
                 </span>
 
-                <span
-                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
-                >
+                <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-800 dark:text-gray-200">
                   <Clock3 class="w-3 h-3 sm:w-4 sm:h-4 text-red-600 shrink-0" />
                   Only {{ seatsLeft }} Seats Remaining
                 </span>
 
-                <span
-                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
-                >
-                  <BadgeCheck
-                    class="w-3 h-3 sm:w-4 sm:h-4 text-green-600 shrink-0"
-                  />
+                <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-800 dark:text-gray-200">
+                  <BadgeCheck class="w-3 h-3 sm:w-4 sm:h-4 text-green-600 shrink-0" />
                   Industry Certificate Included
                 </span>
 
-                <span
-                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
-                >
-                  <BriefcaseBusiness
-                    class="w-3 h-3 sm:w-4 sm:h-4 text-sky-700 shrink-0"
-                  />
+                <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-800 dark:text-gray-200">
+                  <BriefcaseBusiness class="w-3 h-3 sm:w-4 sm:h-4 text-sky-700 shrink-0" />
                   Placement Assistance Available
                 </span>
 
-                <!-- Extra realistic items -->
-                <span
-                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
-                >
+                <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-800 dark:text-gray-200">
                   <Cpu class="w-3 h-3 sm:w-4 sm:h-4 text-indigo-600 shrink-0" />
                   Baremetal Programming Batches Starting Soon
                 </span>
 
-                <span
-                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
-                >
-                  <BrainCircuit
-                    class="w-3 h-3 sm:w-4 sm:h-4 text-purple-600 shrink-0"
-                  />
+                <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-800 dark:text-gray-200">
+                  <BrainCircuit class="w-3 h-3 sm:w-4 sm:h-4 text-purple-600 shrink-0" />
                   Hands-on Edge AI Projects with Real Hardware
                 </span>
 
-                <span
-                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
-                >
-                  <GraduationCap
-                    class="w-3 h-3 sm:w-4 sm:h-4 text-sky-700 shrink-0"
-                  />
+                <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-800 dark:text-gray-200">
+                  <GraduationCap class="w-3 h-3 sm:w-4 sm:h-4 text-sky-700 shrink-0" />
                   Learn Embedded Systems from Industry Experts
                 </span>
 
-                <span
-                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
-                >
-                  <MonitorSmartphone
-                    class="w-3 h-3 sm:w-4 sm:h-4 text-cyan-600 shrink-0"
-                  />
+                <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-800 dark:text-gray-200">
+                  <MonitorSmartphone class="w-3 h-3 sm:w-4 sm:h-4 text-cyan-600 shrink-0" />
                   Build Complete IoT Products from Scratch
                 </span>
 
-                <span
-                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
-                >
-                  <BadgeCheck
-                    class="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 shrink-0"
-                  />
+                <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-800 dark:text-gray-200">
+                  <BadgeCheck class="w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 shrink-0" />
                   100% Practical & Project-Based Training
                 </span>
 
-                <span
-                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
-                >
-                  <BriefcaseBusiness
-                    class="w-3 h-3 sm:w-4 sm:h-4 text-blue-700 shrink-0"
-                  />
+                <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-800 dark:text-gray-200">
+                  <BriefcaseBusiness class="w-3 h-3 sm:w-4 sm:h-4 text-blue-700 shrink-0" />
                   Career Guidance & Interview Preparation
                 </span>
 
-                <span
-                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
-                >
-                  <Clock3
-                    class="w-3 h-3 sm:w-4 sm:h-4 text-rose-600 shrink-0"
-                  />
+                <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-800 dark:text-gray-200">
+                  <Clock3 class="w-3 h-3 sm:w-4 sm:h-4 text-rose-600 shrink-0" />
                   Limited Seats for Next Batch – Enroll Now
                 </span>
 
-                <span
-                  class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base"
-                >
+                <span class="marquee-item text-[11px] sm:text-xs md:text-sm lg:text-base text-gray-800 dark:text-gray-200">
                   <Bell class="w-3 h-3 sm:w-4 sm:h-4 text-amber-600 shrink-0" />
                   New Batch for PIC & ESP32 Baremetal Starting Soon
                 </span>
@@ -390,17 +319,13 @@ const programmingCourses = computed(() =>
         </div>
       </div>
 
+      <!-- Early Bird Banner -->
       <div
         class="rounded-3xl overflow-hidden bg-gradient-to-r from-sky-700 via-sky-600 to-blue-700 text-white px-8 py-12 md:px-16"
       >
-        <div
-          class="flex flex-col lg:flex-row items-center justify-between gap-8"
-        >
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
           <div>
-            <h2 class="text-3xl md:text-4xl font-bold">
-              Early Bird Registration
-            </h2>
-
+            <h2 class="text-3xl md:text-4xl font-bold">Early Bird Registration</h2>
             <p class="mt-3 text-sky-100 max-w-2xl leading-relaxed">
               Secure your seat today and gain access to InfiCoreWare's
               industry-ready certification programs with practical projects,
@@ -417,21 +342,17 @@ const programmingCourses = computed(() =>
         </div>
       </div>
 
+      <!-- Flagship Courses -->
       <div class="text-center max-w-3xl mx-auto mt-16 mb-16">
-        <h1 class="text-5xl font-extrabold text-slate-900">
+        <h1 class="text-5xl font-extrabold text-slate-900 dark:text-white">
           Explore Our
-
-          <span class="text-sky-600"> Flagship Courses </span>
+          <span class="text-sky-600 dark:text-sky-400"> Flagship Courses </span>
         </h1>
-
-        <p class="mt-5 text-lg text-gray-600">
-          Learn from industry experts through hands-on, project-based training
-          programs.
+        <p class="mt-5 text-lg text-gray-600 dark:text-gray-300">
+          Learn from industry experts through hands-on, project-based training programs.
         </p>
       </div>
-      <!-- =========================
-     Flagship Courses  →  SHOW seats
-========================= -->
+
       <section class="mb-20">
         <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <CourseCard
@@ -444,16 +365,14 @@ const programmingCourses = computed(() =>
         </div>
       </section>
 
-      <!-- =========================
-     BareMetal Courses  →  NO seats
-========================= -->
+      <!-- Baremetal Courses -->
       <section class="mb-20">
         <div class="text-center max-w-3xl mx-auto mt-16 mb-16">
-          <h1 class="text-5xl font-extrabold text-slate-900">
+          <h1 class="text-5xl font-extrabold text-slate-900 dark:text-white">
             Explore Our
-            <span class="text-sky-600"> Baremetal Courses </span>
+            <span class="text-sky-600 dark:text-sky-400"> Baremetal Courses </span>
           </h1>
-          <p class="mt-5 text-lg text-gray-600">
+          <p class="mt-5 text-lg text-gray-600 dark:text-gray-300">
             Learn register-level embedded firmware development from scratch.
           </p>
         </div>
@@ -469,18 +388,15 @@ const programmingCourses = computed(() =>
         </div>
       </section>
 
-      <!-- =========================
-     Full Stack Course  →  NO seats
-========================= -->
+      <!-- Full Stack Courses -->
       <section class="mb-20">
         <div class="text-center max-w-3xl mx-auto mt-16 mb-16">
-          <h1 class="text-5xl font-extrabold text-slate-900">
+          <h1 class="text-5xl font-extrabold text-slate-900 dark:text-white">
             Explore Our
-            <span class="text-sky-600"> Full Stack Courses </span>
+            <span class="text-sky-600 dark:text-sky-400"> Full Stack Courses </span>
           </h1>
-          <p class="mt-5 text-lg text-gray-600">
-            Become a professional Full Stack Developer using modern web
-            technologies.
+          <p class="mt-5 text-lg text-gray-600 dark:text-gray-300">
+            Become a professional Full Stack Developer using modern web technologies.
           </p>
         </div>
 
@@ -495,18 +411,15 @@ const programmingCourses = computed(() =>
         </div>
       </section>
 
-      <!-- =========================
-     Programming Courses  →  NO seats
-========================= -->
+      <!-- Programming Courses -->
       <section class="mb-20">
         <div class="text-center max-w-3xl mx-auto mt-16 mb-16">
-          <h1 class="text-5xl font-extrabold text-slate-900">
+          <h1 class="text-5xl font-extrabold text-slate-900 dark:text-white">
             Explore Our
-            <span class="text-sky-600"> Programming Courses </span>
+            <span class="text-sky-600 dark:text-sky-400"> Programming Courses </span>
           </h1>
-          <p class="mt-5 text-lg text-gray-600">
-            Build strong programming fundamentals for Embedded, VLSI and
-            Software Engineering.
+          <p class="mt-5 text-lg text-gray-600 dark:text-gray-300">
+            Build strong programming fundamentals for Embedded, VLSI and Software Engineering.
           </p>
         </div>
 
@@ -523,6 +436,7 @@ const programmingCourses = computed(() =>
     </div>
   </section>
 
+  <!-- Enroll Modal -->
   <transition name="fade">
     <div
       v-if="showEnroll"
@@ -530,55 +444,42 @@ const programmingCourses = computed(() =>
       @click.self="showEnroll = false"
     >
       <div
-        class="relative bg-white rounded-3xl shadow-2xl w-full max-w-2xl p-6 md:p-8"
+        class="relative bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-2xl p-6 md:p-8 border border-transparent dark:border-slate-700"
       >
-        <!-- Close -->
         <button
-          @click="
-            showEnroll = false;
-            submitted = false;
-          "
-          class="absolute top-4 right-5 text-3xl font-bold text-gray-500 hover:text-red-500"
+          @click="showEnroll = false; submitted = false"
+          class="absolute top-4 right-5 text-3xl font-bold text-gray-500 dark:text-gray-400 hover:text-red-500"
         >
           ×
         </button>
 
         <!-- Success Message -->
         <div v-if="submitted" class="text-center py-12 px-6">
-          <!-- Success Icon -->
           <div
-            class="w-24 h-24 mx-auto mb-6 flex items-center justify-center rounded-full bg-green-100"
+            class="w-24 h-24 mx-auto mb-6 flex items-center justify-center rounded-full bg-green-100 dark:bg-green-900/40"
           >
             <svg
-              class="w-14 h-14 text-green-600"
+              class="w-14 h-14 text-green-600 dark:text-green-400"
               fill="none"
               stroke="currentColor"
               stroke-width="3"
               viewBox="0 0 24 24"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M5 13l4 4L19 7"
-              />
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
             </svg>
           </div>
 
-          <!-- Title -->
-          <h2 class="text-3xl font-bold text-green-600 mb-4">
+          <h2 class="text-3xl font-bold text-green-600 dark:text-green-400 mb-4">
             Enrollment Successful
           </h2>
 
-          <!-- Message -->
-          <p class="text-gray-700 text-lg leading-relaxed max-w-md mx-auto">
+          <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed max-w-md mx-auto">
             Thank you for enrolling in
-            <strong class="text-sky-700"> {{ selectedCourse }} </strong>.
+            <strong class="text-sky-700 dark:text-sky-400">{{ selectedCourse }}</strong>.
             <br />
-            Our team will reach out to you soon with further details regarding
-            your course.
+            Our team will reach out to you soon with further details regarding your course.
           </p>
 
-          <!-- Close Button -->
           <button
             @click="closeAndGoHome"
             class="mt-8 bg-sky-600 hover:bg-sky-700 text-white px-8 py-3 rounded-xl font-semibold transition"
@@ -590,11 +491,10 @@ const programmingCourses = computed(() =>
         <!-- Form -->
         <div v-else>
           <div class="text-center mb-8">
-            <h2 class="text-3xl font-bold text-blue-900">
+            <h2 class="text-3xl font-bold text-blue-900 dark:text-sky-300">
               Enroll for {{ selectedCourse }}
             </h2>
-
-            <p class="mt-2 text-gray-600">
+            <p class="mt-2 text-gray-600 dark:text-gray-300">
               Fill the form and our team will contact you shortly.
             </p>
           </div>
@@ -605,7 +505,7 @@ const programmingCourses = computed(() =>
               type="text"
               placeholder="Full Name"
               required
-              class="w-full border border-gray-300 rounded-lg px-4 py-3"
+              class="w-full border border-gray-300 dark:border-slate-600 rounded-lg px-4 py-3 bg-white dark:bg-slate-700 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500"
             />
 
             <input
@@ -613,7 +513,7 @@ const programmingCourses = computed(() =>
               type="tel"
               placeholder="Mobile Number"
               required
-              class="w-full border border-gray-300 rounded-lg px-4 py-3"
+              class="w-full border border-gray-300 dark:border-slate-600 rounded-lg px-4 py-3 bg-white dark:bg-slate-700 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500"
             />
 
             <input
@@ -621,26 +521,26 @@ const programmingCourses = computed(() =>
               type="email"
               placeholder="Email Address"
               required
-              class="w-full border border-gray-300 rounded-lg px-4 py-3"
+              class="w-full border border-gray-300 dark:border-slate-600 rounded-lg px-4 py-3 bg-white dark:bg-slate-700 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500"
             />
 
             <input
               :value="selectedCourse"
               readonly
-              class="w-full rounded-lg border border-gray-300 bg-gray-100 px-4 py-3"
+              class="w-full rounded-lg border border-gray-300 dark:border-slate-600 bg-gray-100 dark:bg-slate-600 px-4 py-3 text-gray-700 dark:text-gray-200"
             />
 
             <textarea
               v-model="form.message"
               rows="4"
               placeholder="Any specific requirements..."
-              class="w-full border border-gray-300 rounded-lg px-4 py-3"
+              class="w-full border border-gray-300 dark:border-slate-600 rounded-lg px-4 py-3 bg-white dark:bg-slate-700 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500"
             ></textarea>
 
             <button
               type="submit"
               :disabled="loading"
-              class="w-full bg-blue-900 text-white py-4 rounded-xl hover:bg-blue-700 transition"
+              class="w-full bg-blue-900 dark:bg-sky-600 text-white py-4 rounded-xl hover:bg-blue-700 dark:hover:bg-sky-700 transition"
             >
               {{ loading ? "Submitting..." : "Submit Enrollment" }}
             </button>

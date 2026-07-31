@@ -12,7 +12,9 @@ import {
 </script>
 
 <template>
-  <footer class="bg-white border-t border-sky-100">
+  <footer
+    class="bg-white dark:bg-slate-900 border-t border-sky-100 dark:border-slate-800 transition-colors duration-300"
+  >
     <div class="px-6 md:px-16 py-14">
       <div
         class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[1.5fr_1fr_1fr_1fr] gap-12"
@@ -25,15 +27,15 @@ import {
             <img
               :src="logo"
               alt="InfiCore Logo"
-              class="w-14 h-14 rounded-full object-cover border border-sky-200 shadow-md shrink-0"
+              class="w-14 h-14 rounded-full object-cover border border-sky-200 dark:border-slate-600 shadow-md shrink-0"
             />
 
             <h2
               class="font-bold leading-tight tracking-wide text-xl sm:text-2xl break-words"
             >
-              <span class="text-black">Infi</span>
+              <span class="text-black dark:text-white">Infi</span>
               <span class="text-sky-600">Core</span>
-              <span class="text-black">Ware</span>
+              <span class="text-black dark:text-white">Ware</span>
             </h2>
           </div>
 
@@ -48,21 +50,21 @@ import {
             </div>
 
             <div
-              class="border-l-4 border-sky-500 pl-4 italic text-gray-700 leading-7"
+              class="border-l-4 border-sky-500 pl-4 italic text-gray-700 dark:text-gray-300 leading-7"
             >
               <p
-                class="font-semibold text-[14px] text-gray-800 leading-8 tracking-wide font-serif"
+                class="font-semibold text-[14px] text-gray-800 dark:text-gray-200 leading-8 tracking-wide font-serif"
               >
                 <span class="block">கற்க கசடறக் கற்பவை கற்றபின்</span>
                 <span class="block">நிற்க அதற்குத் தக.</span>
               </p>
 
-              <p class="mt-2 text-sm text-gray-500 not-italic">
+              <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 not-italic">
                 Learn thoroughly what is worth learning; having learned it, live
                 by it.
               </p>
 
-              <p class="mt-2 text-xs font-semibold text-sky-600 not-italic">
+              <p class="mt-2 text-xs font-semibold text-sky-600 dark:text-sky-400 not-italic">
                 — திருக்குறள் 391
               </p>
             </div>
@@ -71,37 +73,42 @@ import {
 
         <!-- Quick Links -->
         <div class="xl:pl-10">
-          <h3 class="text-xl font-bold mb-5 text-sky-600">Quick Links</h3>
+          <h3 class="text-xl font-bold mb-5 text-sky-600 dark:text-sky-400">
+            Quick Links
+          </h3>
 
-          <div class="flex flex-col gap-3 text-gray-600">
-            <NuxtLink to="/" class="hover:text-sky-500 transition duration-300">
+          <div class="flex flex-col gap-3 text-gray-600 dark:text-gray-300">
+            <NuxtLink
+              to="/"
+              class="hover:text-sky-500 dark:hover:text-sky-400 transition duration-300"
+            >
               Home
             </NuxtLink>
 
             <NuxtLink
               to="/about"
-              class="hover:text-sky-500 transition duration-300"
+              class="hover:text-sky-500 dark:hover:text-sky-400 transition duration-300"
             >
               About
             </NuxtLink>
 
             <NuxtLink
               to="/courses"
-              class="hover:text-sky-500 transition duration-300"
+              class="hover:text-sky-500 dark:hover:text-sky-400 transition duration-300"
             >
               Courses
             </NuxtLink>
 
             <NuxtLink
               to="/contact"
-              class="hover:text-sky-500 transition duration-300"
+              class="hover:text-sky-500 dark:hover:text-sky-400 transition duration-300"
             >
               Contact
             </NuxtLink>
 
             <NuxtLink
               to="/terms-and-conditions"
-              class="hover:text-sky-500 transition duration-300"
+              class="hover:text-sky-500 dark:hover:text-sky-400 transition duration-300"
             >
               Terms & Conditions
             </NuxtLink>
@@ -110,36 +117,43 @@ import {
 
         <!-- Contact -->
         <div class="xl:pl-10">
-          <h3 class="text-xl font-bold mb-5 text-sky-600">Contact Us</h3>
+          <h3 class="text-xl font-bold mb-5 text-sky-600 dark:text-sky-400">
+            Contact Us
+          </h3>
 
-          <div class="space-y-4 text-gray-600">
+          <div class="space-y-4 text-gray-600 dark:text-gray-300">
             <div class="flex gap-3 items-start">
-              <Phone class="w-5 h-5 text-sky-500 mt-1" />
-              <a href="tel:+919789738080" class="hover:text-sky-500 transition">
+              <Phone class="w-5 h-5 text-sky-500 mt-1 shrink-0" />
+              <a
+                href="tel:+919789738080"
+                class="hover:text-sky-500 dark:hover:text-sky-400 transition"
+              >
                 +91 97897 38080
               </a>
             </div>
 
             <div class="flex gap-3 items-start">
-              <Mail class="w-5 h-5 text-sky-500 mt-1" />
+              <Mail class="w-5 h-5 text-sky-500 mt-1 shrink-0" />
               <a
                 href="mailto:contact.inficorewaretechnologies@gmail.com"
-                class="hover:text-sky-500 transition break-all"
+                class="hover:text-sky-500 dark:hover:text-sky-400 transition break-all"
               >
                 contact.inficorewaretechnologies@gmail.com
               </a>
             </div>
 
             <div class="flex gap-3 items-start">
-              <MapPin class="w-5 h-5 text-sky-500 mt-1" />
-              <span> Coimbatore, Tamil Nadu, India </span>
+              <MapPin class="w-5 h-5 text-sky-500 mt-1 shrink-0" />
+              <span>Coimbatore, Tamil Nadu, India</span>
             </div>
           </div>
         </div>
 
         <!-- Social Links -->
         <div class="xl:pl-10">
-          <h3 class="text-xl font-bold mb-5 text-sky-600">Follow Us</h3>
+          <h3 class="text-xl font-bold mb-5 text-sky-600 dark:text-sky-400">
+            Follow Us
+          </h3>
 
           <div class="flex gap-4">
             <!-- WhatsApp -->
@@ -147,11 +161,11 @@ import {
               href="https://wa.me/919789738080"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-3 rounded-full bg-sky-50 border border-sky-100 hover:bg-green-50 hover:border-green-200 hover:scale-110 transition duration-300"
+              class="p-3 rounded-full bg-sky-50 dark:bg-slate-800 border border-sky-100 dark:border-slate-700 hover:bg-green-50 dark:hover:bg-green-900/30 hover:border-green-200 dark:hover:border-green-700 hover:scale-110 transition duration-300"
               aria-label="WhatsApp"
             >
               <svg
-                class="w-5 h-5 text-green-600"
+                class="w-5 h-5 text-green-600 dark:text-green-400"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -164,19 +178,19 @@ import {
             <!-- Instagram -->
             <a
               href="#"
-              class="p-3 rounded-full bg-sky-50 border border-sky-100 hover:bg-sky-100 hover:scale-110 transition duration-300"
+              class="p-3 rounded-full bg-sky-50 dark:bg-slate-800 border border-sky-100 dark:border-slate-700 hover:bg-sky-100 dark:hover:bg-slate-700 hover:scale-110 transition duration-300"
               aria-label="Instagram"
             >
-              <Instagram class="w-5 h-5 text-sky-600" />
+              <Instagram class="w-5 h-5 text-sky-600 dark:text-sky-400" />
             </a>
 
             <!-- LinkedIn -->
             <a
               href="#"
-              class="p-3 rounded-full bg-sky-50 border border-sky-100 hover:bg-sky-100 hover:scale-110 transition duration-300"
+              class="p-3 rounded-full bg-sky-50 dark:bg-slate-800 border border-sky-100 dark:border-slate-700 hover:bg-sky-100 dark:hover:bg-slate-700 hover:scale-110 transition duration-300"
               aria-label="LinkedIn"
             >
-              <Linkedin class="w-5 h-5 text-sky-600" />
+              <Linkedin class="w-5 h-5 text-sky-600 dark:text-sky-400" />
             </a>
           </div>
         </div>
@@ -184,7 +198,7 @@ import {
 
       <!-- Bottom -->
       <div
-        class="border-t border-sky-100 mt-10 pt-6 text-center text-gray-500 text-sm"
+        class="border-t border-sky-100 dark:border-slate-800 mt-10 pt-6 text-center text-gray-500 dark:text-gray-400 text-sm"
       >
         © 2026 InfiCoreWare Technologies. All Rights Reserved.
       </div>

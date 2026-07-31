@@ -13,9 +13,11 @@ const props = defineProps({
   <div class="w-full">
     <!-- Heading -->
     <div class="text-center mb-8">
-      <h2 class="text-3xl font-bold text-blue-900">Course Enrollment</h2>
+      <h2 class="text-3xl font-bold text-blue-900 dark:text-sky-300">
+        Course Enrollment
+      </h2>
 
-      <p class="mt-2 text-gray-600">
+      <p class="mt-2 text-gray-600 dark:text-gray-300">
         Fill the form and our team will contact you shortly.
       </p>
     </div>
@@ -32,7 +34,7 @@ const props = defineProps({
         name="name"
         placeholder="Full Name"
         required
-        class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600"
+        class="w-full border border-gray-300 dark:border-slate-600 rounded-lg px-4 py-3 bg-white dark:bg-slate-700 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 outline-none focus:border-blue-600 dark:focus:border-sky-500"
       />
 
       <!-- Mobile -->
@@ -41,7 +43,7 @@ const props = defineProps({
         name="mobile"
         placeholder="Mobile Number"
         required
-        class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600"
+        class="w-full border border-gray-300 dark:border-slate-600 rounded-lg px-4 py-3 bg-white dark:bg-slate-700 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 outline-none focus:border-blue-600 dark:focus:border-sky-500"
       />
 
       <!-- Email -->
@@ -50,7 +52,7 @@ const props = defineProps({
         name="email"
         placeholder="Email Address"
         required
-        class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600"
+        class="w-full border border-gray-300 dark:border-slate-600 rounded-lg px-4 py-3 bg-white dark:bg-slate-700 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 outline-none focus:border-blue-600 dark:focus:border-sky-500"
       />
 
       <!-- Course -->
@@ -59,7 +61,7 @@ const props = defineProps({
         name="course"
         :value="selectedCourse"
         readonly
-        class="w-full border border-gray-300 rounded-lg px-4 py-3 bg-gray-100"
+        class="w-full border border-gray-300 dark:border-slate-600 rounded-lg px-4 py-3 bg-gray-100 dark:bg-slate-600 text-gray-700 dark:text-gray-200"
       />
 
       <!-- Message -->
@@ -67,13 +69,13 @@ const props = defineProps({
         rows="4"
         name="message"
         placeholder="Any specific requirements..."
-        class="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:border-blue-600"
+        class="w-full border border-gray-300 dark:border-slate-600 rounded-lg px-4 py-3 bg-white dark:bg-slate-700 text-gray-800 dark:text-gray-200 placeholder-gray-400 dark:placeholder-gray-500 outline-none focus:border-blue-600 dark:focus:border-sky-500"
       ></textarea>
 
       <!-- Submit -->
       <button
         type="submit"
-        class="w-full bg-blue-900 text-white py-4 rounded-xl hover:bg-blue-700 transition font-semibold"
+        class="w-full bg-blue-900 dark:bg-sky-600 text-white py-4 rounded-xl hover:bg-blue-700 dark:hover:bg-sky-700 transition font-semibold"
       >
         Submit Enrollment
       </button>

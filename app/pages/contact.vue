@@ -5,15 +5,14 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next";
 
 <template>
   <div
-    class="min-h-screen bg-white px-6 md:px-16 py-16 relative overflow-hidden"
+    class="min-h-screen bg-white dark:bg-slate-950 px-6 md:px-16 py-16 relative overflow-hidden transition-colors duration-300"
   >
     <!-- Soft Background Shapes -->
     <div
-      class="absolute top-20 left-20 w-72 h-72 bg-sky-100 blur-3xl rounded-full"
+      class="absolute top-20 left-20 w-72 h-72 bg-sky-100 dark:bg-sky-900/30 blur-3xl rounded-full"
     ></div>
-
     <div
-      class="absolute bottom-20 right-20 w-72 h-72 bg-blue-100 blur-3xl rounded-full"
+      class="absolute bottom-20 right-20 w-72 h-72 bg-blue-100 dark:bg-blue-900/30 blur-3xl rounded-full"
     ></div>
 
     <!-- Heading -->
@@ -24,7 +23,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next";
         Contact InfiCoreWare Technologies
       </h1>
 
-      <p class="mt-4 text-gray-600 text-lg max-w-3xl mx-auto leading-8">
+      <p class="mt-4 text-gray-600 dark:text-gray-300 text-lg max-w-3xl mx-auto leading-8">
         We’d love to hear from you. Reach out for project collaborations,
         engineering training, product development, and industrial solutions.
       </p>
@@ -34,39 +33,41 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next";
     <div class="grid md:grid-cols-2 gap-10 relative z-10">
       <!-- Left Side -->
       <div
-        class="bg-white border border-sky-100 rounded-3xl p-8 shadow-lg hover:shadow-xl transition duration-500"
+        class="bg-white dark:bg-slate-800 border border-sky-100 dark:border-slate-700 rounded-3xl p-8 shadow-lg hover:shadow-xl transition duration-500"
       >
-        <h2 class="text-3xl font-bold text-sky-600 mb-8">Get in Touch</h2>
+        <h2 class="text-3xl font-bold text-sky-600 dark:text-sky-400 mb-8">
+          Get in Touch
+        </h2>
 
         <div class="space-y-8">
           <!-- Address -->
           <div
-            class="p-5 rounded-2xl bg-sky-50 border border-sky-100 hover:shadow-md transition"
+            class="p-5 rounded-2xl bg-sky-50 dark:bg-slate-700/50 border border-sky-100 dark:border-slate-600 hover:shadow-md transition"
           >
             <div class="flex items-center gap-3 mb-3">
               <MapPin class="w-6 h-6 text-sky-500" />
-              <h3 class="font-semibold text-xl text-blue-900">
+              <h3 class="font-semibold text-xl text-blue-900 dark:text-sky-300">
                 Office Address
               </h3>
             </div>
-
-            <p class="text-gray-600 leading-7">
+            <p class="text-gray-600 dark:text-gray-300 leading-7">
               Coimbatore, Tamil Nadu, India - 641001
             </p>
           </div>
 
           <!-- Phone -->
           <div
-            class="p-5 rounded-2xl bg-sky-50 border border-sky-100 hover:shadow-md transition"
+            class="p-5 rounded-2xl bg-sky-50 dark:bg-slate-700/50 border border-sky-100 dark:border-slate-600 hover:shadow-md transition"
           >
             <div class="flex items-center gap-3 mb-3">
               <Phone class="w-6 h-6 text-green-500" />
-              <h3 class="font-semibold text-xl text-blue-900">Phone</h3>
+              <h3 class="font-semibold text-xl text-blue-900 dark:text-sky-300">
+                Phone
+              </h3>
             </div>
-
             <a
               href="tel:+919789738080"
-              class="text-green-600 text-lg hover:text-green-700 transition"
+              class="text-green-600 dark:text-green-400 text-lg hover:text-green-700 transition"
             >
               +91 97897 38080
             </a>
@@ -74,16 +75,17 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next";
 
           <!-- Email -->
           <div
-            class="p-5 rounded-2xl bg-sky-50 border border-sky-100 hover:shadow-md transition"
+            class="p-5 rounded-2xl bg-sky-50 dark:bg-slate-700/50 border border-sky-100 dark:border-slate-600 hover:shadow-md transition"
           >
             <div class="flex items-center gap-3 mb-3">
               <Mail class="w-6 h-6 text-blue-500" />
-              <h3 class="font-semibold text-xl text-blue-900">Email</h3>
+              <h3 class="font-semibold text-xl text-blue-900 dark:text-sky-300">
+                Email
+              </h3>
             </div>
-
             <a
               href="mailto:contact.inficorewaretechnologies@gmail.com"
-              class="text-blue-600 break-all hover:text-blue-700 transition"
+              class="text-blue-600 dark:text-blue-400 break-all hover:text-blue-700 transition"
             >
               contact.inficorewaretechnologies@gmail.com
             </a>
@@ -91,23 +93,28 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next";
 
           <!-- Working Hours -->
           <div
-            class="p-5 rounded-2xl bg-sky-50 border border-sky-100 hover:shadow-md transition"
+            class="p-5 rounded-2xl bg-sky-50 dark:bg-slate-700/50 border border-sky-100 dark:border-slate-600 hover:shadow-md transition"
           >
             <div class="flex items-center gap-3 mb-3">
               <Clock class="w-6 h-6 text-purple-500" />
-              <h3 class="font-semibold text-xl text-blue-900">Working Hours</h3>
+              <h3 class="font-semibold text-xl text-blue-900 dark:text-sky-300">
+                Working Hours
+              </h3>
             </div>
-
-            <p class="text-purple-600">Mon - Sat : 9:00 AM - 6:00 PM</p>
+            <p class="text-purple-600 dark:text-purple-400">
+              Mon - Sat : 9:00 AM - 6:00 PM
+            </p>
           </div>
         </div>
       </div>
 
       <!-- Right Side Form -->
       <div
-        class="bg-white border border-sky-100 rounded-3xl p-8 shadow-lg hover:shadow-xl transition duration-500"
+        class="bg-white dark:bg-slate-800 border border-sky-100 dark:border-slate-700 rounded-3xl p-8 shadow-lg hover:shadow-xl transition duration-500"
       >
-        <h2 class="text-3xl font-bold text-sky-600 mb-8">Send us a Message</h2>
+        <h2 class="text-3xl font-bold text-sky-600 dark:text-sky-400 mb-8">
+          Send us a Message
+        </h2>
 
         <form
           action="https://formspree.io/f/xvzjrrej"
@@ -119,7 +126,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next";
             name="name"
             placeholder="Full Name"
             required
-            class="w-full border border-sky-200 rounded-xl px-5 py-4 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-sky-500"
+            class="w-full border border-sky-200 dark:border-slate-600 rounded-xl px-5 py-4 text-gray-700 dark:text-gray-200 bg-white dark:bg-slate-700 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-sky-500"
           />
 
           <input
@@ -127,7 +134,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next";
             name="email"
             placeholder="Email Address"
             required
-            class="w-full border border-sky-200 rounded-xl px-5 py-4 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-sky-500"
+            class="w-full border border-sky-200 dark:border-slate-600 rounded-xl px-5 py-4 text-gray-700 dark:text-gray-200 bg-white dark:bg-slate-700 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-sky-500"
           />
 
           <textarea
@@ -135,7 +142,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-vue-next";
             name="message"
             placeholder="Write your message..."
             required
-            class="w-full border border-sky-200 rounded-xl px-5 py-4 text-gray-700 placeholder-gray-400 focus:outline-none focus:border-sky-500"
+            class="w-full border border-sky-200 dark:border-slate-600 rounded-xl px-5 py-4 text-gray-700 dark:text-gray-200 bg-white dark:bg-slate-700 placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:border-sky-500"
           ></textarea>
 
           <button
