@@ -64,7 +64,7 @@ const featuredCards = [
   {
     title: "R&D Innovations",
     image: rndImg,
-    path: "/innovations",
+    path: "/rnd",
     description:
       "Discover cutting-edge research, intelligent automation, AI-powered solutions, rapid prototyping, and next-generation engineering innovations developed by InfiCoreWare.",
   },
@@ -88,7 +88,7 @@ const studentReviews = [
     name: "Priya Sharma",
     image: priya,
     review:
-      "InfiCore's practical approach helped me gain confidence in IoT and PCB Design. The curriculum is perfectly aligned with industry needs.",
+      "InfiCoreWare's practical approach helped me gain confidence in IoT and PCB Design. The curriculum is perfectly aligned with industry needs.",
   },
   {
     name: "Rahul Raj",
@@ -123,83 +123,85 @@ const studentReviews = [
   class="min-h-[65vh] flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-8 bg-gradient-to-br from-white via-sky-50 to-blue-100"
   
 > -->
-  <section
-  class="relative w-full overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 px-6 sm:px-8 md:px-10 lg:px-16 py-10 lg:py-16 bg-gradient-to-br from-white via-sky-50 to-blue-100"
->
-  <!-- Animated Background Layer -->
-  <div class="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
-    <!-- Soft grid -->
-    <div class="grid-pattern"></div>
-
-    <!-- Floating particles -->
-    <div class="particle particle-1"></div>
-    <div class="particle particle-2"></div>
-    <div class="particle particle-3"></div>
-    <div class="particle particle-4"></div>
-    <div class="particle particle-5"></div>
-    <div class="particle particle-6"></div>
-
-    <!-- Soft glowing orbs -->
-    <div class="glow glow1"></div>
-    <div class="glow glow2"></div>
-    <div class="glow glow3"></div>
-  </div>
-
-  <!-- Left Content -->
-  <div class="relative z-10 w-full lg:w-1/2 text-center lg:text-left">
-    <h1
-      class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-sky-700 leading-tight"
+    <section
+      class="relative w-full overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16 px-6 sm:px-8 md:px-10 lg:px-16 py-10 lg:py-16 bg-gradient-to-br from-white via-sky-50 to-blue-100"
     >
-      Engineering Infinite Possibilities
-    </h1>
+      <!-- Animated Background Layer -->
+      <div
+        class="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden"
+      >
+        <!-- Soft grid -->
+        <div class="grid-pattern"></div>
 
-    <p
-      class="mt-6 text-base sm:text-lg lg:text-xl text-gray-600 leading-7 lg:leading-8"
-    >
-      Delivering advanced engineering solutions in Embedded Systems, IoT,
-      EV Technologies, AI Edge Computing, Industrial Automation, and Product
-      Development.
-    </p>
+        <!-- Floating particles -->
+        <div class="particle particle-1"></div>
+        <div class="particle particle-2"></div>
+        <div class="particle particle-3"></div>
+        <div class="particle particle-4"></div>
+        <div class="particle particle-5"></div>
+        <div class="particle particle-6"></div>
 
-    <div class="mt-8 flex flex-wrap justify-center lg:justify-start gap-3">
-      <div class="px-4 py-2 bg-sky-100 text-sky-700 rounded-full">
-        Embedded Systems
+        <!-- Soft glowing orbs -->
+        <div class="glow glow1"></div>
+        <div class="glow glow2"></div>
+        <div class="glow glow3"></div>
       </div>
-      <div class="px-4 py-2 bg-green-100 text-green-700 rounded-full">
-        IoT Automation
-      </div>
-      <div class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full">
-        Robotics
-      </div>
-      <div class="px-4 py-2 bg-purple-100 text-purple-700 rounded-full">
-        Edge AI
-      </div>
-    </div>
-  </div>
 
-  <!-- Right Orbit -->
-  <div class="relative z-10 w-full lg:w-1/2 flex justify-center">
-    <div class="hero-orbit">
-      <div class="orbit-ring">
-        <div
-          v-for="(item, index) in technologies"
-          :key="item.title"
-          class="tech-card"
-          :style="{
-            '--angle': `${index * (360 / technologies.length)}deg`,
-          }"
+      <!-- Left Content -->
+      <div class="relative z-10 w-full lg:w-1/2 text-center lg:text-left">
+        <h1
+          class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-sky-700 leading-tight"
         >
-          <component :is="item.icon" class="icon" />
-          <span>{{ item.title }}</span>
-        </div>
+          Engineering Infinite Possibilities
+        </h1>
 
-        <div class="center">
-          <Cpu class="center-icon" />
+        <p
+          class="mt-6 text-base sm:text-lg lg:text-xl text-gray-600 leading-7 lg:leading-8"
+        >
+          Delivering advanced engineering solutions in Embedded Systems, IoT, EV
+          Technologies, AI Edge Computing, Industrial Automation, and Product
+          Development.
+        </p>
+
+        <div class="mt-8 flex flex-wrap justify-center lg:justify-start gap-3">
+          <div class="px-4 py-2 bg-sky-100 text-sky-700 rounded-full">
+            Embedded Systems
+          </div>
+          <div class="px-4 py-2 bg-green-100 text-green-700 rounded-full">
+            IoT Automation
+          </div>
+          <div class="px-4 py-2 bg-blue-100 text-blue-700 rounded-full">
+            Robotics
+          </div>
+          <div class="px-4 py-2 bg-purple-100 text-purple-700 rounded-full">
+            Edge AI
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+
+      <!-- Right Orbit -->
+      <div class="relative z-10 w-full lg:w-1/2 flex justify-center">
+        <div class="hero-orbit">
+          <div class="orbit-ring">
+            <div
+              v-for="(item, index) in technologies"
+              :key="item.title"
+              class="tech-card"
+              :style="{
+                '--angle': `${index * (360 / technologies.length)}deg`,
+              }"
+            >
+              <component :is="item.icon" class="icon" />
+              <span>{{ item.title }}</span>
+            </div>
+
+            <div class="center">
+              <Cpu class="center-icon" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section
       class="relative px-6 md:px-16 py-24 bg-cover bg-center"
@@ -409,7 +411,7 @@ const studentReviews = [
                 </h4>
 
                 <p class="text-sm text-gray-500">
-                  InfiCore Technologies Student
+                  InfiCoreWare Technologies Student
                 </p>
               </div>
             </div>
@@ -494,28 +496,6 @@ const studentReviews = [
           </p>
         </div>
       </div>
-
-      <!-- <div class="grid md:grid-cols-4 gap-8">
-        <div class="bg-white p-8 rounded-2xl text-center shadow-lg">
-          <h2 class="text-4xl font-bold text-sky-700">500+</h2>
-          <p class="mt-3 text-gray-600">Engineers Trained</p>
-        </div>
-
-        <div class="bg-white p-8 rounded-2xl text-center shadow-lg">
-          <h2 class="text-4xl font-bold text-green-700">80+</h2>
-          <p class="mt-3 text-gray-600">Industrial Projects</p>
-        </div>
-
-        <div class="bg-white p-8 rounded-2xl text-center shadow-lg">
-          <h2 class="text-4xl font-bold text-orange-700">20+</h2>
-          <p class="mt-3 text-gray-600">Research Partnerships</p>
-        </div>
-
-        <div class="bg-white p-8 rounded-2xl text-center shadow-lg">
-          <h2 class="text-4xl font-bold text-purple-700">15+</h2>
-          <p class="mt-3 text-gray-600">Prototype Products</p>
-        </div>
-      </div> -->
     </section>
 
     <!-- FINAL CTA -->
@@ -575,9 +555,3 @@ const studentReviews = [
   width: 100%;
 }
 </style>
-
-
-
-
-
-

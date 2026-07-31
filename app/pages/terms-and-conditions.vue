@@ -15,7 +15,7 @@ import { FileText, ShieldCheck, BookOpen, Cpu, Wallet, Lock, Mail } from "lucide
       </h1>
 
       <p class="mt-4 text-gray-600 text-lg max-w-3xl mx-auto leading-8">
-        Please read these terms carefully before using InfiCore Technologies’
+        Please read these terms carefully before using InfiCoreWare Technologies’
         services, training programs, embedded product development, and industrial solutions.
       </p>
     </div>
@@ -73,7 +73,7 @@ import { FileText, ShieldCheck, BookOpen, Cpu, Wallet, Lock, Mail } from "lucide
 
         <p class="text-gray-700 leading-8">
           All embedded product designs, IoT architectures, PCB layouts,
-          firmware, and industrial innovations developed by InfiCore Technologies
+          firmware, and industrial innovations developed by InfiCoreWare Technologies
           remain protected under intellectual property laws.
         </p>
       </div>
@@ -125,7 +125,7 @@ import { FileText, ShieldCheck, BookOpen, Cpu, Wallet, Lock, Mail } from "lucide
         </div>
 
         <p class="text-gray-700 leading-8">
-          InfiCore Technologies is not responsible for any indirect damages,
+          InfiCoreWare Technologies is not responsible for any indirect damages,
           business interruptions, or technical failures arising from
           the use of our services or products.
         </p>
