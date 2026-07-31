@@ -148,7 +148,7 @@ import { FileText, ShieldCheck, BookOpen, Cpu, Wallet, Lock, Mail } from "lucide
           href="mailto:contact.inficoretech@gmail.com"
           class="text-sky-600 dark:text-sky-400 font-semibold hover:text-sky-800 dark:hover:text-sky-300 transition break-all"
         >
-          contact.inficoretech@gmail.com
+          contact.inficorewaretechnologies@gmail.com
         </a>
       </div>
     </div>
