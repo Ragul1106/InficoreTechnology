@@ -1,6 +1,5 @@
-import type { Config } from "tailwindcss";
-
-export default <Partial<Config>>{
+/** @type {import('tailwindcss').Config} */
+export default {
   darkMode: "class",
 
   content: [
@@ -8,6 +7,7 @@ export default <Partial<Config>>{
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
     "./app.vue",
+    "./app/**/*.{vue,js,ts}",
     "./error.vue",
   ],
 
