@@ -41,8 +41,11 @@ const isDark = computed(() => colorMode.value === "dark");
 
 const toggleTheme = () => {
   colorMode.preference = isDark.value ? "light" : "dark";
-};
 
+  if (window.innerWidth < 768) {
+    menuOpen.value = false;
+  }
+};
 const navLinks = [
   { name: "Home", path: "/" },
   { name: "Courses", path: "/courses" },
