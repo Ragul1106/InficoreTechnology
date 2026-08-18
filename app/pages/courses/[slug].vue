@@ -1,8 +1,9 @@
 <script setup lang="ts">
 // Single course detail page. The [slug] in the filename is the URL param used
 // to look up the matching course from the shared courses data.
-import { courses } from "../../../data/courses";
-import { ref, reactive } from "vue";
+
+import { courses, getNextBatchDate } from "../../../data/courses";
+import { computed, ref, reactive } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { Plus, Minus } from "lucide-vue-next";
 
@@ -38,7 +39,16 @@ const faqs = [
 
 const route = useRoute();
 const router = useRouter();
+
 const course = courses.find((c) => c.slug === route.params.slug);
+
+const nextBatchDate = computed(() => {
+  if (!course?.nextBatch) {
+    return "Coming Soon";
+  }
+
+  return getNextBatchDate(course.nextBatch);
+});
 
 const showEnroll = ref(false);
 const submitted = ref(false);
@@ -147,7 +157,10 @@ const studentReviews = [...testimonials]
 </script>
 
 <template>
-  <div v-if="course" class="py-0 bg-white dark:bg-slate-950 transition-colors duration-300">
+  <div
+    v-if="course"
+    class="py-0 bg-white dark:bg-slate-950 transition-colors duration-300"
+  >
     <!-- Banner -->
     <section
       class="bg-gradient-to-r from-slate-900 via-sky-900 to-slate-900 text-white"
@@ -232,24 +245,38 @@ const studentReviews = [...testimonials]
                 <div class="mt-6 space-y-4 text-gray-700 dark:text-gray-300">
                   <div class="flex justify-between">
                     <span>Duration</span>
-                    <strong class="text-slate-900 dark:text-white">{{ course.duration }}</strong>
+                    <strong class="text-slate-900 dark:text-white">{{
+                      course.duration
+                    }}</strong>
                   </div>
                   <div class="flex justify-between">
                     <span>Mode</span>
-                    <strong class="text-slate-900 dark:text-white">{{ course.mode }}</strong>
+                    <strong class="text-slate-900 dark:text-white">{{
+                      course.mode
+                    }}</strong>
                   </div>
                   <div class="flex justify-between">
                     <span>Projects</span>
-                    <strong class="text-slate-900 dark:text-white">{{ course.projects }}</strong>
+                    <strong class="text-slate-900 dark:text-white">{{
+                      course.projects
+                    }}</strong>
                   </div>
                   <div class="flex justify-between">
                     <span>Certificate</span>
-                    <strong class="text-slate-900 dark:text-white">Included</strong>
+                    <strong class="text-slate-900 dark:text-white"
+                      >Included</strong
+                    >
                   </div>
                   <div class="flex justify-between">
                     <span>Placement</span>
                     <strong class="text-slate-900 dark:text-white">
                       {{ course.placement ? "Available" : "No" }}
+                    </strong>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span>Next Batch</span>
+                    <strong class="text-sky-600 dark:text-sky-400">
+                      {{ nextBatchDate }}
                     </strong>
                   </div>
                 </div>
@@ -317,10 +344,14 @@ const studentReviews = [...testimonials]
           <section class="mt-16">
             <div class="flex items-center justify-between mb-10">
               <div>
-                <p class="text-sky-600 dark:text-sky-400 font-semibold uppercase tracking-wider text-sm">
+                <p
+                  class="text-sky-600 dark:text-sky-400 font-semibold uppercase tracking-wider text-sm"
+                >
                   Course Modules
                 </p>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mt-2">
+                <h2
+                  class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mt-2"
+                >
                   Course Curriculum
                 </h2>
               </div>
@@ -360,7 +391,9 @@ const studentReviews = [...testimonials]
 
         <!-- RIGHT SIDEBAR -->
         <aside class="space-y-8">
-          <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-lg p-8 border border-transparent dark:border-slate-700">
+          <div
+            class="bg-white dark:bg-slate-800 rounded-3xl shadow-lg p-8 border border-transparent dark:border-slate-700"
+          >
             <h3 class="text-2xl font-bold mb-6 text-slate-900 dark:text-white">
               Why Choose InfiCoreWare?
             </h3>
@@ -398,20 +431,36 @@ const studentReviews = [...testimonials]
     <!-- COURSE STATS -->
     <section class="max-w-7xl mx-auto px-6 py-10">
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-lg p-8 text-center border border-transparent dark:border-slate-700">
-          <h2 class="text-4xl font-extrabold text-sky-600 dark:text-sky-400">40+</h2>
+        <div
+          class="bg-white dark:bg-slate-800 rounded-3xl shadow-lg p-8 text-center border border-transparent dark:border-slate-700"
+        >
+          <h2 class="text-4xl font-extrabold text-sky-600 dark:text-sky-400">
+            40+
+          </h2>
           <p class="mt-3 text-gray-600 dark:text-gray-300">Hours Training</p>
         </div>
-        <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-lg p-8 text-center border border-transparent dark:border-slate-700">
-          <h2 class="text-4xl font-extrabold text-sky-600 dark:text-sky-400">10+</h2>
+        <div
+          class="bg-white dark:bg-slate-800 rounded-3xl shadow-lg p-8 text-center border border-transparent dark:border-slate-700"
+        >
+          <h2 class="text-4xl font-extrabold text-sky-600 dark:text-sky-400">
+            10+
+          </h2>
           <p class="mt-3 text-gray-600 dark:text-gray-300">Industry Tools</p>
         </div>
-        <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-lg p-8 text-center border border-transparent dark:border-slate-700">
-          <h2 class="text-4xl font-extrabold text-sky-600 dark:text-sky-400">5+</h2>
+        <div
+          class="bg-white dark:bg-slate-800 rounded-3xl shadow-lg p-8 text-center border border-transparent dark:border-slate-700"
+        >
+          <h2 class="text-4xl font-extrabold text-sky-600 dark:text-sky-400">
+            5+
+          </h2>
           <p class="mt-3 text-gray-600 dark:text-gray-300">Real Projects</p>
         </div>
-        <div class="bg-white dark:bg-slate-800 rounded-3xl shadow-lg p-8 text-center border border-transparent dark:border-slate-700">
-          <h2 class="text-4xl font-extrabold text-sky-600 dark:text-sky-400">100%</h2>
+        <div
+          class="bg-white dark:bg-slate-800 rounded-3xl shadow-lg p-8 text-center border border-transparent dark:border-slate-700"
+        >
+          <h2 class="text-4xl font-extrabold text-sky-600 dark:text-sky-400">
+            100%
+          </h2>
           <p class="mt-3 text-gray-600 dark:text-gray-300">Certificate</p>
         </div>
       </div>
@@ -420,29 +469,61 @@ const studentReviews = [...testimonials]
     <!-- Learning Journey -->
     <section class="bg-white dark:bg-slate-950 py-20">
       <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-14 text-slate-900 dark:text-white">
+        <h2
+          class="text-4xl font-bold text-center mb-14 text-slate-900 dark:text-white"
+        >
           Your Learning Journey
         </h2>
 
         <div class="grid md:grid-cols-4 gap-8">
-          <div class="bg-sky-50 dark:bg-slate-800 rounded-3xl p-8 border border-transparent dark:border-slate-700">
-            <div class="text-sky-600 dark:text-sky-400 font-bold text-lg">Week 1</div>
-            <h3 class="mt-4 font-bold text-xl text-slate-900 dark:text-white">Fundamentals</h3>
-            <p class="mt-3 text-gray-600 dark:text-gray-300">Build strong theoretical concepts.</p>
+          <div
+            class="bg-sky-50 dark:bg-slate-800 rounded-3xl p-8 border border-transparent dark:border-slate-700"
+          >
+            <div class="text-sky-600 dark:text-sky-400 font-bold text-lg">
+              Week 1
+            </div>
+            <h3 class="mt-4 font-bold text-xl text-slate-900 dark:text-white">
+              Fundamentals
+            </h3>
+            <p class="mt-3 text-gray-600 dark:text-gray-300">
+              Build strong theoretical concepts.
+            </p>
           </div>
-          <div class="bg-sky-50 dark:bg-slate-800 rounded-3xl p-8 border border-transparent dark:border-slate-700">
-            <div class="text-sky-600 dark:text-sky-400 font-bold text-lg">Week 2</div>
-            <h3 class="mt-4 font-bold text-xl text-slate-900 dark:text-white">Core Concepts</h3>
-            <p class="mt-3 text-gray-600 dark:text-gray-300">Learn practical implementation.</p>
+          <div
+            class="bg-sky-50 dark:bg-slate-800 rounded-3xl p-8 border border-transparent dark:border-slate-700"
+          >
+            <div class="text-sky-600 dark:text-sky-400 font-bold text-lg">
+              Week 2
+            </div>
+            <h3 class="mt-4 font-bold text-xl text-slate-900 dark:text-white">
+              Core Concepts
+            </h3>
+            <p class="mt-3 text-gray-600 dark:text-gray-300">
+              Learn practical implementation.
+            </p>
           </div>
-          <div class="bg-sky-50 dark:bg-slate-800 rounded-3xl p-8 border border-transparent dark:border-slate-700">
-            <div class="text-sky-600 dark:text-sky-400 font-bold text-lg">Week 3-4</div>
-            <h3 class="mt-4 font-bold text-xl text-slate-900 dark:text-white">Projects</h3>
-            <p class="mt-3 text-gray-600 dark:text-gray-300">Develop real-world applications.</p>
+          <div
+            class="bg-sky-50 dark:bg-slate-800 rounded-3xl p-8 border border-transparent dark:border-slate-700"
+          >
+            <div class="text-sky-600 dark:text-sky-400 font-bold text-lg">
+              Week 3-4
+            </div>
+            <h3 class="mt-4 font-bold text-xl text-slate-900 dark:text-white">
+              Projects
+            </h3>
+            <p class="mt-3 text-gray-600 dark:text-gray-300">
+              Develop real-world applications.
+            </p>
           </div>
-          <div class="bg-sky-50 dark:bg-slate-800 rounded-3xl p-8 border border-transparent dark:border-slate-700">
-            <div class="text-sky-600 dark:text-sky-400 font-bold text-lg">Final Week</div>
-            <h3 class="mt-4 font-bold text-xl text-slate-900 dark:text-white">Career Ready</h3>
+          <div
+            class="bg-sky-50 dark:bg-slate-800 rounded-3xl p-8 border border-transparent dark:border-slate-700"
+          >
+            <div class="text-sky-600 dark:text-sky-400 font-bold text-lg">
+              Final Week
+            </div>
+            <h3 class="mt-4 font-bold text-xl text-slate-900 dark:text-white">
+              Career Ready
+            </h3>
             <p class="mt-3 text-gray-600 dark:text-gray-300">
               Assessment, certificate & placement guidance.
             </p>
@@ -454,7 +535,9 @@ const studentReviews = [...testimonials]
     <!-- Testimonials -->
     <section class="py-20 bg-slate-50 dark:bg-slate-900">
       <div class="max-w-7xl mx-auto px-6">
-        <h2 class="text-4xl font-bold text-center mb-14 text-slate-900 dark:text-white">
+        <h2
+          class="text-4xl font-bold text-center mb-14 text-slate-900 dark:text-white"
+        >
           What Students Say
         </h2>
 
@@ -466,7 +549,9 @@ const studentReviews = [...testimonials]
           >
             <div class="text-yellow-400 text-xl">⭐⭐⭐⭐⭐</div>
 
-            <p class="mt-5 text-gray-600 dark:text-gray-300 italic leading-relaxed">
+            <p
+              class="mt-5 text-gray-600 dark:text-gray-300 italic leading-relaxed"
+            >
               "{{ student.review }}"
             </p>
 
@@ -481,7 +566,9 @@ const studentReviews = [...testimonials]
                 <h4 class="font-bold text-slate-900 dark:text-white">
                   {{ student.name }}
                 </h4>
-                <p class="text-sm text-gray-500 dark:text-gray-400">InfiCoreWare Student</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400">
+                  InfiCoreWare Student
+                </p>
               </div>
             </div>
           </div>
@@ -490,16 +577,24 @@ const studentReviews = [...testimonials]
     </section>
 
     <!-- FAQ -->
-    <section class="py-20 bg-gradient-to-b from-slate-50 via-white to-sky-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900">
+    <section
+      class="py-20 bg-gradient-to-b from-slate-50 via-white to-sky-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-900"
+    >
       <div class="max-w-5xl mx-auto px-6">
         <div class="text-center mb-14">
-          <p class="text-sky-600 dark:text-sky-400 font-semibold uppercase tracking-widest">
+          <p
+            class="text-sky-600 dark:text-sky-400 font-semibold uppercase tracking-widest"
+          >
             Frequently Asked Questions
           </p>
-          <h2 class="mt-3 text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white">
+          <h2
+            class="mt-3 text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white"
+          >
             Everything You Need to Know
           </h2>
-          <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p
+            class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto"
+          >
             Find answers to the most common questions about our courses,
             certification, projects, and placement support.
           </p>
@@ -580,7 +675,10 @@ const studentReviews = [...testimonials]
           class="relative bg-white dark:bg-slate-800 rounded-3xl shadow-2xl w-full max-w-2xl p-6 md:p-8 border border-transparent dark:border-slate-700"
         >
           <button
-            @click="showEnroll = false; submitted = false"
+            @click="
+              showEnroll = false;
+              submitted = false;
+            "
             class="absolute top-4 right-5 text-3xl font-bold text-gray-500 dark:text-gray-400 hover:text-red-500"
           >
             ×
@@ -598,19 +696,31 @@ const studentReviews = [...testimonials]
                 stroke-width="3"
                 viewBox="0 0 24 24"
               >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M5 13l4 4L19 7"
+                />
               </svg>
             </div>
 
-            <h2 class="text-3xl font-bold text-green-600 dark:text-green-400 mb-4">
+            <h2
+              class="text-3xl font-bold text-green-600 dark:text-green-400 mb-4"
+            >
               Enrollment Successful
             </h2>
 
-            <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed max-w-md mx-auto">
+            <p
+              class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed max-w-md mx-auto"
+            >
               Thank you for enrolling in
-              <strong class="text-sky-700 dark:text-sky-400">{{ course.title }}</strong>.
+              <strong class="text-sky-700 dark:text-sky-400">{{
+                course.title
+              }}</strong
+              >.
               <br />
-              Our team will reach out to you soon with further details regarding your course.
+              Our team will reach out to you soon with further details regarding
+              your course.
             </p>
 
             <button
