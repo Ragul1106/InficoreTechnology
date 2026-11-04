@@ -9,6 +9,9 @@ import {
   Flame,
 } from "lucide-vue-next";
 
+import { computed } from "vue";
+import { getNextBatchDate } from "../../../data/courses";
+
 interface Course {
   slug: string;
   title: string;
@@ -29,9 +32,16 @@ interface Course {
   reviews: number;
 }
 
+interface CourseStats {
+  enrolledThisWeek: number;
+  seatsLeft: number;
+}
+
 const props = defineProps<{
   course: Course;
   showSeats?: boolean;
+  currentDate?: Date;
+  stats?: CourseStats;
 }>();
 
 const emit = defineEmits<{
@@ -41,6 +51,47 @@ const emit = defineEmits<{
 const comingSoon = () => {
   emit("coming-soon", props.course.title);
 };
+
+// --------------------------------------------------
+// Dynamic course statistics
+// --------------------------------------------------
+
+const seatsRemaining = computed(() => {
+  return props.stats?.seatsLeft ?? props.course.seatsLeft;
+});
+
+const weeklyEnrollments = computed(() => {
+  return props.stats?.enrolledThisWeek ?? props.course.enrolledThisWeek;
+});
+
+// --------------------------------------------------
+// Dynamic seats-filled calculation
+// --------------------------------------------------
+
+const seatsFilled = computed(() => {
+  return Math.max(0, props.course.totalSeats - seatsRemaining.value);
+});
+
+const seatsFilledPercentage = computed(() => {
+  if (props.course.totalSeats <= 0) return 0;
+
+  return Math.min(100, (seatsFilled.value / props.course.totalSeats) * 100);
+});
+
+// --------------------------------------------------
+// Automatically calculate the next batch date
+// --------------------------------------------------
+
+const nextBatchDate = computed(() => {
+  if (!props.course.nextBatch) {
+    return "Coming Soon";
+  }
+
+  return getNextBatchDate(
+    props.course.nextBatch,
+    props.currentDate ?? new Date(),
+  );
+});
 </script>
 
 <template>
@@ -68,21 +119,33 @@ const comingSoon = () => {
           <span
             class="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"
           ></span>
+
           <span
             class="relative inline-flex h-2.5 w-2.5 rounded-full bg-green-500"
           ></span>
         </span>
+
+        <span class="text-xs font-semibold text-white"> LIVE </span>
       </div>
 
       <!-- Filling Fast badge -->
       <div
-        v-if="showSeats && course.seatsLeft < 10"
+        v-if="showSeats && seatsRemaining < 10 && seatsRemaining > 0"
         class="absolute top-4 left-4 flex items-center gap-1.5 rounded-full bg-gradient-to-r from-orange-500 to-red-600 px-3 py-1.5 shadow-lg animate-pulse"
       >
         <Flame class="h-3.5 w-3.5 text-white" />
+
         <span class="text-xs font-bold text-white tracking-wide">
           Filling Fast
         </span>
+      </div>
+
+      <!-- Seats Full badge -->
+      <div
+        v-if="showSeats && seatsRemaining === 0"
+        class="absolute top-4 left-4 rounded-full bg-red-600 px-3 py-1.5 shadow-lg"
+      >
+        <span class="text-xs font-bold text-white"> Seats Full </span>
       </div>
     </div>
 
@@ -104,28 +167,34 @@ const comingSoon = () => {
         </div>
       </div>
 
-      <h2 class="text-2xl font-bold text-slate-900 dark:text-white leading-snug mb-4">
+      <!-- Course Title -->
+      <h2
+        class="text-2xl font-bold text-slate-900 dark:text-white leading-snug mb-4"
+      >
         {{ course.title }}
       </h2>
 
-      <!-- SEATS SECTION (Flagship only) -->
+      <!-- Dynamic Seats Section (Flagship only) -->
       <div v-if="showSeats" class="grid grid-cols-2 gap-3 mb-6">
         <!-- Seats Left -->
         <div
           class="relative rounded-xl border border-red-100 dark:border-red-800/50 bg-red-50 dark:bg-red-900/30 p-4 overflow-hidden"
         >
-          <div class="absolute inset-0 bg-red-200/40 dark:bg-red-800/20 rounded-xl"></div>
+          <div
+            class="absolute inset-0 bg-red-200/40 dark:bg-red-800/20 rounded-xl"
+          ></div>
 
           <div class="relative z-10">
             <div class="flex items-center gap-2">
               <Users class="h-5 w-5 text-red-600 dark:text-red-400" />
+
               <span class="text-sm font-medium text-red-600 dark:text-red-400">
                 Seats Left
               </span>
             </div>
 
             <p class="mt-2 text-4xl font-bold text-red-700 dark:text-red-400">
-              {{ course.seatsLeft }}
+              {{ seatsRemaining }}
             </p>
 
             <p class="text-xs text-red-500 dark:text-red-400/80">
@@ -141,8 +210,13 @@ const comingSoon = () => {
           <p class="text-xs text-green-600 dark:text-green-400 font-medium">
             Joined This Week
           </p>
-          <p class="text-6xl mx-5 font-bold text-green-700 dark:text-green-400">
-            {{ course.enrolledThisWeek }}
+
+          <p class="mt-2 text-4xl font-bold text-green-700 dark:text-green-400">
+            {{ weeklyEnrollments }}
+          </p>
+
+          <p class="mt-1 text-xs text-green-600 dark:text-green-400/80">
+            Students enrolled
           </p>
         </div>
       </div>
@@ -158,11 +232,13 @@ const comingSoon = () => {
         <span class="ml-2 font-semibold text-slate-800 dark:text-white">
           {{ course.rating }}
         </span>
+
         <span class="text-gray-500 dark:text-gray-400 text-sm">
           ({{ course.reviews }} Reviews)
         </span>
       </div>
 
+      <!-- Overview -->
       <p class="text-gray-600 dark:text-gray-300 leading-7 line-clamp-3 mb-6">
         {{ course.overview }}
       </p>
@@ -184,18 +260,22 @@ const comingSoon = () => {
           <CheckCircle2 class="h-5 w-5 text-green-600 dark:text-green-400" />
           <span>Online & Offline Training</span>
         </div>
+
         <div class="flex items-center gap-3">
           <CheckCircle2 class="h-5 w-5 text-green-600 dark:text-green-400" />
           <span>Industry Expert Mentors</span>
         </div>
+
         <div class="flex items-center gap-3">
           <CheckCircle2 class="h-5 w-5 text-green-600 dark:text-green-400" />
           <span>{{ course.projects }}</span>
         </div>
+
         <div class="flex items-center gap-3">
           <CheckCircle2 class="h-5 w-5 text-green-600 dark:text-green-400" />
           <span>Course Completion Certificate</span>
         </div>
+
         <div class="flex items-center gap-3">
           <CheckCircle2 class="h-5 w-5 text-green-600 dark:text-green-400" />
           <span>Placement Assistance</span>
@@ -208,35 +288,40 @@ const comingSoon = () => {
       >
         <div class="flex items-center gap-2">
           <CalendarDays class="h-5 w-5 text-sky-600 dark:text-sky-400" />
-          <span class="text-sm text-gray-500 dark:text-gray-400">Next Batch</span>
+
+          <span class="text-sm text-gray-500 dark:text-gray-400">
+            Next Batch
+          </span>
         </div>
+
         <p class="mt-2 font-bold text-sky-700 dark:text-sky-400">
-          {{ course.nextBatch }}
+          {{ nextBatchDate }}
         </p>
       </div>
 
-      <!-- Seats Filled Progress (Flagship only) -->
+      <!-- Dynamic Seats Filled Progress (Flagship only) -->
       <div v-if="showSeats" class="mb-6">
-        <div class="flex justify-between text-sm mb-2 text-gray-700 dark:text-gray-300">
+        <div
+          class="flex justify-between text-sm mb-2 text-gray-700 dark:text-gray-300"
+        >
           <span class="flex items-center gap-2">
             Seats Filled
+
             <span
               class="inline-flex h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse"
             ></span>
           </span>
-          <span>
-            {{ course.totalSeats - course.seatsLeft }}/{{ course.totalSeats }}
-          </span>
+
+          <span> {{ seatsFilled }}/{{ course.totalSeats }} </span>
         </div>
 
-        <div class="w-full h-2.5 rounded-full bg-gray-200 dark:bg-slate-600 overflow-hidden">
+        <div
+          class="w-full h-2.5 rounded-full bg-gray-200 dark:bg-slate-600 overflow-hidden"
+        >
           <div
             class="h-full rounded-full bg-gradient-to-r from-red-500 to-orange-500 transition-all duration-1000"
             :style="{
-              width:
-                ((course.totalSeats - course.seatsLeft) / course.totalSeats) *
-                  100 +
-                '%',
+              width: `${seatsFilledPercentage}%`,
             }"
           ></div>
         </div>
@@ -247,9 +332,12 @@ const comingSoon = () => {
         class="mt-8 flex items-center justify-between border-t border-gray-100 dark:border-slate-700 pt-5"
       >
         <div>
-          <p class="text-xs uppercase tracking-wide text-gray-400 dark:text-gray-500">
+          <p
+            class="text-xs uppercase tracking-wide text-gray-400 dark:text-gray-500"
+          >
             Mode
           </p>
+
           <p class="font-semibold text-slate-800 dark:text-white">
             {{ course.mode }}
           </p>
@@ -261,6 +349,7 @@ const comingSoon = () => {
           class="inline-flex items-center gap-2 rounded-xl bg-sky-600 px-5 py-3 font-semibold text-white transition hover:bg-sky-700"
         >
           View Details
+
           <svg
             class="h-5 w-5 transition group-hover:translate-x-1"
             fill="none"

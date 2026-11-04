@@ -2,13 +2,18 @@
 // The original batch date is kept as the first batch.
 // Once that date passes, batches automatically move to Saturdays.
 
-export function getNextBatchDate(startDate: string): string {
-  const today = new Date();
+export function getNextBatchDate(
+  startDate: string,
+  currentDate: Date = new Date()
+): string {
+  // Get today's date
+  const today = new Date(currentDate);
   today.setHours(0, 0, 0, 0);
 
+  // Get the original batch date
   const batchDate = new Date(`${startDate}T00:00:00`);
 
-  // Keep the original batch date until it has passed
+  // If the batch date has not expired, display it
   if (batchDate >= today) {
     return batchDate.toLocaleDateString("en-IN", {
       day: "2-digit",
@@ -17,16 +22,12 @@ export function getNextBatchDate(startDate: string): string {
     });
   }
 
-  // Original date has passed.
-  // Find the next Saturday from today.
+  // If expired, calculate the next Saturday
   const nextSaturday = new Date(today);
-  const day = nextSaturday.getDay();
 
-  // Saturday = 6
+  const day = nextSaturday.getDay();
   const daysUntilSaturday = (6 - day + 7) % 7;
 
-  // If today itself is Saturday, use today.
-  // Otherwise move forward to Saturday.
   nextSaturday.setDate(
     nextSaturday.getDate() + daysUntilSaturday
   );
@@ -37,7 +38,6 @@ export function getNextBatchDate(startDate: string): string {
     year: "numeric",
   });
 }
-
 
 export const courses = [
   {
@@ -55,7 +55,7 @@ export const courses = [
     totalSeats: 40,
     seatsLeft: 18,
     enrolledThisWeek: 22,
-    nextBatch: "2026-08-26",
+    nextBatch: "2026-12-14",
     rating: 4.9,
     reviews: 126,
 
@@ -134,7 +134,7 @@ export const courses = [
     totalSeats: 30,
     seatsLeft: 12,
     enrolledThisWeek: 28,
-    nextBatch: "2026-09-02",
+    nextBatch: "2026-11-16",
     rating: 4.7,
     reviews: 102,
 
@@ -206,7 +206,7 @@ export const courses = [
     totalSeats: 30,
     seatsLeft: 10,
     enrolledThisWeek: 20,
-    nextBatch: "2026-09-04",
+    nextBatch: "2026-11-30",
     rating: 4.8,
     reviews: 159,
 
@@ -277,7 +277,7 @@ export const courses = [
     totalSeats: 40,
     seatsLeft: 18,
     enrolledThisWeek: 22,
-    nextBatch: "2026-08-27",
+    nextBatch: "2026-11-26",
     rating: 4.9,
     reviews: 192,
 
@@ -346,7 +346,7 @@ export const courses = [
     totalSeats: 30,
     seatsLeft: 5,
     enrolledThisWeek: 25,
-    nextBatch: "2026-08-28",
+    nextBatch: "2026-11-25",
     rating: 4.9,
     reviews: 115,
 
@@ -415,7 +415,7 @@ export const courses = [
     totalSeats: 20,
     seatsLeft: 8,
     enrolledThisWeek: 12,
-    nextBatch: "2026-09-01",
+    nextBatch: "2026-11-18",
     rating: 4.9,
     reviews: 121,
 
@@ -484,7 +484,7 @@ export const courses = [
     totalSeats: 30,
     seatsLeft: 18,
     enrolledThisWeek: 12,
-    nextBatch: "2026-08-21",
+    nextBatch: "2026-11-23",
     rating: 4.7,
     reviews: 117,
 
@@ -567,7 +567,7 @@ export const courses = [
     totalSeats: 50,
     seatsLeft: 18,
     enrolledThisWeek: 32,
-    nextBatch: "2026-08-31",
+    nextBatch: "2026-12-01",
     rating: 4.9,
     reviews: 216,
 
@@ -640,7 +640,7 @@ export const courses = [
     totalSeats: 30,
     seatsLeft: 18,
     enrolledThisWeek: 12,
-    nextBatch: "2026-08-25",
+    nextBatch: "2026-11-30",
     rating: 4.5,
     reviews: 110,
 
@@ -709,7 +709,7 @@ export const courses = [
     totalSeats: 30,
     seatsLeft: 12,
     enrolledThisWeek: 18,
-    nextBatch: "2026-08-27",
+    nextBatch: "2026-12-09",
     rating: 4.6,
     reviews: 153,
 
@@ -775,7 +775,7 @@ export const courses = [
     totalSeats: 50,
     seatsLeft: 12,
     enrolledThisWeek: 38,
-    nextBatch: "2026-08-24",
+    nextBatch: "2026-12-07",
     rating: 4.7,
     reviews: 173,
 
@@ -845,7 +845,7 @@ export const courses = [
     totalSeats: 30,
     seatsLeft: 12,
     enrolledThisWeek: 18,
-    nextBatch: "2026-08-25",
+    nextBatch: "2026-12-09",
     rating: 4.6,
     reviews: 138,
 

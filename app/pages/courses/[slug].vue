@@ -3,7 +3,7 @@
 // to look up the matching course from the shared courses data.
 
 import { courses, getNextBatchDate } from "../../../data/courses";
-import { computed, ref, reactive } from "vue";
+import { computed, ref, reactive, onMounted, onUnmounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { Plus, Minus } from "lucide-vue-next";
 
@@ -42,14 +42,36 @@ const router = useRouter();
 
 const course = courses.find((c) => c.slug === route.params.slug);
 
+// Reactive current date
+const today = ref(new Date());
+
+let dateInterval: ReturnType<typeof setInterval> | undefined;
+
+// Automatically calculate the next batch date
 const nextBatchDate = computed(() => {
   if (!course?.nextBatch) {
     return "Coming Soon";
   }
 
-  return getNextBatchDate(course.nextBatch);
+  return getNextBatchDate(
+    course.nextBatch,
+    today.value
+  );
 });
 
+// Refresh the date every minute
+onMounted(() => {
+  dateInterval = setInterval(() => {
+    today.value = new Date();
+  }, 60_000);
+});
+
+// Clear interval when leaving the page
+onUnmounted(() => {
+  if (dateInterval) {
+    clearInterval(dateInterval);
+  }
+});
 const showEnroll = ref(false);
 const submitted = ref(false);
 const loading = ref(false);
