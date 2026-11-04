@@ -135,10 +135,10 @@ import {
             <div class="flex gap-3 items-start">
               <Mail class="w-5 h-5 text-sky-500 mt-1 shrink-0" />
               <a
-                href="mailto:contact.inficorewaretechnologies@gmail.com"
+                href="mailto:contact.inficoretechnologies@gmail.com"
                 class="hover:text-sky-500 dark:hover:text-sky-400 transition break-all"
               >
-                contact.inficorewaretechnologies@gmail.com
+                contact.inficoretechnologies@gmail.com
               </a>
             </div>
 
