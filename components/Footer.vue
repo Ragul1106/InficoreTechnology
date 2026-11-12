@@ -2,13 +2,7 @@
 // Site footer — logo, quick links, and contact info shown on every page.
 import logo from "../assets/images/logo.png";
 import valuvar from "../assets/images/thiruvalluvar.png";
-import {
-  MapPin,
-  Phone,
-  Mail,
-  Instagram,
-  Linkedin,
-} from "lucide-vue-next";
+import { MapPin, Phone, Mail, Instagram, Linkedin } from "lucide-vue-next";
 </script>
 
 <template>
@@ -59,12 +53,16 @@ import {
                 <span class="block">நிற்க அதற்குத் தக.</span>
               </p>
 
-              <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 not-italic">
+              <p
+                class="mt-2 text-sm text-gray-500 dark:text-gray-400 not-italic"
+              >
                 Learn thoroughly what is worth learning; having learned it, live
                 by it.
               </p>
 
-              <p class="mt-2 text-xs font-semibold text-sky-600 dark:text-sky-400 not-italic">
+              <p
+                class="mt-2 text-xs font-semibold text-sky-600 dark:text-sky-400 not-italic"
+              >
                 — திருக்குறள் 391
               </p>
             </div>
@@ -161,11 +159,11 @@ import {
               href="https://wa.me/919789738080"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-3 rounded-full bg-sky-50 dark:bg-slate-800 border border-sky-100 dark:border-slate-700 hover:bg-green-50 dark:hover:bg-green-900/30 hover:border-green-200 dark:hover:border-green-700 hover:scale-110 transition duration-300"
+              class="p-3 rounded-full bg-[#25D366]/10 border border-[#25D366]/20  hover:scale-110 transition duration-300"
               aria-label="WhatsApp"
             >
               <svg
-                class="w-5 h-5 text-green-600 dark:text-green-400"
+                class="w-5 h-5 text-[#25D366] group-hover:text-white"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -177,20 +175,26 @@ import {
 
             <!-- Instagram -->
             <a
-              href="#"
-              class="p-3 rounded-full bg-sky-50 dark:bg-slate-800 border border-sky-100 dark:border-slate-700 hover:bg-sky-100 dark:hover:bg-slate-700 hover:scale-110 transition duration-300"
+              href="https://www.instagram.com/inficoreware/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="p-3 rounded-full bg-[#E4405F]/10 border border-[#E4405F]/20 hover:bg-gradient-to-tr  hover:border-transparent hover:scale-110 transition duration-300"
               aria-label="Instagram"
             >
-              <Instagram class="w-5 h-5 text-sky-600 dark:text-sky-400" />
+              <Instagram
+                class="w-5 h-5 text-[#E4405F] group-hover:text-white"
+              />
             </a>
 
             <!-- LinkedIn -->
             <a
               href="#"
-              class="p-3 rounded-full bg-sky-50 dark:bg-slate-800 border border-sky-100 dark:border-slate-700 hover:bg-sky-100 dark:hover:bg-slate-700 hover:scale-110 transition duration-300"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="p-3 rounded-full bg-[#0A66C2]/10 border border-[#0A66C2]/20  hover:border-[#0A66C2] hover:scale-110 transition duration-300"
               aria-label="LinkedIn"
             >
-              <Linkedin class="w-5 h-5 text-sky-600 dark:text-sky-400" />
+              <Linkedin class="w-5 h-5 text-[#0A66C2]" />
             </a>
           </div>
         </div>
