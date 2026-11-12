@@ -178,7 +178,7 @@ import { MapPin, Phone, Mail, Instagram, Linkedin } from "lucide-vue-next";
               href="https://www.instagram.com/inficoreware/"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-3 rounded-full bg-[#E4405F]/10 border border-[#E4405F]/20 hover:bg-gradient-to-tr hover:border-[#fa2003] hover:border-transparent hover:scale-110 transition duration-300"
+              class="p-3 rounded-full bg-[#E4405F]/10 border border-[#E4405F]/20 hover:bg-gradient-to-tr hover:border-[#f02a10] hover:border-transparent hover:scale-110 transition duration-300"
               aria-label="Instagram"
             >
               <Instagram
