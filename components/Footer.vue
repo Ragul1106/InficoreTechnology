@@ -159,7 +159,7 @@ import { MapPin, Phone, Mail, Instagram, Linkedin } from "lucide-vue-next";
               href="https://wa.me/919789738080"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-3 rounded-full bg-[#25D366]/10 border border-[#25D366]/20 hover:border-[#5cd40b]  hover:scale-110 transition duration-300"
+              class="p-3 rounded-full bg-[#25D366]/10 border border-[#25D366]/20 hover:border-[#5cd40b] hover:scale-110 transition duration-300"
               aria-label="WhatsApp"
             >
               <svg
@@ -174,15 +174,16 @@ import { MapPin, Phone, Mail, Instagram, Linkedin } from "lucide-vue-next";
             </a>
 
             <!-- Instagram -->
+
             <a
               href="https://www.instagram.com/inficoreware/"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-3 rounded-full bg-[#E4405F]/10 border border-[#E4405F]/20 hover:bg-gradient-to-tr hover:border-[#f02a10] hover:border-transparent hover:scale-110 transition duration-300"
+              class="group p-3 rounded-full bg-[#E4405F]/10 border border-[#E4405F]/30 hover:bg-gradient-to-tr hover:from-[#FCAF45] hover:via-[#E4405F] hover:to-[#833AB4] hover:border-[#E4405F] hover:scale-110 transition-all duration-300"
               aria-label="Instagram"
             >
               <Instagram
-                class="w-5 h-5 text-[#E4405F] group-hover:text-white"
+                class="w-5 h-5 text-[#E4405F] group-hover:text-white transition-colors duration-300"
               />
             </a>
 
@@ -191,7 +192,7 @@ import { MapPin, Phone, Mail, Instagram, Linkedin } from "lucide-vue-next";
               href="#"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-3 rounded-full bg-[#0A66C2]/10 border border-[#0A66C2]/20  hover:border-[#0A66C2] hover:scale-110 transition duration-300"
+              class="p-3 rounded-full bg-[#0A66C2]/10 border border-[#0A66C2]/20 hover:border-[#0A66C2] hover:scale-110 transition duration-300"
               aria-label="LinkedIn"
             >
               <Linkedin class="w-5 h-5 text-[#0A66C2]" />
