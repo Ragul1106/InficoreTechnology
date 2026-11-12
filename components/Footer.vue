@@ -155,15 +155,16 @@ import { MapPin, Phone, Mail, Instagram, Linkedin } from "lucide-vue-next";
 
           <div class="flex gap-4">
             <!-- WhatsApp -->
+
             <a
               href="https://wa.me/919789738080"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-3 rounded-full bg-[#25D366]/10 border border-[#25D366]/20 hover:border-[#5cd40b] hover:scale-110 transition duration-300"
+              class="group p-3 rounded-full bg-[#25D366]/10 border border-[#25D366]/30 hover:bg-[#609975] hover:border-[#25D366] hover:scale-110 transition-all duration-300"
               aria-label="WhatsApp"
             >
               <svg
-                class="w-5 h-5 text-[#25D366] group-hover:text-white"
+                class="w-5 h-5 text-[#25D366] group-hover:text-white transition-colors duration-300"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -188,14 +189,17 @@ import { MapPin, Phone, Mail, Instagram, Linkedin } from "lucide-vue-next";
             </a>
 
             <!-- LinkedIn -->
+
             <a
               href="#"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-3 rounded-full bg-[#0A66C2]/10 border border-[#0A66C2]/20 hover:border-[#0A66C2] hover:scale-110 transition duration-300"
+              class="group p-3 rounded-full bg-[#0A66C2]/10 border border-[#0A66C2]/30 hover:bg-[#0A66C2] hover:border-[#0A66C2] hover:scale-110 transition-all duration-300"
               aria-label="LinkedIn"
             >
-              <Linkedin class="w-5 h-5 text-[#0A66C2]" />
+              <Linkedin
+                class="w-5 h-5 text-[#0A66C2] group-hover:text-white transition-colors duration-300"
+              />
             </a>
           </div>
         </div>
