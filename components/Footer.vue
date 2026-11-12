@@ -159,7 +159,7 @@ import { MapPin, Phone, Mail, Instagram, Linkedin } from "lucide-vue-next";
               href="https://wa.me/919789738080"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-3 rounded-full bg-[#25D366]/10 border border-[#25D366]/20  hover:scale-110 transition duration-300"
+              class="p-3 rounded-full bg-[#25D366]/10 border border-[#25D366]/20 hover:border-[#5cd40b]  hover:scale-110 transition duration-300"
               aria-label="WhatsApp"
             >
               <svg
@@ -178,7 +178,7 @@ import { MapPin, Phone, Mail, Instagram, Linkedin } from "lucide-vue-next";
               href="https://www.instagram.com/inficoreware/"
               target="_blank"
               rel="noopener noreferrer"
-              class="p-3 rounded-full bg-[#E4405F]/10 border border-[#E4405F]/20 hover:bg-gradient-to-tr  hover:border-transparent hover:scale-110 transition duration-300"
+              class="p-3 rounded-full bg-[#E4405F]/10 border border-[#E4405F]/20 hover:bg-gradient-to-tr hover:border-[#fa2003] hover:border-transparent hover:scale-110 transition duration-300"
               aria-label="Instagram"
             >
               <Instagram
