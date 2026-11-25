@@ -39,7 +39,7 @@ const props = defineProps({
 
       <!-- Mobile -->
       <input
-        type="tel"
+        type="number"
         name="mobile"
         placeholder="Mobile Number"
         required
